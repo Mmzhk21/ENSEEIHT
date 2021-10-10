@@ -1,0 +1,52 @@
+Ce rapport explique ce que nous avons fait:
+
+ - on a ajouter les ressources au métamodèle de SimplePDL comme suit:
+    - Ressource : une ressource est définit par son nom (EString) qui décrit
+    son type et ses occurences (Eint).
+    - Allocate : cette classe représente le nombre d’occurences prises par une
+    activité parmi les occurences d’une ressource pour effectuer sa réalisation.
+    - et on a pris en compte le faite qu’une activité (WorkDefinition) aura besoin éventuellement de plu-
+    sieurs ressources, ainsi elle sera composer de plusieurs classes Allocate.
+    
+ - on a définit les  quatres contraintes sur les modèles SimplePDL dans le fichier SimplePDL.ocl :
+ 
+    1. deux activités différentes d’un même processus ne peuvent pas avoir le même nom:
+        context WorkDefinition
+        inv uniqNames: self.Process.processElements
+	        ->select(pe | pe.oclIsKindOf(WorkDefinition))
+	        ->collect(pe | pe.oclAsType(WorkDefinition))
+	        ->forAll(w1, w2 | w1 = w2 or w1.name <> w2.name)
+	
+    2. une dépendance ne peut pas être réflexive:
+         context WorkSequence
+         inv notReflexive: self.predecessor <> self.successor
+      
+    3. le nom d’une activité doit être composé d’au moins deux caractères:
+       context Process
+       inv nameDeuxcaracteres: self.name.size() >= 2
+   
+    4. le nom d’une activité ne doit être composé que de lettres, chiffres ou soulignés, un chiffre
+    ne peut pas être première position:
+        context WorkDefinition
+       inv validName: self.name.matches('[A-Za-z_][A-Za-z0-9_]*')
+       
+  - on a définit une contrainte sur les ressources:
+        contraite sur l’élèment Allocate : Une activité ne peut pas demander un nombre d’occurences d’une ressource
+            supérieur aux occurences que peut offrir cette ressource à la base.
+            
+            context Allocate
+                inv ressourceSuffisante:
+	            self.occurences <= self.ressource.quantite
+	            
+  - On a définit le métamodèle PetriNet dans le fichier PetriNet.ecore et il contient  les eléments suivants:
+         
+        -PetriNet : c'est l'équivalent de Process
+        -PetriNetElement :  c'est l'équivalent de ProcessElement
+        -Node : un super Class de place et Transition et a un attribut name
+        - place : a un atribue Tokens correspondant au nombres de jetons contenu dans cette place 
+        - tarnsition : définissant les transitions
+        - Arc : contenant les attributs weight (Eint) et kind(arckind)  et lié par une relation de référence à Node pour prendre en compte que plusieurs arcs peut sortir/entrer d'un Node 
+        - enumeration ArcKind : définit les deux types d'arc normal et read_arc
+       
+        
+       

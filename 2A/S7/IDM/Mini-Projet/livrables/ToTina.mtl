@@ -1,0 +1,61 @@
+[comment encoding = UTF-8 /]
+[module ToTina('http://petriNet')]
+
+[template public petriToTina(aPetriNet : PetriNet)]
+[comment @main/]
+[file (aPetriNet.name + '.Tina', false, 'UTF-8')]
+net [aPetriNet.name/]
+
+[let places : OrderedSet(Place) = aPetriNet.getPLaces() ]
+	[for (p : Place | places)]
+pl [p.name/] ([p.tokens/])
+	[/for]
+[/let]
+[let transitions : OrderedSet(Transition) = aPetriNet.getTransitions() ]
+    [for (trs : Transition | transitions)]
+tr [trs.name/] [affPlSources(trs.getArcEntrant())/] -> [affPlCibles(trs.getArcSorttant())/]
+    [/for]
+[/let]
+[/file]
+[/template]
+
+
+[query public getPLaces(p: PetriNet) : OrderedSet(Place) =
+	 p.petriNetElements->select( e | e.oclIsTypeOf(Place) )
+	 ->collect( e | e.oclAsType(Place) )
+	->asOrderedSet()
+/]
+
+[query public getTransitions(p: PetriNet) : OrderedSet(Transition) =
+	 p.petriNetElements->select( e | e.oclIsTypeOf(Transition) )
+	 ->collect( e | e.oclAsType(Transition) )
+	->asOrderedSet()
+/]
+[query public getArcEntrant(t: Transition) : OrderedSet(arc) = 
+	t.arcEntrant->select( e | e.oclIsTypeOf(arc) )
+		->collect( e | e.oclAsType(arc) )
+		->asOrderedSet()
+/]
+
+[query public getArcSorttant(t: Transition) : OrderedSet(arc) = 
+	t.arcSorttant->select( e | e.oclIsTypeOf(arc) )
+		->collect( e | e.oclAsType(arc) )
+		->asOrderedSet()
+/]   
+ 
+[template public affPlSources(arcs : OrderedSet(arc)) post (trim())]
+	[for (ar : arc | arcs)][ar.source.name/]
+	 [if (ar.kind = ArcKind::readArc)]?[ar.weight/] 
+    [elseif (ar.weight > 1)]*[ar.weight/]
+    [else]
+	[/if]
+	[/for]
+[/template]
+
+[template public affPlCibles(arcs : OrderedSet(arc)) post (trim())]
+	[for (ar : arc | arcs)][ar.cible.name/]
+	 [if (ar.weight > 1)]*[ar.weight/] 
+	 [else]
+	 [/if]
+	[/for]
+[/template]

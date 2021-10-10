@@ -1,0 +1,28 @@
+import 'PetriNet.ecore'
+
+package petriNet
+
+context PetriNet
+inv validName('Invalid name: ' + self.name):
+	self.name.matches('[A-Za-z_][A-Za-z0-9_]*')
+
+context Place 
+ inv marquageInitial : self.tokens >= 0
+	
+context arc
+      inv arcValid : self.source.oclIsTypeOf(Place) <> self.cible.oclIsTypeOf(Place)
+             and self.source.oclIsTypeOf(Transition) <> self.cible.oclIsTypeOf(Transition)
+
+context arc
+   inv : self.weight >= 1
+   
+context Node
+   inv : self.arcSorttant->size() >= 1 or self.arcEntrant->size() >= 1
+
+context Place
+   inv uniqNames: self.PetriNet.petriNetElements
+	->select(pe | pe.oclIsKindOf(Place))
+	->collect(pe | pe.oclAsType(Place))
+	->forAll(w1, w2 | w1 = w2 or w1.name <> w2.name)
+	
+endpackage
