@@ -1,0 +1,6 @@
+op finished = ConceptionFinished /\ RedactionTestsFinished /\ RedactionDocFinished /\ ProgrammationFinished;
+
+[] (finished => dead);
+[] <> dead ;
+[] (dead => finished);
+- <> finished;

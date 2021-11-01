@@ -1,0 +1,134 @@
+module SimplePDL2PetriNet;
+create OUT: petrinet from  IN: simplepdl;
+
+-- Obtenir le processus qui contient ce process element.
+-- Remarque: Ce helper ne serait pas utile si une r�f�rence opposite
+-- avait �t� plac�e entre Process et ProcessElement
+helper context simplepdl!ProcessElement
+def: getProcess(): simplepdl!Process =
+	simplepdl!Process.allInstances()
+		->select(p | p.processElements->includes(self))
+		->asSequence()->first();
+
+-- Traduire un Process en un PetriNet de m�me nom
+rule Process2PetriNet {
+	from p: simplepdl!Process
+	to pn: petrinet!PetriNet (name <- p.name)
+}
+
+-- Traduire une WorkDefinition en un motif sur le r�seau de Petri
+rule WorkDefinition2PetriNet {
+	from wd: simplepdl!WorkDefinition
+	to
+		-- PLACES d'une WorkDefinition		
+		p_ready: petrinet!Place(
+				name <- wd.name + '_ready',
+				tokens <- 1,
+				net <- wd.getProcess()),
+		
+		p_started: petrinet!Place(
+				name <- wd.name + '_ready',
+				tokens <- 0,
+				net <- wd.getProcess()),
+				
+		p_running: petrinet!Place(
+				name <- wd.name + '_running',
+				tokens <- 0,
+				net <- wd.getProcess()),
+				
+	   p_finished: petrinet!Place(
+				name <- wd.name + '_finished',
+				tokens <- 0,
+				net <- wd.getProcess()),
+			
+	   -- Transitions d'une WorkDefinition
+	   tr_start :petrinet!Transition(
+	   	   name <- wd.name + '_start',
+				net <- wd.getProcess()),
+		tr_finish :petrinet!Transition(
+	   	   name <- wd.name + '_finish',
+				net <- wd.getProcess()),
+		-- les arcs
+		arc_R2Start : petrinet!arc(
+			weight <-1,
+			source <-p_ready,
+			cible <-tr_start,
+			kind <- #normal,
+			net <- wd.getProcess()),
+		arc_Start2Started : petrinet!arc(
+			weight <-1,
+			source <-tr_start,
+			cible <-p_started,
+			kind <- #normal,
+			net <- wd.getProcess()),	
+		arc_Start2Ring : petrinet!arc(
+			weight <-1,
+			source <-tr_start,
+			cible <-p_running,
+			kind <- #normal,
+			net <- wd.getProcess()),
+		arc_Ring2finsh : petrinet!arc(
+			weight <-1,
+			source <-p_running,
+			cible <-tr_finish,
+			kind <- #normal,
+			net <- wd.getProcess()),
+		arc_finsh2finished : petrinet!arc(
+			weight <-1,
+			source <-tr_finish,
+			cible <-p_finished,
+			kind <- #normal,
+			net <- wd.getProcess())
+}
+	-- Traduire une WorkSequence en un motif sur le r�seau de Petri
+rule WorkSequence2PetriNet {
+	from ws: simplepdl!WorkSequence
+	to
+	  
+		ar_ws : petrinet!arc(
+		 weight<- 1,
+		 source <-
+			if((ws.linkType = #START_TO_START) or (ws.linkType = #START_TO_FINISH ))
+				then thisModule.resolveTemp(ws.predecessor, 'p_started') 
+				else thisModule.resolveTemp(ws.predecessor, 'p_finished')
+			endif,
+		cible <- 
+		    if((ws.linkType = #START_TO_START) or (ws.linkType = #FINISH_TO_START ))
+				then thisModule.resolveTemp(ws.successor, 'tr_start') 
+				else thisModule.resolveTemp(ws.successor, 'tr_finish')
+			endif,
+		
+		kind <- #readArc,
+		net <- ws.successor.getProcess())
+        
+		
+}
+	-- Traduire une ressource en un motif sur le r�seau de Petri
+rule Ressource2PetriNet {
+	from ressource: simplepdl!Ressource
+	to
+	   p_ressource: petrinet!Place(
+				name <- ressource.name,
+				tokens <- ressource.quantite,
+				net <- ressource.getProcess())
+	}
+	-- Traduire Allocate en un motif sur le r�seau de Petri
+rule Allocate2PetriNet {
+	from allocate: simplepdl!Allocate
+	to
+      -- l'arc entre pl_ressource et la transition Start
+			arc_R2S	: petrinet!arc(
+			weight <- allocate.occurences,
+			source <-allocate.ressource,
+			cible <-thisModule.resolveTemp(allocate.ressource, 'tr_start'),
+			kind <- #normal,
+			net <- allocate.ressource.getProcess()),
+     
+		-- l'arc entre pl_ressource et la transition finish
+			arc_F2R	: petrinet!arc(
+			weight <- allocate.occurences,
+			source <- thisModule.resolveTemp(allocate.ressource, 'tr_finish'),
+			cible <-allocate.ressource,
+			kind <- #normal,
+			net <- allocate.ressource.getProcess())
+     }

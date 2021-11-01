@@ -1,0 +1,26 @@
+net developpement
+
+pl ConceptionNot_Started (1)
+pl ConceptionStarted (0)
+pl ConceptionIn_Progress (0)
+pl ConceptionFinished (0)
+pl RedactionDocNot_Started (1)
+pl RedactionDocStarted (0)
+pl RedactionDocIn_Progress (0)
+pl RedactionDocFinished (0)
+pl ProgrammationNot_Started (1)
+pl ProgrammationStarted (0)
+pl ProgrammationIn_Progress (0)
+pl ProgrammationFinished (0)
+pl RedactionTestsNot_Started (1)
+pl RedactionTestsStarted (0)
+pl RedactionTestsIn_Progress (0)
+pl RedactionTestsFinished (0)
+tr Conceptionstart ConceptionNot_Started -> ConceptionStartedConceptionIn_Progress
+tr Conceptionfinish ConceptionIn_Progress -> ConceptionFinished
+tr RedactionDocstart RedactionDocNot_StartedConceptionStarted?1 -> RedactionDocStartedRedactionDocIn_Progress
+tr RedactionDocfinish RedactionDocIn_ProgressConceptionFinished?1 -> RedactionDocFinished
+tr Programmationstart ProgrammationNot_StartedConceptionFinished?1 -> ProgrammationStartedProgrammationIn_Progress
+tr Programmationfinish ProgrammationIn_Progress -> ProgrammationFinished
+tr RedactionTestsstart RedactionTestsNot_StartedConceptionStarted?1 -> RedactionTestsStartedRedactionTestsIn_Progress
+tr RedactionTestsfinish RedactionTestsIn_ProgressProgrammationFinished?1 -> RedactionTestsFinished
