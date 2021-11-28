@@ -1,0 +1,10 @@
+10 secondes pour saisir Ctrl-C au clavier...
+Reception 31
+2*SIGUSR1 ; 5 secondes avant 2*SIGUSR2...
+Reception 31
+Reception 31
+SIGUSR1 démasqué 10 secondes avant de démasquer SIGINT...
+Reception 30
+Reception 30
+Salut
+Reception 31

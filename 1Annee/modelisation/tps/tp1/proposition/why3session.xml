@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE why3session PUBLIC "-//Why3//proof session v5//EN"
+"http://why3.lri.fr/why3session.dtd">
+<why3session shape_version="5">
+<file>
+<path name=".."/>
+<path name="proposition.mlw"/>
+<theory name="Proposition">
+ <goal name="Thm00">
+ </goal>
+ <goal name="Thm01">
+ </goal>
+ <goal name="Thm02">
+ </goal>
+ <goal name="Thm03">
+ </goal>
+ <goal name="Thm04">
+ </goal>
+ <goal name="Thm05">
+ </goal>
+ <goal name="Thm06">
+ </goal>
+</theory>
+</file>
+</why3session>

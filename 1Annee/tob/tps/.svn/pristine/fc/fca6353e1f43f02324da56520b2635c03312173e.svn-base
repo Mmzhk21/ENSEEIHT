@@ -1,0 +1,7 @@
+java allumettes.Jouer Xavier@humain Ordinateur@expert <<EOF
+1
+2
+3
+1
+EOF
+

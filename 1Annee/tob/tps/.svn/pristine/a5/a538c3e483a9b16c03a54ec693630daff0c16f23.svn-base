@@ -1,0 +1,41 @@
+Date de l'évaluation : lun. 08 mars 2021 00:55:26 CET
+
+Nombre de similitudes (voir evaluations/evaluation1/sim_java.txt) : 5
+Les similitudes indiquent généralement du code à restructurer.
+
+Erreurs checkstyle (différentes/types) : 41/13	(voir evaluations/evaluation1//checkstyle.log)
+
+Classe OperationInterditeException : OperationInterditeException (ok)
+
+Procuration sur le jeu réel : allumettes/Procuration.java (ok)
+
+OperationInterditeException, levée dans : allumettes/Procuration.java (ok)
+OperationInterditeException, récupérée dans : allumettes/Arbitre.java (ok)
+
+Utilisation de 'Scanner' : ok
+	allumettes/StrategieHumaine.java:	private static Scanner scanner = new Scanner(System.in);
+
+Utilisation de 'split' : ok mais un seul split devrait suffir !  Code à restructurer...
+	allumettes/Jouer.java:            	/** S'il ya trois arguments on verifie si le premier argument est "-confiant". et on fait un split pour l'argument.
+	allumettes/Jouer.java:                        	 String[] chaine1 = args[1].split("@");
+	allumettes/Jouer.java:                        	 String[] chaine2 = args[2].split("@");
+	allumettes/Jouer.java:            /** si le nombre d'arguments et deux on fait un split sur l'argument 0 et 1.*/
+	allumettes/Jouer.java:               	 String[] chaine1 = args[0].split("@");
+	allumettes/Jouer.java:               	 String[] chaine2 = args[1].split("@");
+
+Utilisation de 'Random' : ok
+	allumettes/StrategieNaif.java:import java.util.Random;
+	allumettes/StrategieNaif.java:	public Random ran;
+	allumettes/StrategieNaif.java:		this.ran = new Random();
+	allumettes/StrategieExpert.java:import java.util.Random;
+	allumettes/StrategieExpert.java:	public Random ran;
+	allumettes/StrategieExpert.java:		this.ran = new Random();
+
+Utilisation de '3' : Ne pas utiliser de constante littérale hors -1, 0 ou 1 (peut-être PRISE_MAX ?)
+	allumettes/StrategieNaif.java:		int a = Math.min(jeu.getNombreAllumettes(), 3);
+	allumettes/StrategieRapide.java:		int a = Math.min(jeu.getNombreAllumettes(), 3);
+
+Utilisation de 'System.exit' : ok
+
+Compilation de Jouer.java : ERREUR !	(voir evaluations/evaluation1/Jouer.java.log)
+J'arrête les tests...

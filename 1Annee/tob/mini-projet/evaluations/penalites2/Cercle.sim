@@ -1,0 +1,11 @@
+File Cercle.java: 572 tokens, 184 lines
+Total input: 1 file (1 new, 0 old), 572 tokens
+
+Cercle.java: line 41-42 [30]
+Cercle.java: line 70-71
+<     	assert(point1 != null && point2 != null);
+<         assert(point1.getX() != point2.getX() || point1.getY() != point2.getY());
+---
+>    	      assert(p1 != null && p2 != null && p1 != p2);
+>           assert(p1.getX() != p2.getX() || p1.getY() != p2.getY());
+

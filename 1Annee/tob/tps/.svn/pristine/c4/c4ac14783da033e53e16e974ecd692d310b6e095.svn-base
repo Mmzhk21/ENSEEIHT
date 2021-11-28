@@ -1,0 +1,24 @@
+0a1,2
+> Nombre d'allumettes restantes : 13
+> Ordinateur prend 3 allumettes.
+2c4,7
+< Erreur : argument invalide : Ordinateur@rapide different de: -confiant.
+---
+> Nombre d'allumettes restantes : 10
+> [Je triche...]
+> [Allumettes restantes : 2]
+> Tricheur prend 1 allumette.
+4,10c9,10
+< Usage :
+< 	java allumettes.Jouer joueur1 joueur2
+< 		joueur est de la forme nom@stratégie
+< 		strategie = naif | rapide | expert | humain | tricheur
+< 
+< 	Exemple :
+< 		java allumettes.Jouer Xavier@humain Ordinateur@naif
+---
+> Nombre d'allumettes restantes : 1
+> Ordinateur prend 1 allumette.
+11a12,13
+> Ordinateur perd !
+> Tricheur gagne !

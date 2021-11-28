@@ -1,0 +1,7 @@
+
++ C3 : Qualité du source de l'application : 1 pt
+    - redondance (en particulier pour traitement des arguments de la ligne de commande)
+    - mieux structurer/factoriser le code pour traitement des arguments de la ligne de commande -> méthode privée
+
+
++ Correction sur les pénalités automatiques : 1

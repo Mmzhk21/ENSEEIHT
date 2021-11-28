@@ -1,0 +1,11 @@
+
+Erreur : strategie inecorrecte; choisir l'une des strategies suivantes: naif | rapide | expert | humain | tricheur
+
+Usage :
+	java allumettes.Jouer joueur1 joueur2
+		joueur est de la forme nom@stratégie
+		strategie = naif | rapide | expert | humain | tricheur
+
+	Exemple :
+		java allumettes.Jouer Xavier@humain Ordinateur@naif
+

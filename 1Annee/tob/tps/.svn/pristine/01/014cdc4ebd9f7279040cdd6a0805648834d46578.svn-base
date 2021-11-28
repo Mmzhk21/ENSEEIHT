@@ -1,0 +1,5 @@
+./allumettes/Strategie.java:12: error: cannot find symbol
+
+  symbol:   class StrategieNotFoundException
+  location: class Jouer
+1 error

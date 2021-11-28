@@ -1,0 +1,3 @@
+paa.adb:15:01: warning: variable "T" is never read and never assigned
+paa.adb:20:01: warning: variable "P" is never read and never assigned
+paa.adb:21:01: warning: variable "V" is never read and never assigned

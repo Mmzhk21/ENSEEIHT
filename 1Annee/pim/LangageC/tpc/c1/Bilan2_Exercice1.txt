@@ -1,0 +1,36 @@
+Indiquer vos réponses aux questions de l'exercice 1 du Bilan 2 ci-après : 
+
+[B1.1] Quelle est la portée de chaque variable déclarée ? Pour chaque variable, on donnera le numéro de ligne où commence et se termine sa portée.
+       n : de la ligne 8 jusqu'à la ligne 36
+       p : de la ligne 9 jusqu'à la ligne 36 
+       a : de la ligne 13 jusqu'à la ligne 17
+       n : de la ligne 22 jusqu'à la ligne 24
+       r : de la ligne 30 jusqu'à la ligne 36
+
+
+
+[B1.2] Y a-t-il un exemple de masquage de variable dans ce programme ?
+      oui, 
+        la déclaration int n = 7 (ligne 22)  masque la déclaration int n = 10 (ligne 8).  .
+     
+
+
+
+[B1.3] Peut-on savoir ce que devrait afficher l’exécution de ce programme ?
+        non, car il y a affichage des adresses 
+
+
+
+[B1.4] Même s’il compile sans erreur, ce programme est faux. Pourquoi ?
+
+      car p ne change pas, mais c'est la valeur où p pointe que change
+
+
+[B1.5] La valeur de `p` change-t-elle après l’initialisation de la ligne 14 ?
+       
+       Non, on ne fait que afficher p et la valeur où il pointe
+
+
+
+[B1.6] Que se passerait-il si on modifiait `*p` après la ligne 19 ?
+       rien que changer la valeur de *p

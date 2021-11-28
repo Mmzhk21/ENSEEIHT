@@ -1,0 +1,28 @@
+Indiquer vos réponses aux questions de l'exercice 1 du Bilan 2 ci-après : 
+
+[B1.1] Quelle est la portée de chaque variable déclarée ? Pour chaque variable, on donnera le numéro de ligne où commence et se termine sa portée.
+
+
+
+
+[B1.2] Y a-t-il un exemple de masquage de variable dans ce programme ?
+
+
+
+
+[B1.3] Peut-on savoir ce que devrait afficher l’exécution de ce programme ?
+
+
+
+
+[B1.4] Même s’il compile sans erreur, ce programme est faux. Pourquoi ?
+
+
+
+
+[B1.5] La valeur de `p` change-t-elle après l’initialisation de la ligne 14 ?
+
+
+
+
+[B1.6] Que se passerait-il si on modifiait `*p` après la ligne 19 ?

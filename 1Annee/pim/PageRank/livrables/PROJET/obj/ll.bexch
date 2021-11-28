@@ -1,0 +1,21 @@
+[GENERATED OBJECT FILE]
+b__ll.o
+[PROJECT FILES]
+/home/souhmmia/1A/cccc/PROJET/projet.gpr
+20201229234644
+[BOUND OBJECT FILES]
+/home/souhmmia/1A/cccc/PROJET/obj/vecteurs_creux.o
+/home/souhmmia/1A/cccc/PROJET/obj/google_creuse.o
+/home/souhmmia/1A/cccc/PROJET/obj/ll.o
+[GENERATED SOURCE FILES]
+b__ll.ads
+b__ll.adb
+b__ll.ali
+[RESULTING OPTIONS]
+-L/home/souhmmia/1A/cccc/PROJET/obj/
+-L/home/souhmmia/1A/cccc/PROJET/obj/
+-L/applications/gnat/lib/gcc/x86_64-pc-linux-gnu/8.3.1/adalib/
+-static
+-static-libgcc
+/applications/gnat/lib/gcc/x86_64-pc-linux-gnu/8.3.1/adalib/libgnat.a
+-ldl

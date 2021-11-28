@@ -1,0 +1,27 @@
+Nombre d'allumettes restantes : 13
+Xavier, combien d'allumettes ? Xavier prend 2 allumettes.
+
+Nombre d'allumettes restantes : 11
+Ordinateur prend 3 allumettes.
+
+Nombre d'allumettes restantes : 8
+Xavier, combien d'allumettes ? vous devez entrer un entier compris entre 0 et 3
+Xavier prend 5 allumettes.
+
+erreur !
+Recommencez
+
+Nombre d'allumettes restantes : 8
+Xavier, combien d'allumettes ? Xavier prend 3 allumettes.
+
+Nombre d'allumettes restantes : 5
+Ordinateur prend 3 allumettes.
+
+Nombre d'allumettes restantes : 2
+Xavier, combien d'allumettes ? Xavier prend 1 allumettes.
+
+Nombre d'allumettes restantes : 1
+Ordinateur prend 1 allumettes.
+
+Ordinateur a perdu !
+Xavier a gagné !

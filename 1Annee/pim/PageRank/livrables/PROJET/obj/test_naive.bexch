@@ -1,0 +1,20 @@
+[GENERATED OBJECT FILE]
+b__test_naive.o
+[PROJECT FILES]
+/home/souhmmia/1A/cccc/PROJET/projet.gpr
+20210118180456
+[BOUND OBJECT FILES]
+/home/souhmmia/1A/cccc/PROJET/obj/google_naive.o
+/home/souhmmia/1A/cccc/PROJET/obj/test_naive.o
+[GENERATED SOURCE FILES]
+b__test_naive.ads
+b__test_naive.adb
+b__test_naive.ali
+[RESULTING OPTIONS]
+-L/home/souhmmia/1A/cccc/PROJET/obj/
+-L/home/souhmmia/1A/cccc/PROJET/obj/
+-L/applications/gnat/lib/gcc/x86_64-pc-linux-gnu/8.3.1/adalib/
+-static
+-static-libgcc
+/applications/gnat/lib/gcc/x86_64-pc-linux-gnu/8.3.1/adalib/libgnat.a
+-ldl

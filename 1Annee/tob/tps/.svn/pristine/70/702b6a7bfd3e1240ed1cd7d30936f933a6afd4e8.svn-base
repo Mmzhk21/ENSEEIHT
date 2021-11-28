@@ -1,0 +1,13 @@
+
+Les Q# font référence aux questions posées dans le fichier LISEZ-MOI.txt.
+Les pénalités '+' seront évaluées manuellement (enseignant de TP).
+Les pénalités '+' peuvent donner lieu à des pénalités définitives en V1 (si le travail est jugé insuffisant).
+
++ C3 : Qualité du source de l'application : 1 pt
+    - Ajouter et completer la javadoc où elle manque avec @param @return etc
+    - redondance (en particulier pour traitement des arguments de la ligne de commande)
+    - mieux structurer/factoriser le code pour traitement des arguments de la ligne de commande -> méthode privée
+    - mieux indenter le code (dans eclipse, Source->Format, pour chaque fichier)
+
+
++ Correction sur les pénalités automatiques : 0

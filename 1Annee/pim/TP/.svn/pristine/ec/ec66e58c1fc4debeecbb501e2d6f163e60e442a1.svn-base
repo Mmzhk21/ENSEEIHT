@@ -1,0 +1,24 @@
+project TD07 is
+
+   for Main use ("exemple_1.adb",
+	"exemple_2.adb",
+	"exemple_3.adb",
+	"exemple_4.adb",
+	"exemple_5.adb",
+	"somme.adb",
+	"saisir_pile_robuste.adb",
+	"test_piles.adb");
+
+   package Builder is
+      for Default_Switches ("ada") use ("-s");
+   end Builder;
+
+   package Compiler is
+      for Default_Switches ("ada") use ("-gnatwa", "-gnata", "-g");
+   end Compiler;
+
+   package Binder is
+      for Default_Switches ("ada") use ("-E");
+   end Binder;
+
+end TD07;

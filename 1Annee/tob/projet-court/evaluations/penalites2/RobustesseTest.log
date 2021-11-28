@@ -1,0 +1,553 @@
+SCORE: 5
+JUnit version 4.12
+.
+================================================================================
+> java allumettes.Jouer.main("-confiant", "x", "yyy@rapide")
+--------------------------------------------------------------------------------
+wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+*** Exception non récupérée : java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+--------------------------------------------------------------------------------
+
+
+E.
+================================================================================
+> java allumettes.Jouer.main("-confiant", "yyy@rapide", "xxx@rapide@naif")
+--------------------------------------------------------------------------------
+Nombre d'allumettes restantes : 13
+yyy prend 3 allumettes.
+
+Nombre d'allumettes restantes : 10
+xxx prend 3 allumettes.
+
+Nombre d'allumettes restantes : 7
+yyy prend 3 allumettes.
+
+Nombre d'allumettes restantes : 4
+xxx prend 3 allumettes.
+
+Nombre d'allumettes restantes : 1
+yyy prend 1 allumette.
+
+yyy perd !
+xxx gagne !
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("x", "yyy@rapide")
+--------------------------------------------------------------------------------
+wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+*** Exception non récupérée : java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+--------------------------------------------------------------------------------
+
+
+E.
+================================================================================
+> java allumettes.Jouer.main("-confiant", "yyy@rapide", "xxx@xyz")
+--------------------------------------------------------------------------------
+
+Erreur : Stratégie inconnue
+
+Usage :
+	java allumettes.Jouer joueur1 joueur2
+		joueur est de la forme nom@stratégie
+		strategie = naif | rapide | expert | humain | tricheur
+
+	Exemple :
+		java allumettes.Jouer Xavier@humain Ordinateur@naif
+
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("yyy@rapide", "xxx@ville@naif")
+--------------------------------------------------------------------------------
+
+Erreur : Stratégie inconnue
+
+Usage :
+	java allumettes.Jouer joueur1 joueur2
+		joueur est de la forme nom@stratégie
+		strategie = naif | rapide | expert | humain | tricheur
+
+	Exemple :
+		java allumettes.Jouer Xavier@humain Ordinateur@naif
+
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("@humain", "ordi@rapide")
+--------------------------------------------------------------------------------
+Nombre d'allumettes restantes : 13
+, combien d'allumettes ?  prend 1 allumette.
+
+Nombre d'allumettes restantes : 12
+ordi prend 3 allumettes.
+
+Nombre d'allumettes restantes : 9
+, combien d'allumettes ?  prend 1 allumette.
+
+Nombre d'allumettes restantes : 8
+ordi prend 3 allumettes.
+
+Nombre d'allumettes restantes : 5
+, combien d'allumettes ?  prend 1 allumette.
+
+Nombre d'allumettes restantes : 4
+ordi prend 3 allumettes.
+
+Nombre d'allumettes restantes : 1
+, combien d'allumettes ?  prend 1 allumette.
+
+ perd !
+ordi gagne !
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("xxx@xyz", "yyy@rapide")
+--------------------------------------------------------------------------------
+
+Erreur : Stratégie inconnue
+
+Usage :
+	java allumettes.Jouer joueur1 joueur2
+		joueur est de la forme nom@stratégie
+		strategie = naif | rapide | expert | humain | tricheur
+
+	Exemple :
+		java allumettes.Jouer Xavier@humain Ordinateur@naif
+
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("-confiant", "xxx@rapide@naif", "yyy@rapide")
+--------------------------------------------------------------------------------
+Nombre d'allumettes restantes : 13
+xxx prend 3 allumettes.
+
+Nombre d'allumettes restantes : 10
+yyy prend 3 allumettes.
+
+Nombre d'allumettes restantes : 7
+xxx prend 3 allumettes.
+
+Nombre d'allumettes restantes : 4
+yyy prend 3 allumettes.
+
+Nombre d'allumettes restantes : 1
+xxx prend 1 allumette.
+
+xxx perd !
+yyy gagne !
+--------------------------------------------------------------------------------
+
+
+..
+================================================================================
+> java allumettes.Jouer.main("-confiant", "yyy@rapide", "xxx@ville@naif")
+--------------------------------------------------------------------------------
+
+Erreur : Stratégie inconnue
+
+Usage :
+	java allumettes.Jouer joueur1 joueur2
+		joueur est de la forme nom@stratégie
+		strategie = naif | rapide | expert | humain | tricheur
+
+	Exemple :
+		java allumettes.Jouer Xavier@humain Ordinateur@naif
+
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("yyy@rapide", "xxx@xyz")
+--------------------------------------------------------------------------------
+
+Erreur : Stratégie inconnue
+
+Usage :
+	java allumettes.Jouer joueur1 joueur2
+		joueur est de la forme nom@stratégie
+		strategie = naif | rapide | expert | humain | tricheur
+
+	Exemple :
+		java allumettes.Jouer Xavier@humain Ordinateur@naif
+
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("-confiant", "@humain", "ordi@rapide")
+--------------------------------------------------------------------------------
+Nombre d'allumettes restantes : 13
+, combien d'allumettes ?  prend 1 allumette.
+
+Nombre d'allumettes restantes : 12
+ordi prend 3 allumettes.
+
+Nombre d'allumettes restantes : 9
+, combien d'allumettes ?  prend 1 allumette.
+
+Nombre d'allumettes restantes : 8
+ordi prend 3 allumettes.
+
+Nombre d'allumettes restantes : 5
+, combien d'allumettes ?  prend 1 allumette.
+
+Nombre d'allumettes restantes : 4
+ordi prend 3 allumettes.
+
+Nombre d'allumettes restantes : 1
+, combien d'allumettes ?  prend 1 allumette.
+
+ perd !
+ordi gagne !
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("xxx@rapide@naif", "yyy@rapide")
+--------------------------------------------------------------------------------
+Nombre d'allumettes restantes : 13
+xxx prend 3 allumettes.
+
+Nombre d'allumettes restantes : 10
+yyy prend 3 allumettes.
+
+Nombre d'allumettes restantes : 7
+xxx prend 3 allumettes.
+
+Nombre d'allumettes restantes : 4
+yyy prend 3 allumettes.
+
+Nombre d'allumettes restantes : 1
+xxx prend 1 allumette.
+
+xxx perd !
+yyy gagne !
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("-confiant")
+--------------------------------------------------------------------------------
+
+Erreur : Trop peu d'arguments : 1
+
+Usage :
+	java allumettes.Jouer joueur1 joueur2
+		joueur est de la forme nom@stratégie
+		strategie = naif | rapide | expert | humain | tricheur
+
+	Exemple :
+		java allumettes.Jouer Xavier@humain Ordinateur@naif
+
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("-confiant", "xxx@ville@naif", "yyy@rapide")
+--------------------------------------------------------------------------------
+
+Erreur : Stratégie inconnue
+
+Usage :
+	java allumettes.Jouer joueur1 joueur2
+		joueur est de la forme nom@stratégie
+		strategie = naif | rapide | expert | humain | tricheur
+
+	Exemple :
+		java allumettes.Jouer Xavier@humain Ordinateur@naif
+
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("xxx@ville@naif", "yyy@rapide")
+--------------------------------------------------------------------------------
+
+Erreur : Stratégie inconnue
+
+Usage :
+	java allumettes.Jouer joueur1 joueur2
+		joueur est de la forme nom@stratégie
+		strategie = naif | rapide | expert | humain | tricheur
+
+	Exemple :
+		java allumettes.Jouer Xavier@humain Ordinateur@naif
+
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("yyy@rapide", "x")
+--------------------------------------------------------------------------------
+wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+*** Exception non récupérée : java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+--------------------------------------------------------------------------------
+
+
+E.
+================================================================================
+> java allumettes.Jouer.main("-confiant", "-confiant")
+--------------------------------------------------------------------------------
+wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+*** Exception non récupérée : java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+--------------------------------------------------------------------------------
+
+
+E.
+================================================================================
+> java allumettes.Jouer.main()
+--------------------------------------------------------------------------------
+
+Erreur : Trop peu d'arguments : 0
+
+Usage :
+	java allumettes.Jouer joueur1 joueur2
+		joueur est de la forme nom@stratégie
+		strategie = naif | rapide | expert | humain | tricheur
+
+	Exemple :
+		java allumettes.Jouer Xavier@humain Ordinateur@naif
+
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("-confiant", "yyy@rapide", "x")
+--------------------------------------------------------------------------------
+wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+*** Exception non récupérée : java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+--------------------------------------------------------------------------------
+
+
+E.
+================================================================================
+> java allumettes.Jouer.main("-confiant", "xxx@xyz", "yyy@rapide")
+--------------------------------------------------------------------------------
+
+Erreur : Stratégie inconnue
+
+Usage :
+	java allumettes.Jouer joueur1 joueur2
+		joueur est de la forme nom@stratégie
+		strategie = naif | rapide | expert | humain | tricheur
+
+	Exemple :
+		java allumettes.Jouer Xavier@humain Ordinateur@naif
+
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("-confiant", "ordi@rapide", "@humain")
+--------------------------------------------------------------------------------
+Nombre d'allumettes restantes : 13
+ordi prend 3 allumettes.
+
+Nombre d'allumettes restantes : 10
+, combien d'allumettes ?  prend 1 allumette.
+
+Nombre d'allumettes restantes : 9
+ordi prend 3 allumettes.
+
+Nombre d'allumettes restantes : 6
+, combien d'allumettes ?  prend 1 allumette.
+
+Nombre d'allumettes restantes : 5
+ordi prend 3 allumettes.
+
+Nombre d'allumettes restantes : 2
+, combien d'allumettes ?  prend 1 allumette.
+
+Nombre d'allumettes restantes : 1
+ordi prend 1 allumette.
+
+ordi perd !
+ gagne !
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("yyy@rapide", "xxx@rapide@naif")
+--------------------------------------------------------------------------------
+Nombre d'allumettes restantes : 13
+yyy prend 3 allumettes.
+
+Nombre d'allumettes restantes : 10
+xxx prend 3 allumettes.
+
+Nombre d'allumettes restantes : 7
+yyy prend 3 allumettes.
+
+Nombre d'allumettes restantes : 4
+xxx prend 3 allumettes.
+
+Nombre d'allumettes restantes : 1
+yyy prend 1 allumette.
+
+yyy perd !
+xxx gagne !
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("-confiant")
+--------------------------------------------------------------------------------
+
+Erreur : Trop peu d'arguments : 1
+
+Usage :
+	java allumettes.Jouer joueur1 joueur2
+		joueur est de la forme nom@stratégie
+		strategie = naif | rapide | expert | humain | tricheur
+
+	Exemple :
+		java allumettes.Jouer Xavier@humain Ordinateur@naif
+
+--------------------------------------------------------------------------------
+
+
+.
+================================================================================
+> java allumettes.Jouer.main("ordi@rapide", "@humain")
+--------------------------------------------------------------------------------
+Nombre d'allumettes restantes : 13
+ordi prend 3 allumettes.
+
+Nombre d'allumettes restantes : 10
+, combien d'allumettes ?  prend 1 allumette.
+
+Nombre d'allumettes restantes : 9
+ordi prend 3 allumettes.
+
+Nombre d'allumettes restantes : 6
+, combien d'allumettes ?  prend 1 allumette.
+
+Nombre d'allumettes restantes : 5
+ordi prend 3 allumettes.
+
+Nombre d'allumettes restantes : 2
+, combien d'allumettes ?  prend 1 allumette.
+
+Nombre d'allumettes restantes : 1
+ordi prend 1 allumette.
+
+ordi perd !
+ gagne !
+--------------------------------------------------------------------------------
+
+
+
+
+There were 5 failures:
+1) testerSansStrategieConfiant(RobustesseTest)
+java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at allumettes.Jouer.main(Jouer.java:28)
+	at RobustesseTest.runJouer(RobustesseTest.java:97)
+	at RobustesseTest.testerSansStrategieConfiant(RobustesseTest.java:172)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+	at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:292)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2) testerSansStrategie(RobustesseTest)
+java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at allumettes.Jouer.main(Jouer.java:49)
+	at RobustesseTest.runJouer(RobustesseTest.java:97)
+	at RobustesseTest.testerSansStrategie(RobustesseTest.java:178)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+	at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:292)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+3) testerSansStrategieSymetrie(RobustesseTest)
+java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at allumettes.Jouer.main(Jouer.java:50)
+	at RobustesseTest.runJouer(RobustesseTest.java:97)
+	at RobustesseTest.testerSansStrategieSymetrie(RobustesseTest.java:190)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+	at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:292)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+4) testerDoubleConfiantConfiant(RobustesseTest)
+java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at allumettes.Jouer.main(Jouer.java:49)
+	at RobustesseTest.runJouer(RobustesseTest.java:97)
+	at RobustesseTest.testerDoubleConfiantConfiant(RobustesseTest.java:136)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+	at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:292)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+5) testerSansStrategieSymetrieConfiant(RobustesseTest)
+java.lang.ArrayIndexOutOfBoundsException: Index 1 out of bounds for length 1
+	at allumettes.Jouer.main(Jouer.java:29)
+	at RobustesseTest.runJouer(RobustesseTest.java:97)
+	at RobustesseTest.testerSansStrategieSymetrieConfiant(RobustesseTest.java:184)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:298)
+	at org.junit.internal.runners.statements.FailOnTimeout$CallableStatement.call(FailOnTimeout.java:292)
+	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+
+FAILURES!!!
+Tests run: 25,  Failures: 5
+

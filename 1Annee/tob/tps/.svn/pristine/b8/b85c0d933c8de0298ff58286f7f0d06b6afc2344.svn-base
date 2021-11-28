@@ -1,0 +1,108 @@
+File allumettes/ConfigurationException.java: 21 tokens, 16 lines
+File allumettes/Jeu.java: 23 tokens, 21 lines
+File allumettes/Arbitre.java: 364 tokens, 76 lines
+File allumettes/Game.java: 175 tokens, 38 lines
+File allumettes/Strategie.java: 15 tokens, 11 lines
+File allumettes/StrategieTricheur.java: 88 tokens, 24 lines
+File allumettes/OperationInterditeException.java: 21 tokens, 9 lines
+File allumettes/CoupInvalideException.java: 51 tokens, 29 lines
+File allumettes/Joueur.java: 65 tokens, 21 lines
+File allumettes/Procuration.java: 66 tokens, 25 lines
+File allumettes/Jouer.java: 572 tokens, 125 lines
+File allumettes/StrategieHumaine.java: 160 tokens, 46 lines
+File allumettes/StrategieLente.java: 33 tokens, 16 lines
+File allumettes/StrategieNaif.java: 74 tokens, 24 lines
+File allumettes/StrategieRapide.java: 48 tokens, 14 lines
+File allumettes/StrategieExpert.java: 127 tokens, 29 lines
+Total input: 16 files (16 new, 0 old), 1903 tokens
+
+allumettes/Jouer.java: line 25-34 [103]
+allumettes/Jouer.java: line 46-55
+<                   if (args[0].equals("-confiant")) {
+<                         	 String[] chaine1 = args[1].split("@");
+<                         	 String[] chaine2 = args[2].split("@");
+<                         	 Strategie strateg1 = getStrategie(chaine1[1],chaine1[0]);
+<                         	 Strategie strateg2 = getStrategie(chaine2[1],chaine2[0]);
+<                         	 j1 = new Joueur(chaine1[0],strateg1);
+<                         	 j2 = new Joueur(chaine2[0],strateg2);
+<                         	 Arbitre arbitre = new Arbitre(j1,j2);
+<                         	 Game jeu = new Game(nbAllumettes_initial);
+<                         	 arbitre.para = true;
+---
+>             else {
+>                	 String[] chaine1 = args[0].split("@");
+>                	 String[] chaine2 = args[1].split("@");
+>                	 Strategie strateg1 = getStrategie(chaine1[1],chaine1[0]);
+>                	 Strategie strateg2 = getStrategie(chaine2[1],chaine2[0]);
+>                	 j1 = new Joueur(chaine1[0],strateg1);
+>                	 j2 = new Joueur(chaine2[0],strateg2);
+>                	 Arbitre arbitre = new Arbitre(j1,j2);
+>                	 Game jeu = new Game(13);
+>                	 arbitre.arbitrer(jeu);
+
+allumettes/StrategieNaif.java: line 1-16 [35]
+allumettes/StrategieExpert.java: line 1-18
+< package allumettes;
+< 
+< import java.util.Random;
+< 
+< public class StrategieNaif implements Strategie {
+< 	 
+< 	public Random ran;
+< 	
+< 	
+< 	public StrategieNaif() {
+< 		this.ran = new Random();
+< 	}
+< 
+< 
+< 	@Override
+< 	public int getPrise(Jeu jeu) {
+---
+> package allumettes;
+> 
+> import java.util.Random;
+> 
+> public class StrategieExpert implements Strategie{
+> 
+> 	public Random ran;
+> 	 
+> 	public StrategieExpert() {
+> 		this.ran = new Random();
+> 	}
+> 	
+> 	
+> 	
+> 	
+> 	
+> 	@Override
+> 	public int getPrise(Jeu jeu) {
+
+allumettes/Jouer.java: line 74-79 [33]
+allumettes/Jouer.java: line 80-85
+<         if(nom.equals("naif")) {
+<             return new StrategieNaif();
+< 		}
+<         else if(nom.equals("rapide")) {
+<             return new StrategieRapide();
+< 		}
+---
+>         else if(nom.equals("expert")){
+>             return new StrategieExpert();
+> 		}
+>         else if(nom.equals("lente")){
+>             return new StrategieLente();
+> 		}
+
+allumettes/Arbitre.java: line 66-69 [30]
+allumettes/Arbitre.java: line 69-72
+< 			if(!tour) {
+< 			      System.out.println(j1.getNom() + " perd !");
+< 			      System.out.println(j2.getNom() + " gagne !");
+< 			}else {
+---
+> 			}else {
+> 				System.out.println(j2.getNom() + " perd !");
+> 				System.out.println(j1.getNom() + " gagne !");
+> 			}
+

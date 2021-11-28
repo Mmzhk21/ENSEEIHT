@@ -1,0 +1,1 @@
+echo -v -o <nom de fichier> -T <valeur hexa> -S -I -e -t

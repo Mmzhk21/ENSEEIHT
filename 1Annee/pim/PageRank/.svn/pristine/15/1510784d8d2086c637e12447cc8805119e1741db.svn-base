@@ -1,0 +1,32 @@
+Les éléments implantés dans le projet:
+
+ 1- le module Google_Naive:
+
+Types :
+       type T_Element: type générique qui représente la famille de types réels.
+       type T_matrice: tableau à deux dimensions non contraint.
+       type T_Vecteur: tableau à une dimension non contraint.
+
+Ce module permet de:
+
+- Obtenir le nombre de pages N à partir du fichier par la fonction Obtenir_nb_pages.
+- Construire la matrice H de type T_Matrice de dimension  NxN :
+           - Initialiser H par une matrice nulle en utilisant la procédure Initialiser_H
+           - Lire le fichier réseau et remplacer les cases de H relatives aux pages liées par 1.0 en utilisant la procédure Matrice_Initiale.
+           - remplacer les cases non nulles de chaque ligne de  H par 1/c avec c la somme des éléments de cette ligne calculée par la fonction
+           somme_ligne.                 
+- Obtenir les coefficients G(i,j) à partir de la matrice H en utilisant la fonction obtenir_Gij.
+- Initialiser le vecteur poids P en utilisant la procédure Initialiser_P.
+- Trier un vecteur de type T_Vecteur par ordre décroissant en utilisant la fonction Trier_P.
+- Creer un fichier reseau.p contenant les poids des pages ordonnés par ordre décroissant en utilisant la procédure Creer_Fichier_P.
+- Creer un fichier reseau.ord contenant les identifiants des pages par poids décroissant en utilisant la procédure fichier_pagerank.
+
+2-  le programme principal pagerank:
+
+- Instancier le module Google_Naive par le type T_Element Float.
+- Analyser les paramètres de commande entrés par l'utilisateur, en cas d'erreur la procedure stop arrête le programme.
+- Réaliser le calcul itératif du vecteur poids P après l'avoir initialiser et générer les fichiers reseau.p et reseau.ord en utilisant la procédure pagerank_naive déclarée dans la partie déclaration du programme pagerank.
+
+
+
+

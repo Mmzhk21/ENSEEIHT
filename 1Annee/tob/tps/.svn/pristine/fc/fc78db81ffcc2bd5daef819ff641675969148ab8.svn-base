@@ -1,0 +1,4 @@
+./allumettes/Joueur.java:18: error: unreported exception CoupInvalideException; must be caught or declared to be thrown
+	  return this.strategie.getPrise(jeu);
+	                                ^
+1 error

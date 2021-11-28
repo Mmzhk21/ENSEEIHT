@@ -1,0 +1,1 @@
+test_naive.adb:22:01: warning: variable "V" is never read and never assigned

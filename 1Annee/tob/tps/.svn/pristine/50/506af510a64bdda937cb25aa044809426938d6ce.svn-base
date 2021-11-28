@@ -1,0 +1,6 @@
+allumettes/Jouer.java:72: error: cannot find symbol
+            return new StrategieLente();
+                       ^
+  symbol:   class StrategieLente
+  location: class Jouer
+1 error

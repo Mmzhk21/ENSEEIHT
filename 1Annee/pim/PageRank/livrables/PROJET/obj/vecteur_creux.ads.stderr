@@ -1,0 +1,2 @@
+cannot generate code for file vecteur_creux.ads (package spec)
+vecteur_creux.ads:4:09: warning: file name does not match unit name, should be "vecteurs_creux.ads"

@@ -1,0 +1,2 @@
+i=0; while [ "$i" -eq '0' ]; do echo "Etes-vous satisfait?"; read
+chaine; if [ ${chaine:0:1} == o ] || [ ${chaine:0:1} == n ]; then i=1; fi done;

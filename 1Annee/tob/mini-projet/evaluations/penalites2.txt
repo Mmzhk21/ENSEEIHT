@@ -1,0 +1,48 @@
+Date de l'évaluation : mar. 02 mars 2021 12:46:49 CET
+
+Compilation de Cercle.java : OK.
+
+Types d'erreurs checkstyle : 2	(pénalité : 1)	(voir penalites2/Cercle.checkstyle)
+
+Résultat de recherche de similitudes sur Cercle.java dans penalites2/Cercle.sim
+
+JavaDoc automatique de Cercle : ok	(voir penalites2/Cercle.javadoc)
+
+Test SujetCercleTest : OK (16 tests)	(voir penalites2/SujetCercleTest.log)
+Test RobustesseCercleTest : OK (20 tests)	(voir penalites2/RobustesseCercleTest.log)
+Test AssertionsConstructeursCercleTest : OK (2 tests)	(voir penalites2/AssertionsConstructeursCercleTest.log)
+Test FormeCercleTest : OK (12 tests)	(voir penalites2/FormeCercleTest.log)
+Test Forme2CercleTest : OK (9 tests)	(voir penalites2/Forme2CercleTest.log)
+Test Complements2CercleTest : Tests run: 3,  Failures: 2	(pénalité : 2)	(voir penalites2/Complements2CercleTest.log)
+    1) testerE18b(Complements2CercleTest)
+        AssertionError: E18 : setCentre ne respecte pas E18 (x) expected:<1.0> but was:<11.0>
+    2) testerE11couleurPoint(Complements2CercleTest)
+        AssertionError: E11 : Le centre n'a pas la même couleur que le point passé en paramètre. expected:<java.awt.Color[r=255,g=0,b=255]> but was:<java.awt.Color[r=0,g=255,b=0]>
+
+Test ConstructeursCercleTest : OK (5 tests)	(voir penalites2/ConstructeursCercleTest.log)
+
+ComplementsCercleTest : modifiée... on l'utilise donc...
+Compilation de ComplementsCercleTest.java : OK.
+Test ComplementsCercleTest : OK (6 tests)	(voir penalites2/ComplementsCercleTest.log)
+
+Compilation de CercleTest.java : OK.
+Test CercleTest : OK (3 tests)	(voir penalites2/CercleTest.log)
+Test de CercleTest avec CercleMini : OK
+Test de CercleTest avec CercleMutant1 : OK
+Test de CercleTest avec CercleMutant2 : OK
+Test de CercleTest avec CercleMutant3 : OK
+Test de CercleTest avec CercleMutant4 : OK
+Test de CercleTest avec CercleMutant5 : OK
+Test de CercleTest avec CercleMutant6 : OK
+Test de CercleTest avec CercleMutant7 : OK
+Test de CercleTest avec CercleMutant8 : OK
+Test de CercleTest avec CercleMutant9 : OK
+Test de CercleTest avec CercleMutantA : OK
+Test de CercleTest avec CercleMutantB : OK
+Test de CercleTest avec CercleMutantC : OK
+Test de CercleTest avec CercleMutantD : ERREUR : CercleTest aurait dû échouer !	(pénalité : 1)
+Test de CercleTest avec CercleMutantE : OK
+Test de CercleTest avec CercleMutantF : OK
+Test de CercleTest avec CercleMutantZ : OK
+Test de CercleTest : échec 	(pénalité : 1)
+Total pénalités : 4

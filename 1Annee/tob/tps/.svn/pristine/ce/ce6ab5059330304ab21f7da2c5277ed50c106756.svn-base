@@ -1,0 +1,24 @@
+8,12c8,10
+< Xavier, combien d'allumettes ? vous devez entrer un entier compris entre 0 et 3
+< Xavier prend 5 allumettes.
+< 
+< erreur !
+< Recommencez
+---
+> Xavier, combien d'allumettes ? Vous devez donner un entier.
+> Xavier, combien d'allumettes ? Xavier prend 5 allumettes.
+> Impossible ! Nombre d'allumettes invalide : 5 (> 3)
+21c19
+< Xavier, combien d'allumettes ? Xavier prend 1 allumettes.
+---
+> Xavier, combien d'allumettes ? Xavier prend 1 allumette.
+24c22
+< Ordinateur prend 1 allumettes.
+---
+> Ordinateur prend 1 allumette.
+26,27c24,25
+< Ordinateur a perdu !
+< Xavier a gagné !
+---
+> Ordinateur perd !
+> Xavier gagne !

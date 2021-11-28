@@ -1,0 +1,142 @@
+V "GNAT Lib v2019"
+M P W=b
+A -gnatA
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U paa%b			paa.adb			bb16096f NE OO SU IL
+W ada%s			ada.ads			ada.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.io_exceptions%s	a-ioexce.ads		a-ioexce.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+Z ada.text_io.float_aux%s  a-tiflau.adb		a-tiflau.ali
+Z ada.text_io.float_io%s
+W gnat%s		gnat.ads		gnat.ali
+W gnat.os_lib%s		g-os_lib.ads		g-os_lib.ali
+W google_naive%s	google_naive.adb	google_naive.ali
+Z system.fat_flt%s	s-fatflt.ads		s-fatflt.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+
+D ada.ads		20190518041255 76789da1 ada%s
+D a-charac.ads		20190518041255 2d3ec45b ada.characters%s
+D a-chlat1.ads		20190518041255 66457d31 ada.characters.latin_1%s
+D a-comlin.ads		20190518041255 4aa66568 ada.command_line%s
+D a-except.ads		20190518041255 291912d5 ada.exceptions%s
+D a-finali.ads		20190518041255 bf4f806b ada.finalization%s
+D a-flteio.ads		20190518041255 e18a47a0 ada.float_text_io%s
+D a-inteio.ads		20190518041256 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20190518041254 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20190518041255 119b8fb3 ada.streams%s
+D a-string.ads		20190518041255 90ac6797 ada.strings%s
+D a-strmap.ads		20190518041255 e8bb714a ada.strings.maps%s
+D a-strunb.ads		20190518041255 1656705b ada.strings.unbounded%s
+D a-tags.ads		20190518041256 491b781d ada.tags%s
+D a-textio.ads		20190518041256 aef4d56d ada.text_io%s
+D a-tiflau.ads		20190518041255 c0393f21 ada.text_io.float_aux%s
+D a-tiflio.ads		20190518041254 bf196650 ada.text_io.float_io%s
+D a-tiflio.adb		20190518041255 fd9b1cfc ada.text_io.float_io%b
+D a-tiinio.ads		20190518041254 390edddb ada.text_io.integer_io%s
+D a-unccon.ads		20190518041255 0e9b276f ada.unchecked_conversion%s
+D a-uncdea.ads		20190518041255 eff36322 ada.unchecked_deallocation%s
+D gnat.ads		20190518041256 b5988c27 gnat%s
+D g-os_lib.ads		20190518041254 0db74523 gnat.os_lib%s
+D google_naive.ads	20201219221952 a63e1fda google_naive%s
+D google_naive.adb	20201219222317 55a0df9d google_naive%b
+D interfac.ads		20190518041254 5ab55268 interfaces%s
+D i-cstrea.ads		20190518041254 e53d8b8e interfaces.c_streams%s
+D paa.adb		20201219222842 11fa42a8 paa%b
+D system.ads		20190518041255 4635ec04 system%s
+D s-atocou.ads		20190518041256 b45c2d8d system.atomic_counters%s
+D s-crtl.ads		20190518041254 0ebbdb71 system.crtl%s
+D s-exctab.ads		20190518041255 54135002 system.exception_table%s
+D s-fatflt.ads		20190518041255 11beb392 system.fat_flt%s
+D s-fatgen.ads		20190518041256 49cbaf86 system.fat_gen%s
+D s-ficobl.ads		20190518041256 078245e4 system.file_control_block%s
+D s-finmas.ads		20190518041255 7811a767 system.finalization_masters%s
+D s-finroo.ads		20190518041256 4ff27390 system.finalization_root%s
+D s-os_lib.ads		20190518041255 5703ce4c system.os_lib%s
+D s-parame.ads		20190518041256 48ec542b system.parameters%s
+D s-secsta.ads		20190518041256 20bbe636 system.secondary_stack%s
+D s-soflin.ads		20190518041255 a7318a92 system.soft_links%s
+D s-stache.ads		20190518041256 a37c21ec system.stack_checking%s
+D s-stalib.ads		20190518041256 09bd3940 system.standard_library%s
+D s-stoele.ads		20190518041256 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20190518041255 b16154c2 system.storage_pools%s
+D s-stposu.ads		20190518041254 97a6219c system.storage_pools.subpools%s
+D s-stratt.ads		20190518041254 aedef97e system.stream_attributes%s
+D s-string.ads		20190518041255 8fe54fb7 system.strings%s
+D s-traent.ads		20190518041254 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20190518041255 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20190518041255 1b7d22d2 system.wch_con%s
+G a e
+G c Z b b [paa standard 9 11 none]
+G r i none [paa standard 9 11 none] [google_naive standard 6 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 28|1r6 2r6 2r23 3r6 3r29 4r6 4r31 5r6 5r28 6r6 6r33
+X 4 a-comlin.ads
+36K13*Command_Line 144e21 28|5w10 5r32
+39V13*Argument_Count{natural} 28|18s30 25s27
+52V13*Argument{string} 28|18s21 25s18
+X 7 a-flteio.ads
+20K13*Float_Text_IO[17|46] 28|3w10 3r33
+X 8 a-inteio.ads
+18K13*Integer_Text_IO[19|46] 28|4w10 4r35
+X 9 a-ioexce.ads
+18K13*IO_Exceptions 30e22 28|1w10
+X 11 a-string.ads
+16K13*Strings 35e16 28|6r10 6r37
+X 13 a-strunb.ads
+82K21*Unbounded 756e26 28|6w18 6r45
+X 15 a-textio.ads
+57K13*Text_IO 727e16 28|2w10 2r27
+64P9*File_Type 28|11r6
+264U14*New_Line 28|30s9 32s9
+X 17 a-tiflio.ads
+82U14*Put 28|29s9[7|20]
+X 22 gnat.ads
+34K9*GNAT 57e9 28|8r6
+X 23 g-os_lib.ads
+51K14*OS_Lib=51:36 28|8w11
+X 24 google_naive.ads
+6k9*Google_Naive 27e17 28|7w6 13r23
+9A13 T_Vecteur(float)<integer> 28|20r3[13] 21r3[13]
+10A13 T_matrice(float)<integer><integer> 28|22r3[13]
+14U17 Matrice_Initiale 28|25s1[13]
+15U17 matrice_H 28|26s1[13]
+16V17 Obtenir_Gij{float} 28|29s13[13]
+17V16 Obtenir_nb_pages{integer} 28|18s4[13]
+20U17 Initialiser_H 28|24s1[13]
+X 28 paa.adb
+9U11*paa 9b11 35l5 35t8
+10i1 N{integer} 18m1 20r16 21r16 22r16 22r23 27r13 28r17 29r31
+11p1 file{15|64P9}
+12i1 Nb_it{integer}
+13K9 Google[24|6] 13r48
+14f1 alpha{float} 29r33
+15f1 T{float}
+20a1 P{24|9A13[13]}
+21a1 V{24|9A13[13]}
+22a1 H{24|10A13[13]} 24m15 24r15 25m43 26m11 26r11 29r29
+27i5 i{integer} 29r25
+28i9 j{integer} 29r27
+

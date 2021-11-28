@@ -1,0 +1,43 @@
+5,10c5,39
+< Exception in thread "main" java.util.NoSuchElementException: No line found
+< 	at java.base/java.util.Scanner.nextLine(Scanner.java:1651)
+< 	at allumettes.StrategieHumaine.getPrise(StrategieHumaine.java:17)
+< 	at allumettes.Joueur.getPrise(Joueur.java:18)
+< 	at allumettes.Arbitre.arbitrer(Arbitre.java:36)
+< 	at allumettes.Jouer.main(Jouer.java:54)
+---
+> Lea, combien d'allumettes ? Lea prend 1 allumette.
+> 
+> Nombre d'allumettes restantes : 10
+> Luc, combien d'allumettes ? Vous devez donner un entier.
+> Luc, combien d'allumettes ? Luc prend 5 allumettes.
+> Impossible ! Nombre d'allumettes invalide : 5 (> 3)
+> 
+> Nombre d'allumettes restantes : 10
+> Luc, combien d'allumettes ? Luc prend 0 allumette.
+> Impossible ! Nombre d'allumettes invalide : 0 (< 1)
+> 
+> Nombre d'allumettes restantes : 10
+> Luc, combien d'allumettes ? Luc prend 3 allumettes.
+> 
+> Nombre d'allumettes restantes : 7
+> Lea, combien d'allumettes ? Lea prend 1 allumette.
+> 
+> Nombre d'allumettes restantes : 6
+> Luc, combien d'allumettes ? Luc prend 2 allumettes.
+> 
+> Nombre d'allumettes restantes : 4
+> Lea, combien d'allumettes ? Lea prend 2 allumettes.
+> 
+> Nombre d'allumettes restantes : 2
+> Luc, combien d'allumettes ? Luc prend 1 allumette.
+> 
+> Nombre d'allumettes restantes : 1
+> Lea, combien d'allumettes ? Lea prend 2 allumettes.
+> Impossible ! Nombre d'allumettes invalide : 2 (> 1)
+> 
+> Nombre d'allumettes restantes : 1
+> Lea, combien d'allumettes ? Lea prend 1 allumette.
+> 
+> Lea perd !
+> Luc gagne !

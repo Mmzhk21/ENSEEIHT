@@ -1,0 +1,154 @@
+
+R0: Classer N pages web selon l’algorithme de Pagerank.
+
+R1: Comment “Classer N pages web selon l’algorithme de Pagerank”
+               Gérer les paramètres de la ligne de commande
+               Construire la matrice H 
+               Calculer le pagerank des pages.
+R2: Comment “Gérer les paramètres de la ligne de commande” :
+Si Argument(0)/=”-P” Alors
+              Ecrire(“Vous devez entrer un -P  pour l’implantation Google_Naive”)
+Sinon si Nb_argument=2 Alors
+            
+              Nb_it ← 150
+              alpha ← 0.85         
+              Si exemple_sujet.net est vide Alors
+                           Ecrire(“Veuillez entrez un fichier valide”)
+              Fin si;
+ Sinon 
+            Si argument(1)(0)= “-” Alors
+                   Si longueur(Argument(1))<>2 Alors
+                        Ecrire(“ vous devez entrer un A ou un I après un -” )
+                   Sinon si Argument(1)(1)= “I” Alors
+                                    Nb_it ← Argument(2)
+                   Sinon si Argument(1)(1)= “A” Alors
+                                    Ecrire(“ vous devez entrer le nombre d’itérations avant la valeur de alpha”)
+                   Sinon 
+                                    Ecrire(“vous devez entrer un A ou un I aprés un -” )
+                   Fin Si
+            Fin Si
+       
+          Si argument(3)(0)= “-” Alors
+                   Si longueur(Argument(3))<>2 Alors
+                                     Ecrire(“vous devez entrer un A ou un I aprés un -” )
+                   Sinon si Argument(3)(1)= “A” Alors
+                                         alpha ← Argument(4)
+                   Sinon si Argument(3)(1)= “I” Alors
+                                    Ecrire(“vous devez entrer le nombre d’itérations avant la valeur de alpha”)
+                   Sinon 
+                                    Ecrire(“vous devez entrer un A ou un I aprés un -” )                  
+                   Fin Si
+          Fin Si
+Fin si 
+R2: Comment “Construire la matrice H” : 
+      Type T_Matrice est tableau (1..N,1..N) de réel
+      Type T_Liste Est pointeur sur T_cellule
+      Type T_cellule Est Enregistrement
+              P_source :  Entier
+              P_cible    :  Entier
+              Suivant   :  T_Liste
+      Fin enregistrement
+
+      L: T_Liste
+      Ouvrir(fichier_réseau)
+      Lire(fichier_réseau,a)
+      N ← a
+      TantQue non end_of_File (Fichier_réseau) faire
+                  Lire(Fichier_réseau,ps)
+                  Lire(Fichier_réseau,pc)
+                  On ajoute le couple (ps,pc) à la liste L s’il n’y existe pas.
+      FinTantQue
+      fermer( fichier_réseau)
+     Obtenir le nombre de pages référencée  par une page i et Connaître si une page i référencie une page j
+     H : T_Matrice
+      pour i de 1 à N faire
+              pour j de 1 à N faire
+                   Si  référencer(L,i,j) Alors
+                                H(i,j) ← 1/Nb_liens(i)
+                   Sinon
+                                H(i,j) ← 0 
+              Fin pour
+      Fin pour
+
+R2: Comment “Calculer le pagerank des pages” :
+                 Calculer le vecteur poids P.
+                 Trier le vecteur P par ordre décroissant.
+                 On calcule le  pagerank de chaque page comme étant l’indice du poids de cette page dans P.
+                                   
+                  
+
+R3: Comment “ Calculer le vecteur poids P” :
+                    Type T_Vecteur est Tableau(1..N) de Réel 
+                    P : T_vecteur
+
+                    Pour i de 1 à N faire          -- On initialise le vecteur P
+                           P(i) ← 1/N
+                    Fin Pour
+                   
+                    On calcule P itérativement :  G: in T_Matrice, P: out  T_Vecteur
+                    pour k de 1 à Nb_it faire
+                              pour i de 1 à N Faire 
+                                     t← 0
+                                     pour j de 1 à N Faire
+                                             si H(i,)  est un puit alors
+                                                   t ←   t+P(j)*(alpha*1/N+(1-alpha)/N)
+                                             sinon 
+                                                 t ←   t+P(j)*(alpha*H(j,i)+(1-alpha)/N)
+                                           fin si     
+                                     Fin pour
+                                     P(i)<-- t
+                                Fin pour    
+                     Fin pour
+R3: Comment “Trier le vecteur P par ordre décroissant” :
+          x : Réel
+          j : Entier
+         Pour i de 1 à N-1 faire
+                 x ← P(i)
+                 j ← i
+                 TantQue j>0 et P(j-1)>x faire
+                               P(j) ← p(j-1)
+                               j ← j-1
+                 FinTantQue
+                 P(j) ← x
+         Fin pour
+         V:T_Vecteur
+         V ← P
+         Pour i de 1 à N faire
+                 P(i) ← V(N-i)
+         Fin Pour
+
+R3: Comment “Obtenir le nombre de pages référencées  par une page i et Connaître si une page i référencie une page j”
+                nb_liens ← 0
+                TantQue L <> null Faire 
+                      si L^p_source = i alors
+                                   nb_liens ←  nb_liens +1
+                      sinon 
+                                 rien 
+                       L ← L^suivant
+                       fin si
+                  fin TantQue
+                  le nombre de pages référenciées par la page i est nb_liens
+
+fonction référencer(L,i,j) 
+Debut
+      bool ← Faux
+      TantQue L <> null Faire 
+                 si L^p_source = i et L^p_cible = j alors 
+                                bool ← Vrai
+                fin si 
+   fin TantQue
+   retourne Bool
+fin
+                 
+
+
+
+
+
+
+
+
+        
+
+
+

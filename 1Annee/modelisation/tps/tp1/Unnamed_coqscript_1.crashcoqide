@@ -1,0 +1,3 @@
+Require Import Naturelle
+Section CalculPropositionnel
+Variable A B C E Y R : Prop

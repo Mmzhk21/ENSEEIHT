@@ -1,0 +1,64 @@
+Date de l'évaluation : lun. 08 mars 2021 03:45:38 CET
+
+Nombre de similitudes (voir evaluations/evaluation1/sim_java.txt) : 4
+Les similitudes indiquent généralement du code à restructurer.
+
+Erreurs checkstyle (différentes/types) : 40/13	(voir evaluations/evaluation1//checkstyle.log)
+
+Classe OperationInterditeException : OperationInterditeException (ok)
+
+Procuration sur le jeu réel : allumettes/Procuration.java (ok)
+
+OperationInterditeException, levée dans : allumettes/Procuration.java (ok)
+OperationInterditeException, récupérée dans : allumettes/Arbitre.java (ok)
+
+Utilisation de 'Scanner' : ok
+	allumettes/StrategieHumaine.java:	private static Scanner scanner = new Scanner(System.in);
+
+Utilisation de 'split' : ok mais un seul split devrait suffir !  Code à restructurer...
+	allumettes/Jouer.java:            	/** S'il ya trois arguments on verifie si le premier argument est "-confiant". et on fait un split pour l'argument.
+	allumettes/Jouer.java:                        	 String[] chaine1 = args[1].split("@");
+	allumettes/Jouer.java:                        	 String[] chaine2 = args[2].split("@");
+	allumettes/Jouer.java:            /** si le nombre d'arguments et deux on fait un split sur l'argument 0 et 1.*/
+	allumettes/Jouer.java:               	 String[] chaine1 = args[0].split("@");
+	allumettes/Jouer.java:               	 String[] chaine2 = args[1].split("@");
+
+Utilisation de 'Random' : ok
+	allumettes/StrategieNaif.java:import java.util.Random;
+	allumettes/StrategieNaif.java:	public Random ran;
+	allumettes/StrategieNaif.java:		this.ran = new Random();
+	allumettes/StrategieExpert.java:import java.util.Random;
+	allumettes/StrategieExpert.java:	public Random ran;
+	allumettes/StrategieExpert.java:		this.ran = new Random();
+
+Utilisation de '3' : ok
+
+Utilisation de 'System.exit' : ok
+
+Compilation de Jouer.java : OK.
+Compilation de Arbitre.java : OK.
+Compilation de StrategieExpertTest.java : OK.
+Compilation de StrategieLenteTest.java : OK.
+Compilation de StrategieRapideTest.java : OK.
+Test exemplePresqueSujet : ok
+Test exempleTricheurSujet : ok
+Test exempleConfiantTricheurSujet : ok
+Test exempleRobustesse : ok
+Test exempleHumainTricheurExpert : ok
+Test exempleLucLea : ok
+Test exempleRapideRapide : ok
+Test exempleTricheurExpert : ok
+
+On recommence avec les classes/interfaces fournies : Jeu ConfigurationException CoupInvalideException
+Compilation de Jouer.java : OK.
+Compilation de Arbitre.java : OK.
+
+Vérification du respect du diagramme de classe...
+Test FormeTest : OK (2 tests)	(voir evaluations/evaluation1/FormeTest.log)
+
+Compilation de StrategieExpertTest.java : OK.
+Test allumettes.StrategieExpertTest : OK (1 test)	(voir evaluations/evaluation1/allumettes.StrategieExpertTest.log)
+Compilation de StrategieLenteTest.java : OK.
+Test allumettes.StrategieLenteTest : OK (1 test)	(voir evaluations/evaluation1/allumettes.StrategieLenteTest.log)
+Compilation de StrategieRapideTest.java : OK.
+Test allumettes.StrategieRapideTest : OK (1 test)	(voir evaluations/evaluation1/allumettes.StrategieRapideTest.log)

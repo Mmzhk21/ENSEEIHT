@@ -1,0 +1,3347 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{1SN\_LangageC\_C1}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Langage C - Notebook C1.}\label{langage-c---notebook-c1.}
+
+\paragraph{Katia Jaffrès-Runser, Xavier
+Crégut}\label{katia-jaffruxe8s-runser-xavier-cruxe9gut}
+
+Toulouse INP - ENSEEIHT,
+
+1ère année, Dept. Sciences du Numérique, 2020-2021.
+
+    \subsection{\#\#\#\#\# Déroulement du
+cours}\label{duxe9roulement-du-cours}
+
+Ce cours se déroule sur 6 séances de TP.
+
+\begin{itemize}
+\item
+  Lors des trois premières séances, vous suivrez ce notebook Jupyter C1
+  présentant des éléments de cours associés à un ensemble d'exercices à
+  réaliser. Ce travail se poursuit hors séance, en autonomie, si besoin.
+  Le notebook est archivé sous SVN mais ne sera pas noté.
+\item
+  A la fin de ce notebook, dans la partie Bilan 2, sont listés un
+  ensemble d'exercices à rendre sur SVN. Ces rendus donneront lieu à une
+  note.\\
+  \textgreater{}\textbf{Attention : Ce travail est individuel}. Des
+  outils de détection de recopie de code seront utilisés pour détecter
+  la fraude.
+\item
+  Lors des trois séances suivantes, vous suivrez un d'autres notebook
+  Jupyter, qui seront également validés par le rendu d'exercices de
+  Bilan.
+\end{itemize}
+
+Vous aurez, en fin de cours, un QCM d'une heure. La note finale est une
+moyenne des deux notes (QCM et exercices rendus).
+
+    \subsection{Objectifs}\label{objectifs}
+
+Ce cours, sous la forme de notebooks Jupyter et d'un ensemble
+d'exercices à réaliser en TP, a pour objectif de vous présenter les
+spécificités de la programmation en langage C. Il se base sur vos acquis
+du cours de Programmation Impérative en algorithmique et vous détaille
+les éléments du langage C nécessaires à la production d'un programme en
+C.
+
+Un support de cours PDF vous est également fournit sur Moodle :
+\href{http://moodle-n7.inp-toulouse.fr/pluginfile.php/49240/mod_resource/content/5/LangageC_poly.pdf}{Cours
+C}.
+
+    \subsection{\#\# Plan du sujet C1.}\label{plan-du-sujet-c1.}
+
+Les éléments suivants de la programmation en Langage C sont présentés
+dans ce notebook au cours des 3 premières séances de TP : - La structure
+d'un programme et sa compilation - Les constantes, types et variables -
+Les entrées / sorties - Les structures de contrôle - Conditionnelles -
+Boucles - Les types énumération, enregistrement et tableaux - Les
+chaînes de caractère - Le type pointeur - Les sous-programmes en C -
+Leur signature - Passage par valeur - Passage par adresse
+
+    \subsection{Jupyter notebook}\label{jupyter-notebook}
+
+Le support de cours que vous lisez est un notebook Jupyter. Pour
+visualiser le notebook, lancer l'editeur web avec la commande\\
+\textgreater{} \texttt{jupyter-notebok}
+
+et rechercher le fichier dans l'arborescence. Le fichier est édité dans
+votre navigateur Web par défaut. L'enregistrement est automatique
+(\texttt{CTRL\ S} pour le forcer).
+
+Pour fermer votre fichier, il faut fermer le navigateur et terminer le
+processus serveur qui s'exécute dans le terminal (\texttt{CTRL\ C}, puis
+\texttt{y}).
+
+\begin{quote}
+\textbf{Important} : - Pour faire fonctionner le kernel C de jupyter
+notebook, il faut, avant votre \textbf{première utilisation} de ce
+Notebook, lancer la commande suivante dans un \texttt{Terminal} : -
+\texttt{install\_c\_kernel\ -\/-user}
+\end{quote}
+
+Il se compose de cellules présentant soit : - Des éléments de cours, au
+format \href{https://fr.wikipedia.org/wiki/Markdown}{Markdown}. Ce
+langage est interprété pour un affichage aisé quand on clique sur la
+flèche \texttt{Exécuter} et que la cellule est active. - Du code en
+Langage C (ou Python, ou autre..). Pour compiler et exécuter le code
+écrit dans la cellule active, on clique sur la flèche \texttt{Exécuter}.
+Si la compilation se déroule sans erreur ni avertissement, le programme
+est exécuté et les sorties sont affichées en bas de la cellule. Si ce
+n'est pas le cas, les avertissements et warnings sont affichés en bas de
+la cellule.
+
+En double-cliquant sur une cellule, on peut éditer son contenu. Vous
+pouvez ainsi : - Editer une cellule markdown pour y intégrer vos propres
+notes. - Modifier les programmes pour répondre aux questions et
+exercices proposés.
+
+Il est possible d'exporter votre travail en PDF, HTML, etc.
+
+Le programme \textbf{\texttt{premier.c}} dans la cellule suivante
+s'exécute sans erreur. Vous pouvez - le tester en l'exécutant. - y
+introduire une erreur (suppression d'un point-virgule par exemple) pour
+observer la sortie du compilateur.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}\PY{c+c1}{ }
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{******************************}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{******** Langage C ***********}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{******************************}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+******************************
+******** Langage C ***********
+******************************
+
+    \end{Verbatim}
+
+    \subsection{Un premier programme en Langage
+C}\label{un-premier-programme-en-langage-c}
+
+Le fichier \textbf{\texttt{pgcd.c}} suivant comporte un programme en
+Langagce C. Exécutez-le.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+        
+        \PY{c+cm}{/* Afficher le pgcd de deux entiers strictement positifs. */}
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+            \PY{c+c1}{// Déclaration et initialisation de deux entiers}
+            \PY{k+kt}{int} \PY{n}{a} \PY{o}{=} \PY{l+m+mi}{105}\PY{p}{,} \PY{n}{b} \PY{o}{=} \PY{l+m+mi}{35}\PY{p}{;}  
+            
+            \PY{c+c1}{// Déterminer le pgcd de a et b}
+            \PY{k+kt}{int} \PY{n}{na} \PY{o}{=} \PY{n}{a}\PY{p}{,} \PY{n}{nb} \PY{o}{=} \PY{n}{b}\PY{p}{;}  \PY{c+c1}{// gain de place ! À éviter !}
+            \PY{k}{while} \PY{p}{(}\PY{n}{na} \PY{o}{!}\PY{o}{=} \PY{n}{nb}\PY{p}{)} \PY{p}{\PYZob{}}	\PY{c+c1}{// na et nb différents}
+                \PY{c+c1}{// Soustraire au plus grand le plus petit}
+                \PY{k}{if} \PY{p}{(}\PY{n}{na} \PY{o}{\PYZgt{}} \PY{n}{nb}\PY{p}{)} \PY{p}{\PYZob{}}
+                    \PY{n}{na} \PY{o}{=} \PY{n}{na} \PY{o}{\PYZhy{}} \PY{n}{nb}\PY{p}{;}
+                \PY{p}{\PYZcb{}} \PY{k}{else}  \PY{p}{\PYZob{}}
+                    \PY{n}{nb} \PY{o}{=} \PY{n}{nb} \PY{o}{\PYZhy{}} \PY{n}{na}\PY{p}{;}
+                \PY{p}{\PYZcb{}}
+            \PY{p}{\PYZcb{}}
+            \PY{k+kt}{int} \PY{n}{pgcd} \PY{o}{=} \PY{n}{na}\PY{p}{;}     \PY{c+c1}{// le pgcd de a et b}
+            
+            \PY{c+c1}{// Afficher le pgcd}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Le pgcd de \PYZpc{}d et \PYZpc{}d est \PYZpc{}d}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b} \PY{p}{,} \PY{n}{pgcd}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Le pgcd de 105 et 35 est 35
+
+    \end{Verbatim}
+
+    Ce programme se compose de : - Trois commandes \textbf{pré-processeur}
+\texttt{\#include}. - Toutes les commandes pré-processeur commencent par
+le caractère \#. - Ces deux commandes importent des librairies (i.e. des
+modules). - La fonction \texttt{int\ main()}, qui correspond au
+programme principal. Ses instructions sont définies entre accolades.
+\textgreater{} \textbf{Règle} : L'identificateur du programme principal
+est forcément \texttt{main()}. - Un ensemble d'instructions entre les
+accolades. \textgreater{} \textbf{Règle} : Chaque instruction se termine
+avec un \textbf{point-virgule}. - Un appel au sous-programme d'affichage
+à l'écran \texttt{printf} du module \texttt{stdio}. A l'exécution, on
+observe que les valeurs des variables \texttt{a}, \texttt{b} et
+\texttt{pgcd} sont écrites en lieu et place des \texttt{\%d}, dans
+l'ordre de leurs appels. - Le retour d'une constante
+\texttt{EXIT\_SUCCESS} définie dans le module \texttt{stdlib}. Cette
+constante vaut 0 et indique que l'exécution s'est terminée avec succès.
+Il existe aussi \texttt{EXIT\_FAILURE} qui indique la mauvaise
+terminaison du programme. \textgreater{} \textbf{Règle} : L'instruction
+\texttt{return} arrête et indique le résultat de la fonction.\\
+- Une boucle TantQue avec la structure de contrôle \texttt{while}. Les
+instruction de corps de la boucle sont définies entre accolades. - Une
+conditionelle \texttt{if\ (condition)\ then\ \{..\}\ else\ \{..\}} - Des
+déclarations de variables, des opérations d'initialisation et
+d'affectations. \textgreater{} \textbf{Règle} : L'opérateur
+d'affectation est \texttt{=}. - Des tests. \textgreater{} \textbf{Règle}
+: L'opérateur de test d'égalité est \texttt{==}, et d'inégalité est
+\texttt{!=}.
+
+    \subsection{\#\# Compilation et
+pré-processeur}\label{compilation-et-pruxe9-processeur}
+
+La compilation en C se décompose en deux étapes successives : 1.
+L'exécution du pré-processeur, 2. L'exécution du compilateur C.
+
+Les deux étapes sont réalisées par un seul appel à la suite de
+compilation avec la commande : \textgreater{}
+\texttt{gcc\ -Wall\ premier\_programme.c\ -o\ premier\_programme}
+
+Les options permettent : - \texttt{Wall} : d'afficher l'ensemble des
+avertissements produits par la compilation - \texttt{-o} : de choisir le
+nom de l'exécutable généré. \textgreater{} \emph{Note} : dans le cas
+particulier où on utiliser la bibliothèque \texttt{math.h}, il faut
+rajouter \texttt{-lm} à la commande de compilation.
+
+Le pré-processeur fournit un unique fichier au compilateur, qui le
+transforme en un fichier binaire exécutable. Ce pré-processeur : -
+Supprime les commentaires de ligne \texttt{//} ou de bloc
+\texttt{/*\ \ \ \ */}. - Interprête les commandes pré-processeur qui
+commencent par \texttt{\#} (\texttt{\#define}, \texttt{\#include}, etc.)
+
+\begin{quote}
+\textbf{Règle :} Il n'y a pas de point-virgule à la fin d'une
+instruction pré-processeur.
+\end{quote}
+
+    \subsection{\#\#\#\# Exercice 1 -\/-
+Compilation.}\label{exercice-1----compilation.}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{{[}1.1{]}} Compiler votre premier programme dans un terminal.
+Pour se faire, créer un répertoire \texttt{Langage\_C} et y ajouter un
+fichier nommé \texttt{pgcd.c}. Recopier le programme de l'exemple
+précédent. Le compiler avec le compilateur \texttt{gcc}et l'exécuter
+avec la commande \texttt{./pgcd}
+
+\textbf{{[}1.2{]}} Introduire une erreur dans les instructions et
+observer le retour du compilateur :
+
+\begin{itemize}
+\tightlist
+\item
+  Suppression d'un point-virgule en fin de ligne,
+\item
+  Ajout d'un point-virgule supplémentaire en fin de ligne,
+\item
+  Supprimer la déclaration de la variable \texttt{a}.
+\item
+  Supprimer l'accolade de fin de bloc de la boucle \texttt{while}.
+\end{itemize}
+
+\textbf{{[}1.3{]}} Observer l'unique fichier généré par le
+pré-processeur avec l'appel à la commande
+\texttt{cpp\ -P\ premier\_programme.c}. Quel est l'effet de la commande
+\texttt{\#include\ \textless{}stdio.h\textgreater{}} ?
+
+    \subsection{\texorpdfstring{\#\#\#\# Exercice 2 -\/- Comprendre la macro
+\texttt{assert()}.}{\#\#\#\# Exercice 2 -\/- Comprendre la macro assert().}}\label{exercice-2----comprendre-la-macro-assert.}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Voyons comment fonctionne la macro \texttt{assert} du langage C. Nous
+nous appuyons sur le programme \texttt{assert-comprendre.c}.
+
+\textbf{{[}2.1{]}} Compiler et exécuter dans Jupyter Notebook ce
+programme (fichier \textbf{\texttt{macro\_assert.c}}). Qu'observez-vous
+?
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}4}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+        
+        \PY{k+kt}{void} \PY{n+nf}{assert\PYZus{}ok}\PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+            \PY{k+kt}{int} \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{(assert\PYZus{}ok) n = \PYZpc{}d}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{n}\PY{p}{)}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+        
+        
+        \PY{k+kt}{void} \PY{n+nf}{assert\PYZus{}erreur}\PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+            \PY{k+kt}{int} \PY{n}{n} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{n} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{(assert\PYZus{}erreur) n = \PYZpc{}d}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{n}\PY{p}{)}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+        
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+            \PY{n}{assert\PYZus{}ok}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert\PYZus{}erreur}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+(assert\_ok) n = 10
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+tmp5e9b452w.out: /tmp/tmptvagws03.c:14: assert\_erreur: Assertion `n <= 0' failed.
+[C kernel] Executable exited with code -6
+    \end{Verbatim}
+
+    \section{\texorpdfstring{L'appel à \texttt{assert\_ok} se déroule
+normalement car le paramètre effectif de \texttt{assert} s'évalue à
+vrai.}{L'appel à assert\_ok se déroule normalement car le paramètre effectif de assert s'évalue à vrai.}}\label{lappel-uxe0-assert_ok-se-duxe9roule-normalement-car-le-paramuxe8tre-effectif-de-assert-suxe9value-uxe0-vrai.}
+
+Au contraire, l'appel à \texttt{assert\_erreur} provoque l'arrêt du
+programme car le paramètre effectif de assert s'évalue à faux. Un
+message d'erreur indique la ligne dans le fichier source contenant
+l'appel à \texttt{assert}.
+
+\textbf{{[}2.2{]}} Compiler et exécuter le programme dans un terminal,
+dans le répertoire SVN fourni, avec les commandes :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{make assert-comprendre}
+\NormalTok{./assert-comprendre}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\emph{Note} : La commande \texttt{make} sera présentée à la fin du
+cours. Elle permet d'automatiser la compilation. Elle est paramétrée par
+le fichier \texttt{Makefile}. Vous pouvez le consulter mais sa
+compréhension n'est pas l'objet de cette question.
+\end{quote}
+
+Qu'observez-vous ?
+
+\textbf{{[}2.3{]}} L'évaluation des assert peut être désactivée en
+définissant la macro \texttt{NDEBUG} (no debug). Par exemple, en début
+du fichier \texttt{assert-comprendre.c} (mais avant l'inclusion de
+\texttt{assert.h}), on peut ajouter la commande préprocesseur suivante
+qui définit NDEBUG :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{#define NDEBUG}
+\end{Highlighting}
+\end{Shaded}
+
+Modifier le fichier \texttt{assert-comprendre.c}, compiler et exécuter à
+nouveau pour constater que les assert ne sont plus vérifiés. Vous pouvez
+aussi le tester sur le notebook Jupyter.
+
+\begin{quote}
+\emph{Note} : En général, on positionne \texttt{NDEBUG} à la
+compilation, sans l'écrire dans le fichier C, en utilisant l'option
+\texttt{-D} du compilateur (\texttt{-DNDEBUG}) :
+\end{quote}
+
+\begin{verbatim}
+gcc -Wall -pedantic -DNDEBUG assert-comprendre.c -o assert-comprendre
+\end{verbatim}
+
+On peut aussi ajouter \texttt{-DNDEBUG} à la définition de
+\texttt{CFLAGS} dans le fichier \texttt{Makefile}.
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{\#\# Types}\label{types}
+
+    Plusieurs types fondamentaux sont définis en C : - Des types discrets :
+\texttt{int} (entier), \texttt{bool}(bouléen), \texttt{char} (caractère)
+- Des types réels : \texttt{float} et \texttt{double}, à simple et
+double précision. \textgreater{} Note : \textgreater{} Il faut inclure
+le module \texttt{stdbool} pour utiliser le type booléen, et ses valeur
+\texttt{true} et \texttt{false}.
+
+\paragraph{Exemples}\label{exemples}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{ entier_1 = }\DecValTok{20}\NormalTok{;}
+\NormalTok{bool est_vide = false;}
+\DataTypeTok{char}\NormalTok{ initiale = }\CharTok{'B'}\NormalTok{; }\CommentTok{//Caractère constant 'B' entre guillemets simples/ }
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Modificateurs de type}\label{modificateurs-de-type}
+
+Il existe aussi des modificateurs de type : \texttt{long},
+\texttt{short}, \texttt{unsigned}. Ils sont utilisés pour modifier
+certains types fondamentaux \texttt{int}, \texttt{double},
+\texttt{float}.
+
+La taille en mémoire d'une variable entière de type \texttt{short\ int}
+est inférieure à la taille mémoire d'une variable de type \texttt{int},
+qui elle même est inférieure à une variable de taille
+\texttt{long\ int}.
+
+Le modificateur \texttt{unsigned} définit un type à valeurs positives ou
+nulles.
+
+    \subsection{\#\#\#\# Exercice 3 -\/- Valeurs maximales et conversion
+implicites}\label{exercice-3----valeurs-maximales-et-conversion-implicites}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+La valeur maximale des types dépend du système d'exploitation. Elles
+sont enregistrées dans les bibliothèques \texttt{limits.h} pour les
+entiers et \texttt{float.h} pour les flottants.
+
+\textbf{{[}3.1{]}} Exécuter l'exemple du fichier
+\_\_\texttt{conversions.c}\_\_suivant pour les observer.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+c1}{// Liste les valeurs maximales des entiers pour votre système}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}limits.h\PYZgt{}}\PY{c+c1}{ }
+         \PY{c+c1}{// Liste les valeurs maximales des flottants pour votre système}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}float.h\PYZgt{}}\PY{c+c1}{ }
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Valeur maximale d\PYZsq{}un entier \PYZpc{}d }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{INT\PYZus{}MAX}\PY{p}{)}\PY{p}{;} 
+             \PY{k+kt}{long} \PY{k+kt}{int} \PY{n}{entier\PYZus{}long} \PY{o}{=} \PY{l+m+mi}{\PYZhy{}20000000}\PY{p}{;} \PY{c+c1}{// Déclaration d\PYZsq{}un entier long}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Valeur maximale d\PYZsq{}un entier long \PYZpc{}ld \PYZgt{} \PYZpc{}ld }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{LONG\PYZus{}MAX}\PY{p}{,} \PY{n}{entier\PYZus{}long}\PY{p}{)}\PY{p}{;} 
+             
+             \PY{k+kt}{unsigned} \PY{k+kt}{long} \PY{k+kt}{int} \PY{n}{entier\PYZus{}non\PYZus{}signe} \PY{o}{=} \PY{n}{entier\PYZus{}long}\PY{p}{;} \PY{c+c1}{// Il y a conversion implicite }
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Valeur maximale d\PYZsq{}un entier non signé \PYZpc{}d }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{UINT\PYZus{}MAX}\PY{p}{)}\PY{p}{;} 
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Valeur maximale d\PYZsq{}un entier non signé long \PYZpc{}lu \PYZgt{} \PYZpc{}lu }\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{ULONG\PYZus{}MAX}\PY{p}{,} \PY{n}{entier\PYZus{}non\PYZus{}signe}\PY{p}{)}\PY{p}{;} 
+             
+             \PY{k+kt}{float} \PY{n}{flottant\PYZus{}simple} \PY{o}{=} \PY{l+m+mf}{20.13}\PY{p}{;}
+             \PY{k+kt}{double} \PY{n}{flottant\PYZus{}double}\PY{p}{;} 
+             \PY{k+kt}{long} \PY{k+kt}{double} \PY{n}{long\PYZus{}double} \PY{o}{=} \PY{l+m+mf}{200001102.2}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Valeur maximale d\PYZsq{}un réel simple : }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZpc{}f }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ \PYZlt{} valeur max double : }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZpc{}lf }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ \PYZlt{} valeur max long double : }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZpc{}Lf }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{FLT\PYZus{}MAX}\PY{p}{,} \PY{n}{DBL\PYZus{}MAX}\PY{p}{,} \PY{n}{LDBL\PYZus{}MAX}\PY{p}{)}\PY{p}{;}
+             
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Valeur maximale d'un entier 2147483647 
+Valeur maximale d'un entier long 9223372036854775807 > -20000000 
+
+Valeur maximale d'un entier non signé -1 
+Valeur maximale d'un entier non signé long 18446744073709551615 > 18446744073689551616 
+
+Valeur maximale d'un réel simple : 
+340282346638528859811704183484516925440.000000 
+ < valeur max double : 
+179769313486231570814527423731704356798070567525844996598917476803157260780028538760589558632766878171540458953514382464234321326889464182768467546703537516986049910576551282076245490090389328944075868508455133942304583236903222948165808559332123348274797826204144723168738177180919299881250404026184124858368.000000 
+ < valeur max long double : 
+1189731495357231765021263853030970205169063322294624200440323733891737005522970722616410290336528882853545697807495577314427443153670288434198125573853743678673593200706973263201915918282961524365529510646791086614311790632169778838896134786560600399148753433211454911160088679845154866512852340149773037600009125479393966223151383622417838542743917838138717805889487540575168226347659235576974805113725649020884855222494791399377585026011773549180099796226026859508558883608159846900235645132346594476384939859276456284579661772930407806609229102715046085388087959327781622986827547830768080040150694942303411728957777100335714010559775242124057347007386251660110828379119623008469277200965153500208474470792443848545912886723000619085126472111951361467527633519562927597957250278002980795904193139603021470997035276467445530922022679656280991498232083329641241038509239184734786121921697210543484287048353408113042573002216421348917347174234800714880751002064390517234247656004721768096486107994943415703476320643558624207443504424380566136017608837478165389027809576975977286860071487028287955567141404632615832623602762896316173978484254486860609948270867968048078702511858930838546584223040908805996294594586201903766048446790926002225410530775901065760671347200125846406957030257138960983757998926954553052368560758683179223113639519468850880771872104705203957587480013143131444254943919940175753169339392366881856189129931729104252921236835159922322050998001677102784035360140829296398115122877768135706045789343535451696539561254048846447169786893211671087229088082778350518228857646062218739702851655083720992349483334435228984751232753726636066213902281264706234075352071724058665079518217303463782631353393706774901950197841690441824738063162828586857741432581165364040218402724913393320949219498422442730427019873044536620350262386957804682003601447291997123095530057206141866974852846856186514832715974481203121946751686379343096189615107330065552421485195201762858595091051839472502863871632494167613804996319791441870254302706758495192008837915169401581740046711477877201459644461175204059453504764721807975761111720846273639279600339670470037613374509553184150073796412605047923251661354841291884211340823015473304754067072818763503617332908005951896325207071673904547777129682265206225651439919376804400292380903112437912614776255964694221981375146967079446870358004392507659451618379811859392049544036114915310782251072691486979809240946772142727012404377187409216756613634938900451232351668146089322400697993176017805338191849981933008410985993938760292601390911414526003720284872132411955424282101831204216104467404621635336900583664606591156298764745525068145003932941404131495400677602951005962253022823003631473824681059648442441324864573137437595096416168048024129351876204668135636877532814675538798871771836512893947195335061885003267607354388673368002074387849657014576090349857571243045102038730494854256702479339322809110526041538528994849203991091946129912491633289917998094380337879522093131466946149705939664152375949285890960489916121944989986384837022486672249148924678410206183364627416969576307632480235587975245253737035433882960862753427740016333434055083537048507374544819754722228975281083020898682633020285259923084168054539687911418297629988964576482765287504562854924265165217750799516259669229114977788962356670956627138482018191348321687995863652637620978285070099337294396784639879024914514222742527006363942327998483976739987154418554201562244154926653014515504685489258620276085761837129763358761215382565129633538141663949516556000264159186554850057052611431952919918807954522394649627635630178580896692226406235382898535867595990647008385687123810329591926494846250768992258419305480763620215089022149220528069842018350840586938493815498909445461977893029113576516775406232278298314033473276603952231603422824717528181818844304880921321933550869873395861276073670866652375555675803171490108477320096424318780070008797346032906278943553743564448851907191616455141155761939399690767415156402826543664026760095087523945507341556135867933066031744720924446513532366647649735400851967040771103640538150073486891798364049570606189535005089840913826869535090066783324472578712196604415284924840041850932811908963634175739897166596000759487800619164094854338758520657116541072260996288150123144377944008749301944744330784388995701842710004808305012177123560622895076269042856800047718893158089358515593863176652948089031267747029662545110861548958395087796755464137944895960527975209874813839762578592105756284401759349324162148339565350189196811389091843795734703269406342890087805846940352453479398080674273236297887100867175802531561302356064878709259865288416350972529537091114317204887747405539054009425375424119317944175137064689643861517718849867010341532542385911089624710885385808688837777258648564145934262121086647588489260031762345960769508849149662444156604419552086811989770240.000000 
+    \end{Verbatim}
+
+    \textbf{{[}3.2{]}} Il est possible d'initialiser un entier non signé
+avec un entier signé. Observer la valeur obtenue pour l'entier non
+signé. D'où provient-elle ?
+
+    \begin{quote}
+\emph{Note} : pour afficher ces valeurs maximales avec \texttt{printf},
+on doit modifier les lettres qui suivent le signe \texttt{\%} dans
+\texttt{printf} pour adapter le format au type des variables : -
+\texttt{\%d}, \texttt{\%ld} : permet d'afficher un entier, un entier
+long. - \texttt{\%u}, \texttt{\%lu} : permet d'afficher un entier non
+signé, un entier non signé long. - \texttt{\%f}, \texttt{\%lf},
+\texttt{\%Lf} : permet d'afficher un flottant, un double et un long
+double. - \texttt{\%c} : permet d'afficher un caractère.
+\end{quote}
+
+    \textbf{{[}3.3{]}} Modifier le code ci-dessus pour que : 1. l'entier non
+signé soit affiché comme un entier signé par \texttt{printf}.\\
+2. l'entier non signé soit affiché comme un flottant simple.
+
+Qu'observez-vous dans les deux cas ? Que peut-on en conclure sur les
+avertissements du compilateur ?
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{\#\# Variables}\label{variables}
+
+    \subsubsection{Déclaration de
+variables}\label{duxe9claration-de-variables}
+
+Les variables peuvent être déclarées n'importe quand. Typiquement,
+\textbf{on déclare une variable au moment où on l'utilise} de la façon
+suivante :
+
+\texttt{type\ identifiant\_variable;}
+
+Exemples :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{ valeur, produit; }\CommentTok{// déclaration de deux variables entières, }
+\DataTypeTok{double}\NormalTok{ numerateur; }\CommentTok{// déclaration d'une variable réelle.}
+\DataTypeTok{char}\NormalTok{ initiale; }\CommentTok{// déclaration d'une variable caractère}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{Affectation de variables}\label{affectation-de-variables}
+
+L'initialisation et l'affectation des variables est réalisé \textbf{avec
+l'opérateur =} comme dans le fichier \textbf{\texttt{affectations.c}} :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}6}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{k+kt}{int} \PY{n}{valeur} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{,} \PY{n}{produit} \PY{o}{=} \PY{l+m+mi}{23}\PY{p}{;} \PY{c+c1}{// déclaration et initialisation de deux entiers, }
+            \PY{k+kt}{double} \PY{n}{numerateur} \PY{o}{=} \PY{l+m+mf}{10.3}\PY{p}{;}
+            \PY{k+kt}{char} \PY{n}{initiale} \PY{o}{=} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{A}\PY{l+s+sc}{\PYZsq{}}\PY{p}{;} 
+        
+            \PY{n}{produit} \PY{o}{=} \PY{n}{produit} \PY{o}{*} \PY{n}{valeur}\PY{p}{;} \PY{c+c1}{// affectation }
+            \PY{n}{valeur} \PY{o}{=} \PY{n}{valeur} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \subsubsection{Opérateurs
+arithmétiques}\label{opuxe9rateurs-arithmuxe9tiques}
+
+Les opérateurs binaires \textbf{+, - , * et /} s'appliquent à des
+variables de type entier (signés ou non), booléens, flottant ou double.
+
+Les opérateurs binaires \textbf{/ et \%} utilisés sur \textbf{des
+entiers}, fournissent respectivement le quotient de le reste de la
+division entière des deux termes.
+
+\begin{quote}
+\textbf{Règle} : - Division \textbf{entière} : la division
+\texttt{a\ \textbackslash{}\ b} \textbf{si \texttt{b} est entier}
+fournit le quotient de la division entière. - Division \textbf{réélle} :
+la division \texttt{a\ \textbackslash{}\ b} \textbf{si \texttt{b} est
+réel} fournit un résultat réel.
+\end{quote}
+
+Les opérateur unaires \textbf{- et +} s'appliquent aux entiers signés et
+aux types réels.
+
+\begin{quote}
+Note : Des opérateur mathématiques avancés sont disponibles dans la
+bibliothèque \texttt{\textless{}math.h\textgreater{}} (puissance, log,
+etc.)
+\end{quote}
+
+\textbf{Exemples} (à exécuter, cf. fichier
+\textbf{\texttt{operateurs.c}}).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k+kt}{int} \PY{n}{quantite} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{;} 
+             \PY{k+kt}{int} \PY{n}{prix} \PY{o}{=} \PY{l+m+mi}{15}\PY{p}{;}
+         
+             \PY{k+kt}{int} \PY{n}{total} \PY{o}{=} \PY{n}{quantite} \PY{o}{*} \PY{n}{prix}\PY{p}{;} 
+             \PY{n}{assert}\PY{p}{(}\PY{n}{total} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{150}\PY{p}{)}\PY{p}{;}
+             
+             \PY{k+kt}{float} \PY{n}{nb\PYZus{}personnes} \PY{o}{=} \PY{l+m+mi}{60}\PY{p}{;}
+             \PY{k+kt}{float} \PY{n}{prix\PYZus{}par\PYZus{}personne} \PY{o}{=} \PY{n}{total} \PY{o}{/} \PY{n}{nb\PYZus{}personnes}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{prix\PYZus{}par\PYZus{}personne} \PY{o}{=}\PY{o}{=} \PY{l+m+mf}{2.5}\PY{p}{)}\PY{p}{;}
+             
+             \PY{k+kt}{int} \PY{n}{nb\PYZus{}personnes\PYZus{}int} \PY{o}{=} \PY{l+m+mi}{60}\PY{p}{;}
+             \PY{n}{prix\PYZus{}par\PYZus{}personne} \PY{o}{=} \PY{n}{total} \PY{o}{/} \PY{n}{nb\PYZus{}personnes\PYZus{}int}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{prix\PYZus{}par\PYZus{}personne} \PY{o}{!}\PY{o}{=} \PY{l+m+mf}{2.5}\PY{p}{)}\PY{p}{;} \PY{c+c1}{// Quelle est la valeur de prix\PYZus{}par\PYZus{}personne ici ?}
+             
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Le prix par personne est de \PYZpc{}f euros}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{prix\PYZus{}par\PYZus{}personne}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Le prix par personne est de 2.000000 euros
+    \end{Verbatim}
+
+    \subsubsection{Affectations avec
+opération}\label{affectations-avec-opuxe9ration}
+
+Les instructions de la forme \texttt{x\ =\ x\ \#\ y} avec \texttt{\#} un
+opérateur arithmétique binaire, se synthétisent en C par :
+
+\texttt{x\ \#=\ y}
+
+Il est aussi possible de simplifier l'incrémentation et la
+décrémentation avec les opérateurs \textbf{++ et -\/-}. On a : -
+\texttt{i++;} équivalent à \texttt{i\ =\ i+1;} - \texttt{i-\/-;}
+équivalent à \texttt{i\ =\ i-1;}.
+
+\textbf{Exemples} (à exécuter, cf. fichier
+\textbf{\texttt{plusegal.c}}):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}5}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{k+kt}{int} \PY{n}{valeur} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{,} \PY{n}{produit} \PY{o}{=} \PY{l+m+mi}{23}\PY{p}{;}
+            \PY{n}{produit} \PY{o}{+}\PY{o}{=} \PY{n}{valeur}\PY{p}{;}  \PY{c+c1}{// On ajoute valeur à produit}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{produit} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{33}\PY{p}{)}\PY{p}{;}
+            
+            \PY{n}{produit} \PY{o}{*}\PY{o}{=} \PY{l+m+mi}{2}\PY{p}{;} \PY{c+c1}{// multiplication par 2 puis affectation}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{produit} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{66}\PY{p}{)}\PY{p}{;}
+            
+            \PY{n}{produit} \PY{o}{/}\PY{o}{=} \PY{l+m+mi}{3}\PY{p}{;} \PY{c+c1}{// division par 3 puis affectation}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{produit} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{22}\PY{p}{)}\PY{p}{;}
+            
+            \PY{n}{valeur}\PY{o}{+}\PY{o}{+}\PY{p}{;} \PY{c+c1}{// incrémentation de valeur}
+            \PY{n}{produit}\PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}\PY{p}{;} \PY{c+c1}{// décrémentation de produit}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{valeur} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{11} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{produit} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{21}\PY{p}{)}\PY{p}{;}
+            
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Tous les tests passent.
+
+    \end{Verbatim}
+
+    \subsubsection{Opérateurs de
+comparaison}\label{opuxe9rateurs-de-comparaison}
+
+Les opérateurs \textbf{==, !=, \textless{}, \textgreater{},
+\textgreater{}= et \textless{}=} permettent de comparer deux variables.
+La proposition \texttt{vrai} s'évalue à \texttt{1} et proposition
+\texttt{faux} à \texttt{0}.
+
+\subsubsection{Opérateurs logiques}\label{opuxe9rateurs-logiques}
+
+C définit les opérateurs logiques suivants : - Le EtAlors algorithmique
+: \textbf{\&\&}, - Le OuSinon algorithmique :
+\textbf{\textbar{}\textbar{}}, - La négation : \textbf{!}
+
+    \subsubsection{Types caractère et entier en langage
+C}\label{types-caractuxe8re-et-entier-en-langage-c}
+
+Un caractère est représenté en mémoire comme un entier non-signé
+(\texttt{unsigned\ int}) qui correspond au code ASCII de ce caractère.
+Les types caractère et entier (non-signé) sont donc compatibles.
+
+L'exemple suivant (à exécuter) présente les différentes opérations
+permettant de convertir un entier en caractère, et réciproquement.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}9}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{c+c1}{// Conversion du char \PYZsq{}1\PYZsq{} en l\PYZsq{}entier 1}
+            \PY{k+kt}{char} \PY{n}{c\PYZus{}char} \PY{o}{=} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{1}\PY{l+s+sc}{\PYZsq{}}\PY{p}{;}
+            \PY{k+kt}{int} \PY{n}{c\PYZus{}int} \PY{o}{=} \PY{n}{c\PYZus{}char} \PY{o}{\PYZhy{}} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{0}\PY{l+s+sc}{\PYZsq{}}\PY{p}{;} \PY{c+c1}{//on retire le code ascii du caractère \PYZsq{}0\PYZsq{}}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{c\PYZus{}int} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{;}
+            
+            \PY{c+c1}{// Conversion de l\PYZsq{}entier 1 en un char qui vaut \PYZsq{}1\PYZsq{} }
+            \PY{k+kt}{int} \PY{n}{new\PYZus{}int} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{;}
+            \PY{k+kt}{char} \PY{n}{c\PYZus{}char2} \PY{o}{=} \PY{n}{new\PYZus{}int} \PY{o}{+} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{0}\PY{l+s+sc}{\PYZsq{}}\PY{p}{;} \PY{c+c1}{//on ajoute le code ascii du caractère \PYZsq{}0\PYZsq{}}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{c\PYZus{}char2} \PY{o}{=}\PY{o}{=} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{1}\PY{l+s+sc}{\PYZsq{}}\PY{p}{)}\PY{p}{;}  \PY{c+c1}{// c\PYZus{}char2 est bien égal au caractère }
+            
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Tous les tests passent.
+
+    \end{Verbatim}
+
+    \subsection{\#\#\#\# Exercice 4 -\/- Comprendre les opérateurs
+arithmétiques et les relations entre caractere et
+entier.}\label{exercice-4----comprendre-les-opuxe9rateurs-arithmuxe9tiques-et-les-relations-entre-caractere-et-entier.}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{{[}4.1{]}} Dans cet exercice (fichier
+\textbf{\texttt{exercice4.c}}), suivre la consigne présentée dans les
+commentaires.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define XXX \PYZhy{}1}
+         
+         \PY{c+c1}{// Consigne : dans la suite *** uniquement ***, remplacer XXX par le bon }
+         \PY{c+c1}{// résultat (une constante littérale).}
+         
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{c+c1}{// Comprendre les opérateurs arithmétique}
+             \PY{n}{assert}\PY{p}{(} \PY{l+m+mi}{\PYZhy{}5} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{5} \PY{o}{\PYZhy{}} \PY{l+m+mi}{2} \PY{o}{*} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{5} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{25} \PY{o}{\PYZpc{}} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{25} \PY{o}{/} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(} \PY{l+m+mf}{2.5}\PY{o}{=}\PY{o}{=} \PY{l+m+mi}{25} \PY{o}{/} \PY{l+m+mf}{10.0}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{// Comprendre les relations caractères et entiers}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{5} \PY{o}{=}\PY{o}{=} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{5}\PY{l+s+sc}{\PYZsq{}} \PY{o}{\PYZhy{}} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{0}\PY{l+s+sc}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{7}\PY{l+s+sc}{\PYZsq{}} \PY{o}{=}\PY{o}{=} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{0}\PY{l+s+sc}{\PYZsq{}} \PY{o}{+} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{68} \PY{o}{=}\PY{o}{=} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{A}\PY{l+s+sc}{\PYZsq{}} \PY{o}{+} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{;}
+         
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Bravo ! Tous les tests passent.
+
+    \end{Verbatim}
+
+    \subsubsection{Portée et masquage des
+variables}\label{portuxe9e-et-masquage-des-variables}
+
+    \paragraph{Portée et masquage des
+variables.}\label{portuxe9e-et-masquage-des-variables.}
+
+\textbf{Un bloc} est une série d'instructions délimitée par \textbf{une
+paire d'accolades}.
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Portée} : Les variables déclarées dans un bloc sont libérées
+  quand l'accolade fermante est exécutée. On dit que leur portée se
+  limite au bloc où elles sont déclarées.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{\{ }\CommentTok{//debut du bloc B1}
+    \DataTypeTok{int}\NormalTok{ age = }\DecValTok{20}\NormalTok{;}
+\NormalTok{    \{ }\CommentTok{// debut du bloc B2}
+        \DataTypeTok{int}\NormalTok{ nouvel_age = }\DecValTok{25}\NormalTok{ ; }\CommentTok{// variable locale à B2}
+\NormalTok{    \} }\CommentTok{// fin du bloc B2}
+    \CommentTok{// La variable nouvel_age n'existe plus. }
+\NormalTok{    age = age + }\DecValTok{1}\NormalTok{;}
+\NormalTok{\} }\CommentTok{//fin du bloc B1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Masquage} : Les variables déclarées dans un bloc peuvent avoir
+  le même identifiant qu'une variable déclarée avant l'ouverture du
+  bloc. Dans ce cas, la variable déclarées dans le bloc masque la
+  variable homonyme déclarées avant : c'est elle qui est utilisée par
+  les instructions du bloc.
+\end{itemize}
+
+Masquage et portée sont illustrés dans l'exemple
+(\textbf{\texttt{portee\_masquage.c}} à exécuter) suivant :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}} \PY{c+c1}{//debut du bloc B1}
+            \PY{k+kt}{int} \PY{n}{alea} \PY{o}{=} \PY{l+m+mi}{20}\PY{p}{,} \PY{n}{diviseur} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{;}
+            
+            \PY{p}{\PYZob{}} \PY{c+c1}{//debut du bloc B2}
+                
+                \PY{k+kt}{int} \PY{n}{alea} \PY{o}{=} \PY{l+m+mi}{3}\PY{p}{;} \PY{c+c1}{// masquage de la variable entière alea par la variable alea entière}
+                \PY{k+kt}{float} \PY{n}{diviseur} \PY{o}{=} \PY{l+m+mf}{2.0}\PY{p}{;} \PY{c+c1}{// idem pour le diviseur réel qui masque le diviseur de type entier.}
+                \PY{k+kt}{float} \PY{n}{res\PYZus{}reel} \PY{o}{=} \PY{n}{alea} \PY{o}{/} \PY{n}{diviseur}\PY{p}{;}
+                \PY{n}{assert}\PY{p}{(}\PY{n}{res\PYZus{}reel} \PY{o}{=} \PY{l+m+mf}{1.5}\PY{p}{)}\PY{p}{;}
+                
+            \PY{p}{\PYZcb{}} \PY{c+c1}{// du bloc B2}
+            \PY{k+kt}{int} \PY{n}{res\PYZus{}int} \PY{o}{=} \PY{n}{alea} \PY{o}{/} \PY{n}{diviseur}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{res\PYZus{}int} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+            
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Les tests passent}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}} \PY{c+c1}{//fin du bloc B1}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Les tests passent
+
+    \end{Verbatim}
+
+    \subsection{\#\#\#\# Exercice 5 -\/- Portée et masquage des
+variables}\label{exercice-5----portuxe9e-et-masquage-des-variables}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{{[}5.1{]}} Dans cet exercice (fichier
+\textbf{\texttt{exercice5.c}}), suivre la consigne présentée dans les
+commentaires.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{c+c1}{// Objectifs : Illustrer portée et masquage.}
+         
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define XXX \PYZhy{}1}
+         
+         \PY{c+c1}{// Consigne : *** dans la suite uniquement ***, remplacer XXX par le bon résultat (une}
+         \PY{c+c1}{// constante littérale).  Ne compiler et exécuter que quand tous les XXX ont été traités.}
+         
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{k+kt}{int} \PY{n}{x} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{x} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+         
+             \PY{p}{\PYZob{}}
+             \PY{k+kt}{int} \PY{n}{y} \PY{o}{=} \PY{l+m+mi}{7}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{10} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{y} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{;}
+         
+             \PY{p}{\PYZob{}}
+                 \PY{k+kt}{char} \PY{n}{x} \PY{o}{=} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{?}\PY{l+s+sc}{\PYZsq{}}\PY{p}{;}
+                 \PY{n}{assert}\PY{p}{(}\PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{?}\PY{l+s+sc}{\PYZsq{}} \PY{o}{=}\PY{o}{=} \PY{n}{x}\PY{p}{)}\PY{p}{;}
+                 \PY{n}{assert}\PY{p}{(}\PY{n}{y} \PY{o}{=}\PY{o}{=} \PY{n}{y}\PY{p}{)}\PY{p}{;}
+                 \PY{n}{y} \PY{o}{=} \PY{l+m+mi}{7}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+         
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{10}\PY{o}{=}\PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{7} \PY{o}{=}\PY{o}{=} \PY{n}{y}\PY{p}{)}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+         
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{10} \PY{o}{=}\PY{o}{=} \PY{n}{x}\PY{p}{)}\PY{p}{;}
+         
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Bravo ! Tous les tests passent.
+
+    \end{Verbatim}
+
+    \subsection{\#\# Constantes}\label{constantes}
+
+    Les constantes se déclarent généralement juste après l'inclusion des
+bibliothèques. Leur valeur ne peut être modifiée. Il est possible de
+définir des constantes de deux façons : 1. En utilisant le mot-clé
+\texttt{const} pour obtenir une constante typée
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \DataTypeTok{const} \DataTypeTok{int}\NormalTok{ MAJORITE_EU = }\DecValTok{18}\NormalTok{; }\CommentTok{// déclaration d'une constante typée MAJORITE_EU }
+    \DataTypeTok{const} \DataTypeTok{int}\NormalTok{ MAJORITE_US = }\DecValTok{21}\NormalTok{; }\CommentTok{// déclaration d'une constante typée MAJORITE_US }
+    \DataTypeTok{const} \DataTypeTok{char}\NormalTok{ CM = }\CharTok{'c'}\NormalTok{; }\CommentTok{// déclaration d'une constante caractère. }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Règle} : Un caractère se distingue par l'utilisation de
+guillements simples (apostrophe) : 'A', 'c', 'D', '\n', '\t'.
+\end{quote}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  En définissant une constante pré-processeur :
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \PreprocessorTok{#define MAJORITE_EU 18 }\CommentTok{// déclaration d'une constante pré-processeur 18, }
+\end{Highlighting}
+\end{Shaded}
+
+Le pré-processeur remplace les occurrences de \texttt{MAJORITE\_EU} par
+la valeur 18.
+
+\begin{quote}
+\textbf{Règle} : Pas de point-virgule à la fin d'une instruction
+pré-processeur.
+\end{quote}
+
+\textbf{Constantes littérales}
+
+Ce sont les valeurs numériques écrites directement dans les instructions
+:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \DataTypeTok{int}\NormalTok{ age = }\DecValTok{20}\NormalTok{; }\CommentTok{// 20 est une constante littérale}
+    \DataTypeTok{char}\NormalTok{ initiale_nom = }\CharTok{'M'} \CommentTok{// Le caractère 'M' est une constante littérale.}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{\#\# Expressions et compatibilité entre
+types}\label{expressions-et-compatibilituxe9-entre-types}
+
+    \subsubsection{Définition d'une
+expression}\label{duxe9finition-dune-expression}
+
+Une expression est une instruction qui est caractérisée par une valeur
+de retour. Voici quelques exemples : - Une variable initialisée
+
+\begin{Shaded}
+\begin{Highlighting}[]
+     \DataTypeTok{int}\NormalTok{ val = }\DecValTok{20}\NormalTok{;}
+\NormalTok{     val; }\CommentTok{// La variable `val` vaut 20 dans cette instruction.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Une comparaison : \texttt{(b\ \textgreater{}\ 20)}. Cette expression
+  vaudra \texttt{true} ou \texttt{false}.
+\item
+  L'utilisation d'opérateur arithmétiques :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{ x = }\DecValTok{3}\NormalTok{;}
+\NormalTok{x + }\DecValTok{3}\NormalTok{; }\CommentTok{// Cette expression vaut 6}
+\NormalTok{(x * }\DecValTok{2}\NormalTok{) / }\DecValTok{3}\NormalTok{; }\CommentTok{// Cette expression vaut 2}
+\end{Highlighting}
+\end{Shaded}
+\end{itemize}
+
+\begin{quote}
+\emph{Note} : Une affectation est aussi une expression :
+\texttt{val\ =\ 40} est une expression qui vaut 40. L'utilisateur de
+l'affectation comme expression est à éviter en C.
+\end{quote}
+
+    \subsubsection{Priorité des
+opérateurs}\label{priorituxe9-des-opuxe9rateurs}
+
+En C, la priorité des opérateurs évalués dans une même expression est la
+suivante :
+
+\begin{longtable}[]{@{}cc@{}}
+\toprule
+Priorité & Opérateurs\tabularnewline
+\midrule
+\endhead
+1 & +, -, \textbf{!} (unaires)\tabularnewline
+2 & *, /(entier), /(flottant), \%, \textbf{\&\&}\tabularnewline
+3 & +, -, \textbf{\textbar{}\textbar{}}\tabularnewline
+4 & \textbf{\textless{}, \textgreater{}, \textless{}=, \textgreater{}=,
+==, !=}\tabularnewline
+\bottomrule
+\end{longtable}
+
+La priorité 1 est la plus forte. Les opérateurs booléens sont présentés
+en gras.
+
+    \subsubsection{Compatibilité entre
+types}\label{compatibilituxe9-entre-types}
+
+En C, \textbf{une expression peut être composée d'expressions de types
+différents si ces types sont compatibles}. Voici quelques exemples
+(fichier \textbf{\texttt{compatibilite.c}}:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k+kt}{int} \PY{n}{quantite} \PY{o}{=} \PY{l+m+mi}{5}\PY{p}{;}
+             \PY{k+kt}{float} \PY{n}{prix} \PY{o}{=} \PY{l+m+mf}{12.3}\PY{p}{;}
+         
+             \PY{k+kt}{float} \PY{n}{total} \PY{o}{=} \PY{n}{prix} \PY{o}{*} \PY{n}{quantite}\PY{p}{;} \PY{c+c1}{//l\PYZsq{}entier quantité est compatible avec les flottants    }
+             \PY{k+kt}{float} \PY{n}{recette} \PY{o}{=} \PY{l+m+mi}{12}\PY{p}{;} \PY{c+c1}{// l\PYZsq{}entier 12 est compatible avec le flottant recette.}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{total} \PY{o}{=}\PY{o}{=} \PY{l+m+mf}{12.3}\PY{o}{*}\PY{l+m+mf}{5.0} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{recette} \PY{o}{=}\PY{o}{=} \PY{l+m+mf}{12.0}\PY{p}{)}\PY{p}{;}
+         
+             \PY{n}{quantite} \PY{o}{=} \PY{n}{total} \PY{o}{/} \PY{n}{recette}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{quantite} \PY{o}{!}\PY{o}{=} \PY{n}{total} \PY{o}{/} \PY{n}{recette}\PY{p}{)}\PY{p}{;}
+             \PY{c+c1}{// le réel obtenue par la division de total et recette }
+             \PY{c+c1}{// n\PYZsq{}est pas compatible avec l\PYZsq{}entier quantite.}
+             
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    Si un type A est compatible avec un type B, on peut interchanger une
+expression de type B par une expression de type A sans changer la valeur
+de l'expression.
+
+Typiquement, un type A est compatible avec un type B si le passage de
+l'un à l'autre n'engendre pas de perte de donnée : - Un entier est
+compatible avec un réel (12 devient 12.0) - Un réel n'est pas compatible
+avec un entier (le passage de 1.3 à 1 introduit une perte
+d'information).
+
+    \subsubsection{Conversion explicite}\label{conversion-explicite}
+
+Il est possible de convertir explicitement une expression pour qu'elle
+soit évaluée avec un autre type. Pour cela, on utilise la notation :
+\textgreater{} \texttt{(type)\ expression}
+
+\textbf{Exemple} Voici l'exemple illustrant la division entière et
+réelle présenté précédement (cf fichier
+\textbf{\texttt{conversion\_explicite.c}}). Il a été modifié pour
+déclarer le nombre de personnes avec un entier, et dériver tout de même
+un prix par personnes avec une division réelle grâce à une conversion
+explicite.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k+kt}{int} \PY{n}{quantite} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{;} 
+             \PY{k+kt}{int} \PY{n}{prix} \PY{o}{=} \PY{l+m+mi}{15}\PY{p}{;}
+         
+             \PY{k+kt}{int} \PY{n}{total} \PY{o}{=} \PY{n}{quantite} \PY{o}{*} \PY{n}{prix}\PY{p}{;} 
+             \PY{n}{assert}\PY{p}{(}\PY{n}{total} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{150}\PY{p}{)}\PY{p}{;}
+                 
+             \PY{k+kt}{int} \PY{n}{nb\PYZus{}personnes\PYZus{}int} \PY{o}{=} \PY{l+m+mi}{60}\PY{p}{;}
+             \PY{k+kt}{float} \PY{n}{prix\PYZus{}par\PYZus{}personne} \PY{o}{=} \PY{n}{total} \PY{o}{/}\PY{p}{(}\PY{k+kt}{float}\PY{p}{)} \PY{n}{nb\PYZus{}personnes\PYZus{}int}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{prix\PYZus{}par\PYZus{}personne} \PY{o}{=}\PY{o}{=} \PY{l+m+mf}{2.5}\PY{p}{)}\PY{p}{;} \PY{c+c1}{// Maintenant on effectue bien une division réelle }
+             
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Le prix par personne est de \PYZpc{}1.2f euros}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{prix\PYZus{}par\PYZus{}personne}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{l+m+mi}{0}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Le prix par personne est de 2.50 euros
+    \end{Verbatim}
+
+    \begin{quote}
+\emph{Note} : On observe que le descripteur de format \texttt{\%f} a été
+étendu à \texttt{\%1.2f} pour limiter le nombre de décimales à 2.
+\end{quote}
+
+    \subsection{\#\#\# Exercice 6}\label{exercice-6}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \textbf{{[}6.1{]}} Ecrire un programme (fichier
+\textbf{\texttt{exercice6.c}}) qui calcule le périmètre et l'aire d'un
+cercle, étant donné un rayon qui vaut \texttt{15}. Le rayon est une
+variable entière. Les éventuelles constantes seront déclarées comme des
+constantes pré-processeur.
+
+\textbf{{[}6.2{]}} Ecrire les deux résultats réels à l'écran.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}8}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}\PY{c+c1}{ }
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define PI 3.14}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define R 15}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{k+kt}{float} \PY{n}{perimetre} \PY{o}{=} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{PI}\PY{o}{*}\PY{n}{R}\PY{p}{;}
+            \PY{k+kt}{float} \PY{n}{air} \PY{o}{=} \PY{n}{PI}\PY{o}{*}\PY{n}{R}\PY{o}{*}\PY{n}{R}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{le périmetre du cecle est \PYZpc{}f }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{perimetre}\PY{p}{)}\PY{p}{;}
+            
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{l\PYZsq{}air du cercle est \PYZpc{}f}\PY{l+s}{\PYZdq{}} \PY{p}{,} \PY{n}{air}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+le périmetre du cecle est 94.199997 l'air du cercle est 706.500000
+    \end{Verbatim}
+
+    \subsection{\#\#\# Exercice 7}\label{exercice-7}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{{[}7.1{]}} Compléter et corriger le corps des fonctions du
+fichier \textbf{\texttt{exercice7.c}} ci-dessous (voir TODO)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdbool.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief obtenir le chiffre des unités d\PYZsq{}un entier naturel.}
+         \PY{c+cm}{ * \PYZbs{}param[in] nombre le nombre dont on veut obtenir le chiffre des unités}
+         \PY{c+cm}{ * \PYZbs{}return le chiffre des unités de nombre}
+         \PY{c+cm}{ * \PYZbs{}pre nombre positif : nombre \PYZgt{}= 0}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{int} \PY{n+nf}{chiffre\PYZus{}unites}\PY{p}{(}\PY{k+kt}{int} \PY{n}{nombre}\PY{p}{)}
+         \PY{p}{\PYZob{}}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{nombre} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{;}
+         
+             \PY{k+kt}{int} \PY{n}{r} \PY{o}{=} \PY{n}{nombre}\PY{o}{\PYZpc{}}\PY{l+m+mi}{10}\PY{p}{;}
+             \PY{k}{return} \PY{n}{r}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief obtenir le chiffre des dizaines d\PYZsq{}un entier naturel.}
+         \PY{c+cm}{ * \PYZbs{}param[in] nombre le nombre dont on veut obtenir le chiffre des dizaines}
+         \PY{c+cm}{ * \PYZbs{}return le chiffre des dizaines de nombre}
+         \PY{c+cm}{ * \PYZbs{}pre nombre positif : nombre \PYZgt{}= 0}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{int} \PY{n+nf}{chiffre\PYZus{}dizaines}\PY{p}{(}\PY{k+kt}{int} \PY{n}{nombre}\PY{p}{)}
+         \PY{p}{\PYZob{}}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{nombre} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{;}
+         
+             \PY{k+kt}{int} \PY{n}{a} \PY{o}{=} \PY{n}{nombre}\PY{o}{/}\PY{l+m+mi}{10}\PY{p}{;}
+             \PY{k+kt}{int} \PY{n}{r} \PY{o}{=} \PY{n}{a}\PY{o}{\PYZpc{}}\PY{l+m+mi}{10}\PY{p}{;}
+             \PY{k}{return} \PY{n}{r}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Indiquer si une année est bissextile.}
+         \PY{c+cm}{ * \PYZbs{}param[in] annee l\PYZsq{}année à considérer}
+         \PY{c+cm}{ * \PYZbs{}return vrai si l\PYZsq{}année est bissextile}
+         \PY{c+cm}{ * \PYZbs{}pre année positive : annee \PYZgt{} 0}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{bool} \PY{n+nf}{est\PYZus{}bissextile}\PY{p}{(}\PY{k+kt}{int} \PY{n}{annee}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{n}{annee}\PY{o}{\PYZpc{}}\PY{l+m+mi}{400} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}
+             \PY{c+c1}{// Attention : on n\PYZsq{}utilisera pas de conditionnelle,}
+             \PY{c+c1}{// seulement les opérateurs logiques.}
+             \PY{k}{return} \PY{n}{annee}\PY{o}{\PYZpc{}}\PY{l+m+mi}{400} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         
+         \PY{c+c1}{////////////////////////////////////////////////////////////////////////////////}
+         \PY{c+c1}{//                                                                            //}
+         \PY{c+c1}{//                    NE PAS MODIFIER CE QUI SUIT...                          //}
+         \PY{c+c1}{//                                                                            //}
+         \PY{c+c1}{////////////////////////////////////////////////////////////////////////////////}
+         
+         
+         \PY{k+kt}{void} \PY{n+nf}{test\PYZus{}chiffre\PYZus{}unites}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{5} \PY{o}{=}\PY{o}{=} \PY{n}{chiffre\PYZus{}unites}\PY{p}{(}\PY{l+m+mi}{1515}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{=}\PY{o}{=} \PY{n}{chiffre\PYZus{}unites}\PY{p}{(}\PY{l+m+mi}{142}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{0} \PY{o}{=}\PY{o}{=} \PY{n}{chiffre\PYZus{}unites}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{chiffre\PYZus{}unites... ok}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{k+kt}{void} \PY{n+nf}{test\PYZus{}chiffre\PYZus{}dizaines}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{=}\PY{o}{=} \PY{n}{chiffre\PYZus{}dizaines}\PY{p}{(}\PY{l+m+mi}{1515}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{4} \PY{o}{=}\PY{o}{=} \PY{n}{chiffre\PYZus{}dizaines}\PY{p}{(}\PY{l+m+mi}{142}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{9} \PY{o}{=}\PY{o}{=} \PY{n}{chiffre\PYZus{}dizaines}\PY{p}{(}\PY{l+m+mi}{91}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{8} \PY{o}{=}\PY{o}{=} \PY{n}{chiffre\PYZus{}dizaines}\PY{p}{(}\PY{l+m+mi}{80}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{0} \PY{o}{=}\PY{o}{=} \PY{n}{chiffre\PYZus{}dizaines}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{0} \PY{o}{=}\PY{o}{=} \PY{n}{chiffre\PYZus{}dizaines}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{chiffre\PYZus{}dizaines... ok}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         
+         \PY{k+kt}{void} \PY{n+nf}{test\PYZus{}annee\PYZus{}bissextile}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{c+c1}{// cas simples}
+             \PY{n}{assert}\PY{p}{(}\PY{o}{!} \PY{n}{est\PYZus{}bissextile}\PY{p}{(}\PY{l+m+mi}{2019}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{est\PYZus{}bissextile}\PY{p}{(}\PY{l+m+mi}{2020}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{est\PYZus{}bissextile}\PY{p}{(}\PY{l+m+mi}{2016}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{// multiples de 100}
+             \PY{n}{assert}\PY{p}{(}\PY{o}{!} \PY{n}{est\PYZus{}bissextile}\PY{p}{(}\PY{l+m+mi}{1900}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{o}{!} \PY{n}{est\PYZus{}bissextile}\PY{p}{(}\PY{l+m+mi}{2100}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{// multiples de 400}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{est\PYZus{}bissextile}\PY{p}{(}\PY{l+m+mi}{1600}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{est\PYZus{}bissextile}\PY{p}{(}\PY{l+m+mi}{2000}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{est\PYZus{}bissextile}\PY{p}{(}\PY{l+m+mi}{2400}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{annee\PYZus{}bissextile... ok}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{n}{test\PYZus{}chiffre\PYZus{}unites}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+             \PY{n}{test\PYZus{}chiffre\PYZus{}dizaines}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+             \PY{n}{test\PYZus{}annee\PYZus{}bissextile}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+chiffre\_unites{\ldots} ok
+chiffre\_dizaines{\ldots} ok
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+tmp5e9b452w.out: /tmp/tmpi1dsmdgn.c:77: test\_annee\_bissextile: Assertion `est\_bissextile(2020)' failed.
+[C kernel] Executable exited with code -6
+    \end{Verbatim}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{\#\# Entrées et sorties en Langage
+C}\label{entruxe9es-et-sorties-en-langage-c}
+
+    \subsubsection{Définition}\label{duxe9finition}
+
+\begin{itemize}
+\tightlist
+\item
+  Les entrées sont des instructions qui permettent de lire des données
+  provenant de l'environnement d'exécution (clavier, souris, capteur,
+  fichier, réseau, etc.).\\
+\item
+  Les sorties sont des instructions qui permettent de transférer des
+  données à l'environnement d'exécution (moniteur, actuateur, fichier,
+  réseau, etc.).
+\end{itemize}
+
+Cette partie présente l'utilisation des \textbf{entrées clavier ou des
+sorties moniteur}. Les autres types de périphériques seront abordés dans
+d'autres enseignements.
+
+\begin{quote}
+Attention : \textbf{la gestion des entrées/sorties en C n'est pas
+triviale !}
+\end{quote}
+
+    \subsubsection{Flux de données}\label{flux-de-donnuxe9es}
+
+La notion de flux de données est fondamentale. Les flux permettent
+d'interagir avec les périphériques pour échanger des données. Un flux
+est une file d'attente de type FIFO (\emph{fist in first out}) : - la
+données la plus ancienne peut être lue. Elle est alors consommée
+(supprimée de la file), - la donnée la plus récente est insérée en fin
+de file. On dit qu'elle est écrite dans la file.
+
+En C, on peut manipuler des flux qui enregistrent des données de deux
+types : - \textbf{texte} : on y enregistre une suite de caractères,
+séparés par des retour-chariots, - \textbf{binaire} : on y enregistre
+une suite d'octets.
+
+Il existe des files sont définies par défaut : - \texttt{FILE*\ STDOUT}
+: flux de sortie vers le moniteur - \texttt{FILE*\ STDIN}: flux d'entree
+depuis le clavier Elles sont toutes de type \texttt{FILE*}
+
+\begin{quote}
+Note : - Ces files sont définies dans le module \texttt{stdlib} - Les
+sous-programmes mentionnés par la suite sont définis dans le module
+\texttt{stdio}
+\end{quote}
+
+\begin{quote}
+Remarque : - En 1SN nous ne traiterons que les entrées sorties en mode
+\textbf{texte}
+\end{quote}
+
+    \subsubsection{Ecrire les sorties}\label{ecrire-les-sorties}
+
+    \paragraph{Sorties formattés}\label{sorties-formattuxe9s}
+
+L'objectif du sous-programme \texttt{printf()} est d'écrire des données
+typées à l'écran. L'objectif est d'afficher en une seule instruction le
+contenu de variables de type entier, flottant, chaine de caractères,
+voire une combinaison hétérogène de variables.
+
+Le sous-programme \texttt{printf} du module \texttt{stdio} est définit
+comme suit :
+
+\begin{quote}
+\texttt{int\ printf("format",\ param1,\ param2,\ etc.);}
+\end{quote}
+
+La chaîne "format" est une chaîne de caractères, parsemée de
+\textbf{spécificateurs de format}.
+
+\textbf{Un spécificateur de format commence par le caractère \%}. Il y
+autant de spécificateurs de format que de paramètres. A l'exécution, -
+le 1er spécificateur est remplacé par la valeur du 1er paramètre, - le
+2er spécificateur est remplacé par la valeur du 2er paramètre, - etc.
+
+Le spécificateur indique comment afficher la variable qui lui correspond
+: - \%d ou \%i : indique à printf que l'on souhaite afficher le
+paramètre comme un entier signé - \%u : indique à printf que l'on
+souhaite afficher le paramètre comme un entier \_\_non\_\_signé - \%f,
+\%lf, \%Lf : indique à printf que l'on souhaite afficher le paramètre
+comme un float, double ou long double. Il est possible de limiter le
+nombre de décimales : \%1.3f limite le nombre de décimales à 3. - \%c :
+indique à printf que l'on souhaite afficher le paramètre comme un
+caractère - \%s : indique à printf que l'on souhaite afficher le
+paramètre comme une chaîne de caractères - \%p : indique à printf que
+l'on souhaite afficher le paramètre comme une adresse - etc.
+
+\begin{quote}
+\textbf{ATTENTION} : le compilateur ne vérifie pas forcément la
+cohérence entre le spécificateur et le type du paramètre correspondant !
+Des warnings sont généralement observés.
+\end{quote}
+
+\textbf{Exemples} (fichier \textbf{\texttt{exemple\_ES.c}}):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k+kt}{float} \PY{n}{cote} \PY{o}{=} \PY{l+m+mf}{2.0}\PY{p}{;}     \PY{c+c1}{//longueur du côté}
+             \PY{k+kt}{char} \PY{n}{unite} \PY{o}{=} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{m}\PY{l+s+sc}{\PYZsq{}}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Le périmètre du carré de côté \PYZpc{}1.0f\PYZpc{}c est : }\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{cote}\PY{p}{,} \PY{n}{unite}\PY{p}{)}\PY{p}{;} 
+             \PY{c+c1}{//affichage du flottant avec 0 chiffres après la virgule}
+             
+             \PY{c+c1}{//calcul et affichage du perimètre}
+             \PY{k+kt}{float} \PY{n}{perimetre} \PY{o}{=} \PY{l+m+mi}{4} \PY{o}{*} \PY{n}{cote}\PY{p}{;} 
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}1.2f\PYZpc{}c}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{perimetre}\PY{p}{,} \PY{n}{unite}\PY{p}{)}\PY{p}{;} 
+             \PY{c+c1}{//affichage du flottant avec 2 chiffres après la virgule}
+             
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Le périmètre du carré de côté 2m est : 8.00m
+
+    \end{Verbatim}
+
+    \begin{quote}
+\emph{Note} : Il existe d'autres sous-programmes d'écriture qui ne
+seront pas présentés ici : \texttt{putchar()}, \texttt{fputc()},
+\texttt{sprintf()}, \texttt{fprintf()}.
+\end{quote}
+
+    \subsubsection{Lire les entrées}\label{lire-les-entruxe9es}
+
+    \paragraph{Entrées formattés}\label{entruxe9es-formattuxe9s}
+
+L'objectif du sous-programme \texttt{scanf()} est de lire des données
+typées depuis le clavier. Le sous-programme \texttt{scanf} du module
+\texttt{stdio} est définit comme suit :
+
+\begin{quote}
+\texttt{int\ scanf("format",\ \&param1,\ \&param2,\ etc.);}
+\end{quote}
+
+La chaîne "format" ne comporte \textbf{principalement des spécificateurs
+de formats}. Chaque format fait référence à un des paramètres, dans
+l'ordre d'apparition. Le spécificateur indique comment lire la variable
+qui lui correspond : - \%d ou \%i : indique à \texttt{scanf} qu'il doit
+lire un entier - \%f : indique à scanf qu'il doit lire un float - etc.
+
+La donnée lue est écrite à \textbf{l'adresse} de \texttt{param1},
+\texttt{param2}. etc.
+
+\begin{quote}
+Si dans le "format" on insère un espace entre deux spécificateurs, tous
+les caractères 'blancs' (espace, tabulation) sont consommés mais non
+interprétés.
+\end{quote}
+
+L'entier retourné par \texttt{scanf} représente le nombre de paramètres
+lus avec succès.
+
+\textbf{Exemples} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{// Lire un entier}
+\DataTypeTok{int}\NormalTok{ monentier;}
+\NormalTok{scanf(}\StringTok{"%i"}\NormalTok{, &monentier);}
+\CommentTok{// Lire un flottant avec 2 décimales maximum.}
+\DataTypeTok{float}\NormalTok{ monfloat;}
+\NormalTok{scanf(}\StringTok{"%1.2f"}\NormalTok{, &monfloat); }
+\CommentTok{// Lire deux caracteres d'affilée non blancs}
+\DataTypeTok{char}\NormalTok{ c1, c2;}
+\NormalTok{scanf(}\StringTok{"%c %c"}\NormalTok{, &c1, &c2);}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\emph{Note} : Il existe d'autres sous-programmes de lecture des entrées
+qui ne seront pas présentés ici : \texttt{getchar()}, \texttt{fgetc()},
+\texttt{sscanf()}, \texttt{fscanf()}.
+\end{quote}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{\#\# Les structures de
+contrôle}\label{les-structures-de-contruxf4le}
+
+    Elles permettent de contrôle l'ordre d'exécution des instructions. En C,
+il existe - La séquence - Les structures conditionnelles :\\
+- \texttt{if\ ...\ then\ ...\ else} - \texttt{switch\ ...\ case\ ...} -
+Les boucles : - Répéter : \texttt{do\ ...\ while} - TantQue :
+\texttt{while\ ...} - Pour : \texttt{for\ ...}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{\#\# Les conditionelles}\label{les-conditionelles}
+
+    \textbf{1. La conditionnelle simple :}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (cond) \{}
+\NormalTok{    sequence1}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{    sequence2}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Si la condition \texttt{cond} est vraie, \texttt{séquenc1} est exécutée,
+sinon, \texttt{sequence2} est exécutée.
+
+La clause \texttt{SinonSi} n'existe pas, on imbrique les conditionnelles
+pour introduire une étape de sélection supplémentaire :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{if}\NormalTok{ (cond1) \{}
+\NormalTok{    sequence1}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (cond2) \{}
+\NormalTok{    sequence2}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{    sequence3}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\texttt{sequence3} est exécuté si \texttt{cond1} et \texttt{cond2} sont
+fausses.
+
+    \subsection{\#\#\# Exercice 8 - Ecrire des
+conditionnelles.}\label{exercice-8---ecrire-des-conditionnelles.}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{{[}8.1{]}} Compléter et corriger le corps des fonctions
+ci-dessous (voir TODO).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Retourner \PYZsq{}\PYZlt{}\PYZsq{}, \PYZsq{}\PYZgt{}\PYZsq{} ou \PYZsq{}=\PYZsq{} pour indiquer si n est strictement négatif,}
+         \PY{c+cm}{ * strictement positif ou nul.}
+         \PY{c+cm}{ * \PYZbs{}param[in] nombre le nombre dont on veut évaluer le signe}
+         \PY{c+cm}{ * \PYZbs{}return un caractère donnant le signe d\PYZsq{}un nombre}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{char} \PY{n+nf}{signe}\PY{p}{(}\PY{k+kt}{int} \PY{n}{nombre}\PY{p}{)}
+         \PY{p}{\PYZob{}}
+             \PY{k}{if} \PY{p}{(}\PY{n}{nombre} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0}\PY{p}{)} \PY{p}{\PYZob{}}
+                 \PY{k}{return} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{\PYZgt{}}\PY{l+s+sc}{\PYZsq{}}\PY{p}{;}
+             \PY{p}{\PYZcb{}} \PY{k}{else} \PY{k}{if} \PY{p}{(}\PY{n}{nombre} \PY{o}{\PYZlt{}}\PY{l+m+mi}{0}\PY{p}{)} \PY{p}{\PYZob{}}
+                 \PY{k}{return} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{\PYZlt{}}\PY{l+s+sc}{\PYZsq{}}\PY{p}{;}
+             \PY{p}{\PYZcb{}} \PY{k}{else} \PY{p}{\PYZob{}}
+                 \PY{k}{return} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{=}\PY{l+s+sc}{\PYZsq{}}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+              
+         \PY{p}{\PYZcb{}}
+         
+         
+         \PY{c+c1}{////////////////////////////////////////////////////////////////////////////////}
+         \PY{c+c1}{//                                                                            //}
+         \PY{c+c1}{//                    NE PAS MODIFIER CE QUI SUIT...                          //}
+         \PY{c+c1}{//                                                                            //}
+         \PY{c+c1}{////////////////////////////////////////////////////////////////////////////////}
+         
+         \PY{k+kt}{void} \PY{n+nf}{test\PYZus{}signe}\PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{n}{assert}\PY{p}{(}\PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{\PYZlt{}}\PY{l+s+sc}{\PYZsq{}} \PY{o}{=}\PY{o}{=} \PY{n}{signe}\PY{p}{(}\PY{l+m+mi}{\PYZhy{}821}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{\PYZlt{}}\PY{l+s+sc}{\PYZsq{}} \PY{o}{=}\PY{o}{=} \PY{n}{signe}\PY{p}{(}\PY{l+m+mi}{\PYZhy{}1}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{=}\PY{l+s+sc}{\PYZsq{}} \PY{o}{=}\PY{o}{=} \PY{n}{signe}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{\PYZgt{}}\PY{l+s+sc}{\PYZsq{}} \PY{o}{=}\PY{o}{=} \PY{n}{signe}\PY{p}{(}\PY{l+m+mi}{125}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{\PYZgt{}}\PY{l+s+sc}{\PYZsq{}} \PY{o}{=}\PY{o}{=} \PY{n}{signe}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{signe... ok}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{n}{test\PYZus{}signe}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+signe{\ldots} ok
+Bravo ! Tous les tests passent.
+
+    \end{Verbatim}
+
+    \textbf{2. La conditionelle multiple :} Elle s'exprime avec la structure
+de contrôle \texttt{switch\ ..\ case}. Elle suit la syntaxe suivante :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{switch}\NormalTok{ (expr) \{}
+    \ControlFlowTok{case}\NormalTok{ choix1 : }
+\NormalTok{        sequence1;}
+        \ControlFlowTok{break}\NormalTok{;}
+    \ControlFlowTok{case}\NormalTok{ choix2 : }
+\NormalTok{        sequence2;}
+        \ControlFlowTok{break}\NormalTok{;}
+    \ControlFlowTok{case} \ControlFlowTok{default}\NormalTok{ : }
+\NormalTok{        sequence_def;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+A l'exécution:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \texttt{(expr)} est évalué. \texttt{(expr)} est une expression de type
+  \textbf{discret} (entier, booléen ou caractère)
+\item
+  L'exécution se poursuit au niveau du \texttt{case} qui correspond a la
+  valeur de \texttt{(expr)} ou au niveau du \texttt{default} si aucune
+  correspondance n'est trouvée.
+\end{enumerate}
+
+Autrement dit, si . - Si \texttt{expr\ ==\ choix1}, toutes les
+instructions sont exécutées \textbf{à partir de sequence1}. - Si
+\texttt{expr\ ==\ choix2}, toutes les instructions sont exécutées
+\textbf{à partir de sequence2}. - Si
+\texttt{expr\ !=\ choix1\ \&\&\ expr\ !=\ choix2}, sequence\_def est
+exécuté.
+
+Si l'instruction \textbf{break;} est rencontrée, les instructions
+suivantes du bloc \texttt{switch} ne sont jamais exécutées.
+
+\begin{quote}
+Note : Il est important d'utiliser l'instruction \textbf{break;} pour
+n'exécuter qu'une séquence par choix possible pour retrouver le
+comportement algorithmique d'un \texttt{Selon\ ..\ Dans}.
+\end{quote}
+
+    \subsection{\texorpdfstring{\#\#\# Exercice 9 - Comprendre le
+\texttt{switch\ ...\ case}}{\#\#\# Exercice 9 - Comprendre le switch ... case}}\label{exercice-9---comprendre-le-switch-...-case}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \textbf{{[}9.1{]}} Dans la fonction \texttt{test\_f} (cf fichier
+\textbf{\texttt{exercice9.c}}) du programme suivant, remplacer XXX par
+la valeur qui sera retournée par l'appel correspondant à la fonction
+\texttt{f}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define XXX \PYZhy{}1}
+         
+         \PY{c+c1}{// Une fonction f qui retourne un entier en fonction du paramètre n fourni.}
+         \PY{k+kt}{int} \PY{n+nf}{f}\PY{p}{(}\PY{k+kt}{int} \PY{n}{n}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{k+kt}{int} \PY{n}{r} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}
+         
+             \PY{c+c1}{// modifier r}
+             \PY{k}{switch} \PY{p}{(}\PY{n}{n}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{k}{case} \PY{l+m+mi}{1}\PY{o}{:}
+                 \PY{n}{r} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{;}
+                 \PY{k}{break}\PY{p}{;}
+             \PY{k}{case} \PY{l+m+mi}{2}\PY{o}{:}
+             \PY{k}{case} \PY{l+m+mi}{3}\PY{o}{:}
+                 \PY{n}{r} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{8}\PY{p}{;}
+                 \PY{k}{break}\PY{p}{;}
+             \PY{k}{case} \PY{l+m+mi}{4}\PY{o}{:}
+             \PY{k}{case} \PY{l+m+mi}{5}\PY{o}{:}
+             \PY{k}{case} \PY{l+m+mi}{7}\PY{o}{:}
+                 \PY{n}{r} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{10}\PY{p}{;}
+             \PY{k}{case} \PY{l+m+mi}{10}\PY{o}{:}
+             \PY{k}{case} \PY{l+m+mi}{11}\PY{o}{:}
+                 \PY{n}{r} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{5}\PY{p}{;}
+                 \PY{k}{break}\PY{p}{;}
+             \PY{k}{case} \PY{l+m+mi}{12}\PY{o}{:}
+                 \PY{n}{r} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{50}\PY{p}{;}
+                 \PY{k}{break}\PY{p}{;}
+             \PY{k}{case} \PY{l+m+mi}{13}\PY{o}{:}
+                 \PY{n}{r} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{100}\PY{p}{;}
+             \PY{k}{default}\PY{o}{:}
+                 \PY{n}{r} \PY{o}{\PYZhy{}}\PY{o}{=} \PY{l+m+mi}{1}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+         
+             \PY{k}{return} \PY{n}{r}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{k+kt}{void} \PY{n+nf}{test\PYZus{}f}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)}
+         \PY{p}{\PYZob{}}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{8} \PY{o}{=}\PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{\PYZhy{}1} \PY{o}{=}\PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{\PYZhy{}5}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{\PYZhy{}1} \PY{o}{=}\PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{50} \PY{o}{=}\PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{99} \PY{o}{=}\PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{13}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{8} \PY{o}{=}\PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{5} \PY{o}{=}\PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{15} \PY{o}{=}\PY{o}{=} \PY{n}{f}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{n}{test\PYZus{}f}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bravo !  Pas d\PYZsq{}erreur détectée.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Bravo !  Pas d'erreur détectée.
+
+    \end{Verbatim}
+
+    \subsection{\texorpdfstring{\#\#\# Exercice 10 - Ecrire un
+\texttt{switch\ ..\ case}}{\#\#\# Exercice 10 - Ecrire un switch .. case}}\label{exercice-10---ecrire-un-switch-..-case}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \textbf{{[}10.1{]}} Compléter et corriger le corps de la fonction
+\texttt{nb\_jours\_mois} (cf fichier \textbf{\texttt{exercice10.c}})
+ci-dessous (voir TODO).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Obtenir le nombres de jour d\PYZsq{}un mois d\PYZsq{}une année non bissextile.}
+         \PY{c+cm}{ * \PYZbs{}param[in] mois le mois considéré (de 1, janvier, à 12, décembre)}
+         \PY{c+cm}{ * \PYZbs{}return le nombre de jours du mois considéré}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{char} \PY{n+nf}{nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{k+kt}{int} \PY{n}{mois}\PY{p}{)}
+         \PY{p}{\PYZob{}}
+             \PY{c+c1}{// Contraintes :}
+             \PY{c+c1}{//   1. On utilisera un Selon et aucune autre structure de contrôle.}
+             \PY{c+c1}{//   2. On fera un seul « return » à la fin de la fonction.}
+             \PY{c+c1}{//   3. On n\PYZsq{}utilisera pas de tableau !}
+             \PY{k}{switch} \PY{p}{(}\PY{n}{mois}\PY{p}{)} \PY{p}{\PYZob{}}
+                 \PY{k}{case} \PY{l+m+mi}{1}\PY{o}{:}
+                     \PY{k}{return} \PY{l+m+mi}{31}\PY{p}{;}
+                     \PY{k}{break}\PY{p}{;}
+                 \PY{k}{case} \PY{l+m+mi}{2}\PY{o}{:}
+                     \PY{k}{return} \PY{l+m+mi}{28}\PY{p}{;}
+                     \PY{k}{break}\PY{p}{;}
+                 \PY{k}{case} \PY{l+m+mi}{3}\PY{o}{:}
+                     \PY{k}{return} \PY{l+m+mi}{31}\PY{p}{;}
+                     \PY{k}{break}\PY{p}{;}
+                 \PY{k}{case} \PY{l+m+mi}{4}\PY{o}{:}
+                     \PY{k}{return} \PY{l+m+mi}{30}\PY{p}{;}
+                     \PY{k}{break}\PY{p}{;}
+                 \PY{k}{case} \PY{l+m+mi}{5}\PY{o}{:}
+                     \PY{k}{return} \PY{l+m+mi}{31}\PY{p}{;}
+                     \PY{k}{break}\PY{p}{;}
+                 \PY{k}{case} \PY{l+m+mi}{6}\PY{o}{:}
+                     \PY{k}{return} \PY{l+m+mi}{30}\PY{p}{;}
+                     \PY{k}{break}\PY{p}{;}
+                 \PY{k}{case} \PY{l+m+mi}{7}\PY{o}{:}
+                     \PY{k}{return} \PY{l+m+mi}{31}\PY{p}{;}
+                     \PY{k}{break}\PY{p}{;}
+                 \PY{k}{case} \PY{l+m+mi}{8}\PY{o}{:}
+                     \PY{k}{return} \PY{l+m+mi}{31}\PY{p}{;}
+                     \PY{k}{break}\PY{p}{;}
+                 \PY{k}{case} \PY{l+m+mi}{9}\PY{o}{:}
+                     \PY{k}{return} \PY{l+m+mi}{30}\PY{p}{;}
+                     \PY{k}{break}\PY{p}{;}
+                 \PY{k}{case} \PY{l+m+mi}{10}\PY{o}{:}
+                     \PY{k}{return} \PY{l+m+mi}{31}\PY{p}{;}
+                     \PY{k}{break}\PY{p}{;}
+                 \PY{k}{case} \PY{l+m+mi}{11}\PY{o}{:}
+                     \PY{k}{return} \PY{l+m+mi}{30}\PY{p}{;}
+                     \PY{k}{break}\PY{p}{;}
+                 \PY{k}{case} \PY{l+m+mi}{12}\PY{o}{:}
+                     \PY{k}{return} \PY{l+m+mi}{31}\PY{p}{;}
+                     \PY{k}{break}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+                 
+            
+         \PY{p}{\PYZcb{}}
+         
+         
+         \PY{c+c1}{////////////////////////////////////////////////////////////////////////////////}
+         \PY{c+c1}{//                                                                            //}
+         \PY{c+c1}{//                    NE PAS MODIFIER CE QUI SUIT...                          //}
+         \PY{c+c1}{//                                                                            //}
+         \PY{c+c1}{////////////////////////////////////////////////////////////////////////////////}
+         
+         \PY{k+kt}{void} \PY{n+nf}{test\PYZus{}nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{31} \PY{o}{=}\PY{o}{=} \PY{n}{nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{28} \PY{o}{=}\PY{o}{=} \PY{n}{nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{31} \PY{o}{=}\PY{o}{=} \PY{n}{nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{30} \PY{o}{=}\PY{o}{=} \PY{n}{nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{31} \PY{o}{=}\PY{o}{=} \PY{n}{nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{30} \PY{o}{=}\PY{o}{=} \PY{n}{nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{31} \PY{o}{=}\PY{o}{=} \PY{n}{nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{31} \PY{o}{=}\PY{o}{=} \PY{n}{nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{30} \PY{o}{=}\PY{o}{=} \PY{n}{nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{l+m+mi}{9}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{31} \PY{o}{=}\PY{o}{=} \PY{n}{nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{30} \PY{o}{=}\PY{o}{=} \PY{n}{nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{l+m+mi}{11}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{31} \PY{o}{=}\PY{o}{=} \PY{n}{nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{nb\PYZus{}jours\PYZus{}mois... ok}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{n}{test\PYZus{}nb\PYZus{}jours\PYZus{}mois}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+nb\_jours\_mois{\ldots} ok
+Bravo ! Tous les tests passent.
+
+    \end{Verbatim}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{\#\# Les boucles /
+répétitions}\label{les-boucles-ruxe9puxe9titions}
+
+    \subsubsection{\texorpdfstring{La répétition \texttt{do} ...
+\texttt{while}}{La répétition do ... while}}\label{la-ruxe9puxe9tition-do-...-while}
+
+On répète au moins une fois une séquence. La condition d'arrêt est
+testée une fois la séquence exécutée.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \ControlFlowTok{do}\NormalTok{ \{}
+\NormalTok{        sequence;}
+\NormalTok{    \}}
+    \ControlFlowTok{while}\NormalTok{ (cond);}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Exemple} (cf fichier \textbf{\texttt{alea\_borne.c}}):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}time.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cm}{/*}
+         \PY{c+cm}{ * \PYZbs{}brief Obtenir une valeur aléatoire entre min et max, inclus.}
+         \PY{c+cm}{ * \PYZbs{}param[in] min borne minimale, }
+         \PY{c+cm}{ * \PYZbs{}param[in] max borne maximale, }
+         \PY{c+cm}{ * \PYZbs{}return valeur aleatoire entre min et max}
+         \PY{c+cm}{ * \PYZbs{}pre min \PYZgt{}= 0, max \PYZlt{}= RAND\PYZus{}MAX}
+         \PY{c+cm}{ */} 
+         \PY{k+kt}{int} \PY{n+nf}{alea\PYZus{}borne}\PY{p}{(}\PY{k+kt}{int} \PY{n}{min}\PY{p}{,} \PY{k+kt}{int} \PY{n}{max}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{min} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{max} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{RAND\PYZus{}MAX}\PY{p}{)}\PY{p}{;}
+             
+             \PY{c+c1}{// Initialisation du générateur de nombres aléatoires avec la date courante}
+             \PY{n}{srand}\PY{p}{(}\PY{n}{time}\PY{p}{(}\PY{n+nb}{NULL}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{k+kt}{int} \PY{n}{alea}\PY{p}{;}
+             \PY{k}{do} \PY{p}{\PYZob{}}
+                 \PY{n}{alea} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{p}{)}\PY{p}{;} \PY{c+c1}{// valeur aléatoire entre 0 et RAND\PYZus{}MAX}
+             \PY{p}{\PYZcb{}}
+             \PY{k}{while} \PY{p}{(}\PY{n}{alea} \PY{o}{\PYZlt{}} \PY{n}{min} \PY{o}{|}\PY{o}{|} \PY{n}{alea} \PY{o}{\PYZgt{}} \PY{n}{max}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{alea}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{k+kt}{int} \PY{n}{val} \PY{o}{=} \PY{n}{alea\PYZus{}borne}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{val} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{4} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{val} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{val = \PYZpc{}d}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{val}\PY{p}{)}\PY{p}{;}
+             
+             \PY{n}{val} \PY{o}{=} \PY{n}{alea\PYZus{}borne}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{val} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{2} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{val} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{25}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{val = \PYZpc{}d}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{val}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+val = 6
+val = 13
+
+    \end{Verbatim}
+
+    \subsubsection{\texorpdfstring{La répétition
+\texttt{while}}{La répétition while}}\label{la-ruxe9puxe9tition-while}
+
+On répète une séquence qui peut ne jamais être exécutée. On sort de la
+boucle quand la condition est fausse :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \ControlFlowTok{while}\NormalTok{ (cond) \{}
+\NormalTok{        sequence;}
+\NormalTok{    \}}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Exemple} (cf fichier \textbf{\texttt{while.c}}):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define LIMITE 300}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{k+kt}{int} \PY{n}{prec} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{un} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{;}
+             \PY{k+kt}{int} \PY{n}{rang} \PY{o}{=} \PY{l+m+mi}{2}\PY{p}{;}
+             \PY{k+kt}{int} \PY{n}{nouveau}\PY{p}{;}
+         
+             \PY{k}{while} \PY{p}{(}\PY{n}{un} \PY{o}{\PYZlt{}} \PY{n}{LIMITE}\PY{p}{)} \PY{p}{\PYZob{}}
+                 \PY{c+c1}{// Determiner le nouveau terme de la suite de Fibonacci}
+                 \PY{n}{nouveau} \PY{o}{=} \PY{n}{un} \PY{o}{+} \PY{n}{prec}\PY{p}{;}
+                 \PY{c+c1}{// Enregistrer les termes un et prec}
+                 \PY{n}{prec} \PY{o}{=} \PY{n}{un}\PY{p}{;}
+                 \PY{n}{un} \PY{o}{=} \PY{n}{nouveau}\PY{p}{;}
+                 \PY{c+c1}{// Calculer le rang}
+                 \PY{n}{rang} \PY{o}{+}\PY{o}{+}\PY{p}{;}
+             \PY{p}{\PYZcb{}} 
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{La valeur de la suite de fibonacci \PYZgt{}= \PYZpc{}d est \PYZpc{}d. Elle est de rang \PYZpc{}d}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{LIMITE}\PY{p}{,} \PY{n}{un}\PY{p}{,} \PY{n}{rang}\PY{p}{)}\PY{p}{;}
+             
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La valeur de la suite de fibonacci >= 300 est 377. Elle est de rang 13
+
+    \end{Verbatim}
+
+    \subsubsection{\texorpdfstring{La répétition
+\texttt{for}}{La répétition for}}\label{la-ruxe9puxe9tition-for}
+
+Si on connait le nombre d'itérations, on utilise une boucle Pour :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \ControlFlowTok{for}\NormalTok{ (instruction_init_compteur; condition_boucle; instruction_incr_compteur) \{}
+\NormalTok{        sequence;}
+\NormalTok{    \}}
+\end{Highlighting}
+\end{Shaded}
+
+On a ici : - \texttt{instruction\_init\_increment} : une instruction qui
+initialise (voire déclare) le compteur, - \texttt{condition\_boucle} :
+une condition qui, \textbf{si fausse}, arrête la répétition. -
+\texttt{instruction\_incr\_compteur} : une instruction qui précise
+comment le compteur varie à chaque répétition.
+
+\textbf{Exemple} (cf fichier \textbf{\texttt{for.c}}):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define LIMITE 30}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+             \PY{c+c1}{//calcul de la moyenne des LIMITE premiers entiers}
+             \PY{k+kt}{int} \PY{n}{somme} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}
+             
+             \PY{c+c1}{// Déclaration du compteur i et initialisation à 1}
+             \PY{c+c1}{// Répétition si i \PYZlt{}= LIMITE}
+             \PY{c+c1}{// Incrémentation i = i + 1 à chaque répétition.}
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{;} \PY{n}{i} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{LIMITE}\PY{p}{;} \PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{)} \PY{p}{\PYZob{}}
+                 \PY{n}{somme} \PY{o}{+}\PY{o}{=} \PY{n}{i}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             \PY{k+kt}{float} \PY{n}{moyenne} \PY{o}{=} \PY{n}{somme} \PY{o}{/} \PY{p}{(}\PY{k+kt}{float}\PY{p}{)} \PY{n}{LIMITE}\PY{p}{;} 
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{La moyenne des \PYZpc{}d premiers entiers est \PYZpc{}1.2f}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{LIMITE}\PY{p}{,} \PY{n}{moyenne}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+La moyenne des 30 premiers entiers est 15.50
+
+    \end{Verbatim}
+
+    \subsection{\texorpdfstring{\#\#\# Exercice 11 - Ecrire un
+\texttt{TantQue}}{\#\#\# Exercice 11 - Ecrire un TantQue}}\label{exercice-11---ecrire-un-tantque}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{{[}11.1{]}} Compléter et corriger le corps de la function
+\texttt{sommes\_cubes\_inférieurs\_a} (cf. fichier
+\textbf{\texttt{exercice11.c}}) (voir TODO).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdbool.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+        
+        \PY{c+cm}{/**}
+        \PY{c+cm}{ * \PYZbs{}brief Calculer la somme des cubes des entiers naturels dont le cube est inférieur}
+        \PY{c+cm}{ * ou égal à limite.}
+        \PY{c+cm}{ * \PYZbs{}param[in] limite la limite à ne pas dépasser pour les cubes}
+        \PY{c+cm}{ * \PYZbs{}return la sommes des cubes}
+        \PY{c+cm}{ * \PYZbs{}pre limite positive : limite \PYZgt{} 0}
+        \PY{c+cm}{ */}
+        \PY{k+kt}{int} \PY{n+nf}{sommes\PYZus{}cubes\PYZus{}inferieurs\PYZus{}a}\PY{p}{(}\PY{k+kt}{int} \PY{n}{limite}\PY{p}{)}
+        \PY{p}{\PYZob{}}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{limite} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{;}
+        
+            \PY{c+c1}{// Consigne :}
+            \PY{c+c1}{//   1. On n\PYZsq{}utilisera pas l\PYZsq{}exponentielle.}
+            \PY{c+c1}{//   2. On utilisera seulement un TantQue}
+            \PY{k+kt}{int} \PY{n}{s}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}
+            \PY{k+kt}{int} \PY{n}{i} \PY{o}{=}\PY{l+m+mi}{1}\PY{p}{;}
+            \PY{k}{while} \PY{p}{(} \PY{n}{i} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{limite}\PY{p}{)} \PY{p}{\PYZob{}}
+               \PY{n}{i}\PY{o}{\PYZhy{}}\PY{o}{=}\PY{n}{i}\PY{o}{*}\PY{n}{i}\PY{o}{*}\PY{n}{i}\PY{p}{;}
+               \PY{n}{s}\PY{o}{=}\PY{n}{s}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{;}
+            \PY{p}{\PYZcb{}}
+            \PY{k}{return} \PY{n}{s}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+        
+        
+        \PY{c+c1}{////////////////////////////////////////////////////////////////////////////////}
+        \PY{c+c1}{//                                                                            //}
+        \PY{c+c1}{//                    NE PAS MODIFIER CE QUI SUIT...                          //}
+        \PY{c+c1}{//                                                                            //}
+        \PY{c+c1}{////////////////////////////////////////////////////////////////////////////////}
+        
+        
+        \PY{k+kt}{void} \PY{n+nf}{test\PYZus{}sommes\PYZus{}cubes\PYZus{}inferieurs\PYZus{}a}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes\PYZus{}inferieurs\PYZus{}a}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes\PYZus{}inferieurs\PYZus{}a}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes\PYZus{}inferieurs\PYZus{}a}\PY{p}{(}\PY{l+m+mi}{7}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{9} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes\PYZus{}inferieurs\PYZus{}a}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{9} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes\PYZus{}inferieurs\PYZus{}a}\PY{p}{(}\PY{l+m+mi}{26}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{36} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes\PYZus{}inferieurs\PYZus{}a}\PY{p}{(}\PY{l+m+mi}{27}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{36} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes\PYZus{}inferieurs\PYZus{}a}\PY{p}{(}\PY{l+m+mi}{63}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{100} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes\PYZus{}inferieurs\PYZus{}a}\PY{p}{(}\PY{l+m+mi}{64}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{100} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes\PYZus{}inferieurs\PYZus{}a}\PY{p}{(}\PY{l+m+mi}{124}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{225} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes\PYZus{}inferieurs\PYZus{}a}\PY{p}{(}\PY{l+m+mi}{125}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{sommes\PYZus{}cubes\PYZus{}inferieurs\PYZus{}a... ok}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+        
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+            \PY{n}{test\PYZus{}sommes\PYZus{}cubes\PYZus{}inferieurs\PYZus{}a}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \subsection{\texorpdfstring{\#\#\# Exercice 12 - Ecrire un
+\texttt{Répéter\ ...\ Jusqu\textquotesingle{}à}}{\#\#\# Exercice 12 - Ecrire un Répéter ... Jusqu'à}}\label{exercice-12---ecrire-un-ruxe9puxe9ter-...-jusquuxe0}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{{[}12.1{]}} Compléter et corriger le corps de la function
+\texttt{frequence} (cf. fichier \textbf{\texttt{exercice12.c}})(voir
+TODO).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdbool.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+        
+        \PY{c+cm}{/**}
+        \PY{c+cm}{ * \PYZbs{}brief Obtenir la fréquence d\PYZsq{}un chiffre dans un nombre.}
+        \PY{c+cm}{ * Exemples : la fréquence de 5 dans 1515 est 2. La fréquence de 3 dans 123 est 1.}
+        \PY{c+cm}{ * La fréquence de 0 dans 412 est 0.}
+        \PY{c+cm}{ * \PYZbs{}param[in] chiffre dont ont veut calculer la fréquence}
+        \PY{c+cm}{ * \PYZbs{}param[in] nombre pour lequel on veut calculer la fréquence de chiffre}
+        \PY{c+cm}{ * \PYZbs{}return la fréquence de chiffre dans nombre}
+        \PY{c+cm}{ * \PYZbs{}pre chiffre est un vrai chiffre : 0 \PYZlt{}= chiffre \PYZlt{}= 9}
+        \PY{c+cm}{ */}
+        \PY{k+kt}{int} \PY{n+nf}{frequence}\PY{p}{(}\PY{k+kt}{int} \PY{n}{nombre}\PY{p}{,} \PY{k+kt}{int} \PY{n}{chiffre}\PY{p}{)}
+        \PY{p}{\PYZob{}}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{chiffre} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{chiffre} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{9}\PY{p}{)}\PY{p}{;}
+            \PY{k+kt}{int} \PY{n}{s} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}
+            \PY{k}{do}\PY{p}{\PYZob{}}
+                \PY{n}{s}\PY{o}{+}\PY{o}{+}\PY{p}{;}
+            \PY{p}{\PYZcb{}}
+            \PY{k}{while} \PY{n}{nombre}\PY{p}{[}\PY{n}{s}\PY{p}{]}\PY{o}{=} \PY{n}{chiffre}\PY{p}{;}
+            \PY{k}{return} \PY{l+m+mi}{\PYZhy{}1}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+        
+        
+        \PY{c+c1}{////////////////////////////////////////////////////////////////////////////////}
+        \PY{c+c1}{//                                                                            //}
+        \PY{c+c1}{//                    NE PAS MODIFIER CE QUI SUIT...                          //}
+        \PY{c+c1}{//                                                                            //}
+        \PY{c+c1}{////////////////////////////////////////////////////////////////////////////////}
+        
+        
+        \PY{k+kt}{void} \PY{n+nf}{test\PYZus{}frequence}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{2} \PY{o}{=}\PY{o}{=} \PY{n}{frequence}\PY{p}{(}\PY{l+m+mi}{1515}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{=}\PY{o}{=} \PY{n}{frequence}\PY{p}{(}\PY{l+m+mi}{123}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{0} \PY{o}{=}\PY{o}{=} \PY{n}{frequence}\PY{p}{(}\PY{l+m+mi}{421}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{3} \PY{o}{=}\PY{o}{=} \PY{n}{frequence}\PY{p}{(}\PY{l+m+mi}{444}\PY{p}{,} \PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{=}\PY{o}{=} \PY{n}{frequence}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{frequence... ok}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+        
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+            \PY{n}{test\PYZus{}frequence}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \subsection{\texorpdfstring{\#\#\# Exercice 13 - Ecrire un
+\texttt{Pour}}{\#\#\# Exercice 13 - Ecrire un Pour}}\label{exercice-13---ecrire-un-pour}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{{[}13.1{]}} Compléter et corriger le corps de la function
+\texttt{frequence} (cf. fichier \textbf{\texttt{exercice13.c}})(voir
+TODO).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+c1}{// Consigne : compléter et corriger le corps des fonctions ci\PYZhy{}dessous (voir TODO).}
+        
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdbool.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+        
+        \PY{c+cm}{/**}
+        \PY{c+cm}{ * \PYZbs{}brief Calculer la somme des cubes des entiers naturels de 1 à max.}
+        \PY{c+cm}{ * \PYZbs{}param[in] max un entier naturel}
+        \PY{c+cm}{ * \PYZbs{}return la sommes des cubes de 1 à max}
+        \PY{c+cm}{ * \PYZbs{}pre max positif : max \PYZgt{}= 0}
+        \PY{c+cm}{ */}
+        \PY{k+kt}{int} \PY{n+nf}{sommes\PYZus{}cubes}\PY{p}{(}\PY{k+kt}{int} \PY{n}{max}\PY{p}{)}
+        \PY{p}{\PYZob{}}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{max} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{;}
+        
+            \PY{c+c1}{// Consigne :}
+            \PY{c+c1}{//   1. On n\PYZsq{}utilisera pas l\PYZsq{}exponentielle.}
+            \PY{c+c1}{//   2. On utilisera seulement un Pour}
+            \PY{k+kt}{int} \PY{n}{s}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{;}
+            \PY{k}{for}\PY{p}{(}\PY{k+kt}{int} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{;}\PY{n}{i}\PY{o}{\PYZlt{}}\PY{n}{max}\PY{p}{;}\PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                \PY{n}{s}\PY{o}{+}\PY{o}{=}\PY{n}{i}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{;}
+                
+            \PY{p}{\PYZcb{}}
+            \PY{k}{return} \PY{n}{s}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+        
+        
+        \PY{c+c1}{////////////////////////////////////////////////////////////////////////////////}
+        \PY{c+c1}{//                                                                            //}
+        \PY{c+c1}{//                    NE PAS MODIFIER CE QUI SUIT...                          //}
+        \PY{c+c1}{//                                                                            //}
+        \PY{c+c1}{////////////////////////////////////////////////////////////////////////////////}
+        
+        
+        \PY{k+kt}{void} \PY{n+nf}{test\PYZus{}sommes\PYZus{}cubes}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{1} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{9} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{36} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{100} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{225} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{l+m+mi}{0} \PY{o}{=}\PY{o}{=} \PY{n}{sommes\PYZus{}cubes}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{sommes\PYZus{}cubes... ok}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+        
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+            \PY{n}{test\PYZus{}sommes\PYZus{}cubes}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \subsection{\#\# Exercice BILAN 1 : Conversion
+pouce/centimètres}\label{exercice-bilan-1-conversion-poucecentimuxe8tres}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Cet exercice de Bilan 1 n'est pas à rendre. Le squelette du programme
+est disponible dans votre répertoire SVN, et est à éditer avec un
+éditeur de fichier standard, et à compiler / exécuter en ligne de
+commande.
+
+\textbf{{[}B.1{]}} Traduire l'algorithme du listing en Langage C. Il
+permet de convertir en pouces et en centimètres une longueur saisie en
+pouces, centimètres ou mètres.
+
+\textbf{{[}B.2{]}} Modifier le programme pour que l'utilisateur puisse
+mettre des espaces (des blancs) entre la valeur et l'unité de la
+longueur.
+
+\textbf{{[}B.3{]}} Ajouter la possibilité de recommencer.
+\includegraphics{https://www.irit.fr/~Katia.Jaffres/Cours/pouce2cm.png}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+cm}{/** Squelette du programme **/}
+        \PY{c+cm}{/*********************************************************************}
+        \PY{c+cm}{ *  Auteur  : }
+        \PY{c+cm}{ *  Version : }
+        \PY{c+cm}{ *  Objectif : Conversion pouces/centimètres}
+        \PY{c+cm}{ ********************************************************************/}
+        
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}
+        \PY{p}{\PYZob{}}
+        
+            \PY{c+cm}{/* Saisir la longueur */}
+        
+            \PY{c+cm}{/* Calculer la longueur en pouces et en centimètres */}
+        
+            \PY{c+cm}{/* Afficher la longueur en pouces et en centimètres */}
+        
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{\#\# Les types utilisateurs}\label{les-types-utilisateurs}
+
+    Les types utilisateurs permettent au programmeur de définir des types
+plus évolués. Les 3 types en C sont : - Les types énumérés. - Les
+enregistrements. - Les tableaux.
+
+Ces types se définissent au début d'un programme, avant la signature du
+programme principal \texttt{int\ main()}
+
+    \subsubsection{Les types énumérés}\label{les-types-uxe9numuxe9ruxe9s}
+
+Un type énuméré permet de définir un ensemble discret de valeurs
+possibles. L'exemple suivant déclare un type énuméré \texttt{enum\ Jour}
+: \textgreater{}
+\texttt{enum\ Jour\ \{\ LUNDI,\ MARDI,\ MERCREDI,\ JEUDI,\ VENDREDI,\ SAMEDI,\ DIMANCHE\};}
+
+Les constantes \texttt{LUNDI}, \texttt{MARDI}, sont des constantes
+entières qui vallent respectivemet 0, 1, 2, etc. On peut donc les
+comparer.
+
+Une variable de type \texttt{enum\ Jour} ne peut prendre que ces
+valeurs. \textgreater{}
+\texttt{enum\ Jour\ mon\_jour\ =\ LUNDI;\ \ //declaration\ d\textquotesingle{}une\ variable\ initialsée\ à\ LUNDI}
+
+\textbf{Il est conseillé} de créer un alias au type \texttt{enum\ Jour}
+à l'aide de l'instruction \texttt{typedef} \textgreater{}
+\texttt{typedef\ enum\ Jour\ Jour} Ici on a créé l'alias (le synonyme)
+\texttt{Jour}.
+
+    \subsubsection{Les types enregistrement}\label{les-types-enregistrement}
+
+Un type enregistrement permet de déclarer une variable qui regroupe
+plusieurs données hétérogènes (i.e. de type différent). En C, on le
+définit de la sorte :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{struct}\NormalTok{ Date \{}
+    \DataTypeTok{int}\NormalTok{ jour;}
+\NormalTok{    Mois mois;}
+    \DataTypeTok{int}\NormalTok{ annee;}
+\NormalTok{\};}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Note : ne pas oublier le ; après la dernière parenthèse.
+\end{quote}
+
+Le type \texttt{struct\ Date} est un 3-uplet qui regroupe un jour, un
+mois et une année.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \KeywordTok{struct}\NormalTok{ Date d1, d2;  }\CommentTok{// déclaration de deux dates}
+    \CommentTok{// initialisation champ par champ}
+\NormalTok{    d1.jour = }\DecValTok{30}\NormalTok{;}
+\NormalTok{    d1.mois = AVRIL; }\CommentTok{//ici mois est un type énuméré}
+\NormalTok{    d1.annee = }\DecValTok{1997}\NormalTok{;}
+    \CommentTok{// initialisation directe des 3 champs}
+\NormalTok{    d2 = \{}\DecValTok{31}\NormalTok{, DECEMBRE, }\DecValTok{2012}\NormalTok{\};}
+\end{Highlighting}
+\end{Shaded}
+
+Il est aussi possible de créer un alias au type \texttt{struct\ Date} à
+l'aide de l'instruction \texttt{typedef} \textgreater{}
+\texttt{typedef\ struct\ Date\ Date} Ici on a créé l'alias (le synonyme)
+\texttt{Date}.
+
+    \subsection{\#\#\# Exercice 14 : definir et utiliser un type
+enregistrement}\label{exercice-14-definir-et-utiliser-un-type-enregistrement}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+(cf fichier \textbf{\texttt{exercice14.c}})
+
+\textbf{{[}14.1{]}} Définir un type Point qui regroupe deux coordonnées
+entières, X et Y.
+
+\textbf{{[}14.2{]}} Ecrire un programme principal qui génère deux points
+ptA et ptB au coordonnées (0,0) et (10,10) respectives. Il calcule la
+distance entre ptA et ptB en norme Euclidienne.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}\PY{c+c1}{ }
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}math.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+        
+        \PY{c+c1}{// Definition du type Point }
+        \PY{k}{struct} \PY{n+nc}{Point}\PY{p}{\PYZob{}}
+            \PY{k+kt}{int} \PY{n}{x}\PY{p}{;}
+            \PY{k+kt}{int} \PY{n}{Y}\PY{p}{;}
+        \PY{p}{\PYZcb{}}\PY{p}{;}
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{c+c1}{// Déclarer deux variables ptA et ptB de types Point}
+            \PY{k}{struct} \PY{n+nc}{Point} \PY{n}{ptA} \PY{n}{ptB}\PY{p}{;}
+            \PY{c+c1}{// Initialiser ptA à (0,0)}
+               \PY{n}{ptA} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mf}{0.0}\PY{p}{\PYZcb{}}\PY{p}{;}
+            \PY{c+c1}{// Initialiser ptB à (10,10)}
+             \PY{n}{ptB} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+m+mf}{0.0}\PY{p}{\PYZcb{}}\PY{p}{;}
+            \PY{c+c1}{// Calculer la distance entre ptA et ptB.}
+            \PY{k+kt}{float} \PY{n}{distance} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}
+            
+            \PY{n}{assert}\PY{p}{(}\PY{n}{distance} \PY{o}{=}\PY{o}{=} \PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{200}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \subsubsection{Tableaux}\label{tableaux}
+
+Les tableaux permettent d'enregistrer \textbf{un nombre fini de données
+de même type}.
+
+\paragraph{Déclarer une variable
+tableau}\label{duxe9clarer-une-variable-tableau}
+
+On pourra par exemple definir une \textbf{variable tableau} capable
+d'enregistrer NB entiers. \textgreater{} Attention : En C, \textbf{les
+indices varient entre 0 et NB-1}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \PreprocessorTok{#define NB 4}
+    \CommentTok{// déclaration d'une variable tableau de NB entiers}
+    \DataTypeTok{int}\NormalTok{ tab[NB]; }
+    \CommentTok{// Initialisation de la 2e case : }
+\NormalTok{    tab[}\DecValTok{1}\NormalTok{] = }\DecValTok{20}\NormalTok{;}
+
+    \CommentTok{// Si on initialise à la déclaration, on n'a pas besoin de donner la taille}
+    \DataTypeTok{int}\NormalTok{ tab_2[] = \{}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{-1}\NormalTok{, }\DecValTok{4}\NormalTok{\};}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{\texorpdfstring{Déclarer un \textbf{type
+tableau}}{Déclarer un type tableau}}\label{duxe9clarer-un-type-tableau}
+
+La déclaration d'un type tableau est réalisé avec \texttt{typedef} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \CommentTok{// declaration du type t_tab }
+    \KeywordTok{typedef} \DataTypeTok{int}\NormalTok{ t_tab[NB];}
+    \CommentTok{// declaration de variables tableau de type t_tab}
+\NormalTok{    t_tab tab1, tab2;}
+    \CommentTok{// l'accès aux données de tab1 et tab2 se fait de ma même façon : }
+\NormalTok{    tab1[}\DecValTok{0}\NormalTok{] = }\DecValTok{20}\NormalTok{;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+\textbf{Attention !} \texttt{tab1\ =\ tab2} \textbf{est interdit}.
+\end{quote}
+
+    \subsection{\#\#\# Exercice 15}\label{exercice-15}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+(cf fichier \textbf{\texttt{exercice15.c}})
+
+\textbf{{[}15.1{]}} Definir un type \texttt{t\_tableau} de réels de
+capacité 20.
+
+\textbf{{[}15.2{]}} Completer et corriger la fonction
+\texttt{initialiser} qui permet d'initialiser chaque élément d'un
+tableau de type \texttt{t\_tableau} à \texttt{0.0}.
+
+\textbf{{[}15.3{]}} Completer et corriger la fonction \texttt{est\_vide}
+qui vérifie que tous les éléments sont bien initialisés à \texttt{0.0}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}\PY{c+c1}{ }
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdbool.h\PYZgt{}}
+        
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define CAPACITE 20}
+        \PY{c+c1}{// Definition du type tableau}
+        \PY{k}{typedef} \PY{k+kt}{float} \PY{n}{t\PYZus{}tableau}\PY{p}{[}\PY{l+m+mi}{20}\PY{p}{]}\PY{p}{;}
+        
+        \PY{c+cm}{/**}
+        \PY{c+cm}{ * \PYZbs{}brief Initialiser les éléments d\PYZsq{}un tableau de réels avec 0.0}
+        \PY{c+cm}{ * \PYZbs{}param[out] tab tableau à initialiser}
+        \PY{c+cm}{ * \PYZbs{}param[in] taille nombre d\PYZsq{}éléments du tableau}
+        \PY{c+cm}{ * \PYZbs{}pre taille \PYZlt{}= CAPACITE}
+        \PY{c+cm}{ */} 
+        \PY{k+kt}{void} \PY{n+nf}{initialiser}\PY{p}{(}\PY{n}{t\PYZus{}tableau} \PY{n}{tab}\PY{p}{,} \PY{k+kt}{int} \PY{n}{taille}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{taille} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{CAPACITE}\PY{p}{)}\PY{p}{;}
+            \PY{c+c1}{// TODO}
+        \PY{p}{\PYZcb{}}
+        
+        \PY{c+cm}{/**}
+        \PY{c+cm}{ * \PYZbs{}brief le tableau est\PYZhy{}il vide ?}
+        \PY{c+cm}{ * \PYZbs{}param[in out] tab tableau à tester}
+        \PY{c+cm}{ * \PYZbs{}param[in] taille nombre d\PYZsq{}éléments du tableau}
+        \PY{c+cm}{ * \PYZbs{}pre taille \PYZlt{}= CAPACITE}
+        \PY{c+cm}{ */} 
+        \PY{k+kt}{bool} \PY{n+nf}{est\PYZus{}vide}\PY{p}{(}\PY{n}{t\PYZus{}tableau} \PY{n}{tab}\PY{p}{,} \PY{k+kt}{int} \PY{n}{taille}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{taille} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{CAPACITE}\PY{p}{)}\PY{p}{;}
+            \PY{k+kt}{bool} \PY{n}{vide} \PY{o}{=} \PY{n+nb}{false}\PY{p}{;}
+            \PY{c+c1}{// TODO}
+            \PY{k}{return} \PY{n}{vide}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{n}{t\PYZus{}tableau} \PY{n}{T}\PY{p}{;}
+            \PY{c+c1}{//Initialiser les éléments d\PYZsq{}une variable tableau à 0.0}
+            \PY{n}{initialiser}\PY{p}{(}\PY{n}{T}\PY{p}{)}\PY{p}{;}
+            \PY{c+c1}{//Vérifier avec assert que tous les éléments vallent bien 0.0}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{est\PYZus{}vide}\PY{p}{(}\PY{n}{T}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+            
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \subsubsection{Chaines de caractères en
+C}\label{chaines-de-caractuxe8res-en-c}
+
+Les chaines de caractères sont des \textbf{tableaux de caractères} :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \DataTypeTok{char}\NormalTok{[}\DecValTok{10}\NormalTok{] ma_chaine; }\CommentTok{// un tableau de caractères de taille 10.}
+    \DataTypeTok{char}\NormalTok{[] mon_nom = }\StringTok{"Jaffres-Runser"}\NormalTok{; }\CommentTok{// initialise le tableau avec une chaine constante}
+\end{Highlighting}
+\end{Shaded}
+
+La bibliothèque \texttt{string.h} permet de manipuler les chaines de
+caractères : - \texttt{strlen(s)} retourne le nombre de caractères de la
+chaine - \texttt{strcpy(s1,\ s2)} recopie le contenu de \texttt{s1} dans
+\texttt{s2}. Attention, il faut que \texttt{s2} ait une capacité
+suffisante ! - \texttt{strcat} concatène deux chaines, etc.
+
+\textbf{Exécuter} l'exemple suivant (cf fichier
+\textbf{\texttt{chaine.c}}) :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}string.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k+kt}{char} \PY{n}{mon\PYZus{}nom}\PY{p}{[}\PY{p}{]} \PY{o}{=} \PY{l+s}{\PYZdq{}}\PY{l+s}{Jaffres\PYZhy{}Runser}\PY{l+s}{\PYZdq{}}\PY{p}{;} 
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Longueur de \PYZsq{}\PYZpc{}s\PYZsq{} : \PYZpc{}lu caractères}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{mon\PYZus{}nom}\PY{p}{,} \PY{n}{strlen}\PY{p}{(}\PY{n}{mon\PYZus{}nom}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Taille du tableau : \PYZpc{}lu éléments }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{k}{sizeof}\PY{p}{(}\PY{n}{mon\PYZus{}nom}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{dernier élément : \PYZsq{}\PYZpc{}i\PYZsq{} }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{mon\PYZus{}nom}\PY{p}{[}\PY{k}{sizeof}\PY{p}{(}\PY{n}{mon\PYZus{}nom}\PY{p}{)}\PY{l+m+mi}{\PYZhy{}1}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Longueur de 'Jaffres-Runser' : 14 caractères
+Taille du tableau : 15 éléments 
+dernier élément : '0' 
+
+    \end{Verbatim}
+
+    Le dernier caractère d'une chaine est le caractère
+\texttt{\textbackslash{}0} de code ascii 0. \textgreater{}
+\textbf{Règle} : une chaine de caractère se termine toujours par le
+caractère \texttt{\textbackslash{}0}.
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{\#\# Type pointeur et adresse
+mémoire}\label{type-pointeur-et-adresse-muxe9moire}
+
+    \subsubsection{Adresse mémoire}\label{adresse-muxe9moire}
+
+En C, il est possible de connaitre l'adresse mémoire à laquelle est
+stockée une variable \texttt{var1} avec l'opérateur unaire \texttt{\&}
+(éperluette) :
+
+\begin{quote}
+\&var1
+\end{quote}
+
+    \subsubsection{Déclaration d'un
+pointeur}\label{duxe9claration-dun-pointeur}
+
+Il est possible d'enregistrer cette adresse dans une variable de type
+\textbf{pointeur}. Une variable de type pointeur est aussi communément
+appelée pointeur. Elle enregistre la référence (i.e. l'adresse) d'une
+variable ou d'une donnée.
+
+Pour déclarer un pointeur en C, il faut connaitre le type de la donnée
+qui sera enregistrée à cette adresse. Par exemple, on peut déclarer un
+pointeur sur une variable de type \texttt{entier} ou un pointeur sur une
+variable de type \texttt{double}. Pour déclarer un pointeur, on met *
+devant le nom de la variable :
+
+\begin{quote}
+\texttt{type\_pointé*\ pointeur;}
+\end{quote}
+
+Quelques exemples :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \DataTypeTok{int}\NormalTok{* ptr_int; }\CommentTok{// déclaration du pointeur ptr_int sur un entier}
+    \DataTypeTok{double}\NormalTok{* ptr_dbl; }\CommentTok{// déclaration du pointeur ptr_dbl sur un double }
+    \DataTypeTok{char}\NormalTok{* ptr_char; }\CommentTok{// un pointeur sur un caractère}
+    \DataTypeTok{int}\NormalTok{** ptr_ptr_int; }\CommentTok{// un pointeur sur un pointeur, qui pointe sur un entier}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{quote}
+Note : il peut y avoir un espace avant l'opérateur *.
+\end{quote}
+
+    \subsubsection{Initialisation d'un
+pointeur}\label{initialisation-dun-pointeur}
+
+Comme pour n'importe quelle déclaration de variable en C, le pointeur
+n'est pas initialisé à une valeur par défaut à sa déclaration. En
+d'autres termes, l'adresse enregistrée n'a aucun sens, elle est
+aléatoire.
+
+On doit initialiser un pointeur soit avec : - Le pointeur \texttt{NULL}
+(élément neutre des adresses possibles) :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \DataTypeTok{double}\NormalTok{* ptr_d = NULL;}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\item
+  Soit avec l'adresse mémoire d'une variable du bon type:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{ var1 = }\DecValTok{10}\NormalTok{;}
+\DataTypeTok{int}\NormalTok{* ptr_int = &var1; }\CommentTok{// initialisation avec l'adresse de la variable var1}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Ou avec la valeur d'un pointeur de même type
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DataTypeTok{int}\NormalTok{* ptr_int_2 = ptr_int; }
+\end{Highlighting}
+\end{Shaded}
+\end{itemize}
+
+\begin{quote}
+\textbf{Si l'adresse est n'est pas connue au moment de la déclaration,
+il faut toujours initialiser le pointeur à \texttt{NULL}}
+\end{quote}
+
+    \subsubsection{Accès à la donnée
+pointée}\label{accuxe8s-uxe0-la-donnuxe9e-pointuxe9e}
+
+Pour accéder à la variable pointée, on utilise aussi l'opérateur * placé
+avant l'identificateur. \textgreater{} \texttt{*ptr\_int\ =\ 25}
+
+Quelques exemples :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \DataTypeTok{int}\NormalTok{ var1 = }\DecValTok{10}\NormalTok{;}
+    \DataTypeTok{int}\NormalTok{* ptr_int = &var1;}
+\NormalTok{    *ptr_int = }\DecValTok{20} \CommentTok{// On modifie ici la variable var1, qui vaudra 20 par la suite.}
+    \CommentTok{// Déclaration et initialisation d'un nouvel entier var2 avec la donnée référencée par le pointeur ptr_int}
+    \DataTypeTok{int}\NormalTok{ var2 = *ptr_int ; }
+\NormalTok{    assert(var1 == }\DecValTok{20}\NormalTok{);}
+\end{Highlighting}
+\end{Shaded}
+
+    \subsubsection{Affectation de pointeurs}\label{affectation-de-pointeurs}
+
+Affecter un pointeur \texttt{p1} à un pointeur \texttt{p2}, comme pour
+toute affectation, recopie l'adresse \texttt{p1} dans \texttt{p2}. Les
+deux pointeurs référencent alors la même zone mémoire.
+
+Quelques exemples :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \DataTypeTok{int}\NormalTok{ var1 = }\DecValTok{10}\NormalTok{;}
+    \DataTypeTok{int}\NormalTok{* p1 = &var1;}
+    \DataTypeTok{int}\NormalTok{* p2 = p1;}
+    \CommentTok{// A cet instant, on peut modifier le contenu de var1 en passant par p1 ou par p2.}
+\NormalTok{    *p1 = }\DecValTok{100}\NormalTok{; }\CommentTok{//var1 vaut 100}
+\NormalTok{    *p2 = }\DecValTok{1000}\NormalTok{; }\CommentTok{//var1 vaut 1000 maintenant !}
+\end{Highlighting}
+\end{Shaded}
+
+    \subsection{\#\#\# Exercice 16 : Manipulation de
+pointeurs}\label{exercice-16-manipulation-de-pointeurs}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \textbf{{[}16.1{]}} Compiler le programme suivant (cf fichier
+\textbf{\texttt{pointeur1.c}}).
+
+\begin{itemize}
+\tightlist
+\item
+  Qu'observez-vous pour le premier affichage ? Le résultat dépend du
+  compilateur, du système, etc.
+\item
+  Qu'observez-vous pour le second affichage ?
+\end{itemize}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}\PY{c+c1}{ }
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{k+kt}{int} \PY{n}{d1} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{;}
+            \PY{k+kt}{int} \PY{n}{d2} \PY{o}{=} \PY{l+m+mi}{4}\PY{p}{;} 
+            \PY{k+kt}{int}\PY{o}{*} \PY{n}{p\PYZus{}1} \PY{p}{;}
+            \PY{k+kt}{int}\PY{o}{*} \PY{n}{p\PYZus{}2} \PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{*p\PYZus{}1 = \PYZpc{}d, *p\PYZus{}2 = \PYZpc{}d}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{o}{*}\PY{n}{p\PYZus{}1}\PY{p}{,} \PY{o}{*}\PY{n}{p\PYZus{}2}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{p\PYZus{}1 = \PYZpc{}p, p\PYZus{}2 = \PYZpc{}p}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{p\PYZus{}1}\PY{p}{,} \PY{n}{p\PYZus{}2}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \textbf{{[}16.2{]}} Modifier ce programme pour que \texttt{p\_1} et
+\texttt{p\_2}pointent respectivement sur \texttt{d1} et \texttt{d2} (cf
+fichier \textbf{\texttt{pointeur2.c}}).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}\PY{c+c1}{ }
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{k+kt}{int} \PY{n}{d1} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{;}
+            \PY{k+kt}{int} \PY{n}{d2} \PY{o}{=} \PY{l+m+mi}{4}\PY{p}{;} 
+            \PY{k+kt}{int}\PY{o}{*} \PY{n}{p\PYZus{}1} \PY{p}{;}
+            \PY{k+kt}{int}\PY{o}{*} \PY{n}{p\PYZus{}2} \PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{*p\PYZus{}1 = \PYZpc{}d, *p\PYZus{}2 = \PYZpc{}d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{o}{*}\PY{n}{d1}\PY{p}{,} \PY{o}{*}\PY{n}{d2}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \textbf{{[}16.3{]}} Compléter le programme pour échanger les entiers
+pointés par \texttt{p1} et \texttt{p2}. Après initialisation des
+pointeurs, on n'accèdera aux entiers qu'à travers des pointeurs (cf
+fichier \textbf{\texttt{pointeur3.c}}).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}\PY{c+c1}{ }
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{k+kt}{int} \PY{n}{d1} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{;}
+            \PY{k+kt}{int} \PY{n}{d2} \PY{o}{=} \PY{l+m+mi}{4}\PY{p}{;} 
+            \PY{k+kt}{int}\PY{o}{*} \PY{n}{p\PYZus{}1} \PY{p}{;}
+            \PY{k+kt}{int}\PY{o}{*} \PY{n}{p\PYZus{}2} \PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Avant échange : *p\PYZus{}1 = \PYZpc{}d, *p\PYZus{}2 = \PYZpc{}d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{o}{*}\PY{n}{p\PYZus{}1}\PY{p}{,} \PY{o}{*}\PY{n}{p\PYZus{}2}\PY{p}{)}\PY{p}{;}
+            
+            \PY{c+c1}{// TODO : echanger les pointeurs}
+            
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Après échange : *p\PYZus{}1 = \PYZpc{}d, *p\PYZus{}2 = \PYZpc{}d}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{o}{*}\PY{n}{p\PYZus{}1}\PY{p}{,} \PY{o}{*}\PY{n}{p\PYZus{}2}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \textbf{{[}16.4{]}} Qu'en est-il des données enregistrées dans
+\texttt{d1} et \texttt{d2} ? Ont-elles changé ?
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subsubsection{Enregistrement et
+pointeurs}\label{enregistrement-et-pointeurs}
+
+On suppose le type enregistrement \texttt{point} suivant :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \KeywordTok{struct}\NormalTok{ point \{}
+        \DataTypeTok{int}\NormalTok{ x;}
+        \DataTypeTok{int}\NormalTok{ y;}
+\NormalTok{    \};}
+    \KeywordTok{typedef} \KeywordTok{struct}\NormalTok{ point point;}
+\end{Highlighting}
+\end{Shaded}
+
+Un pointeur sur un enregistrement permet d'accéder au contenu de
+l'enregistrement de deux manières :
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Avec les opérateurs \textbf{* et .}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{point pt1;}
+\KeywordTok{struct}\NormalTok{ point * ptr_point = &pt1; }
+\NormalTok{(*ptr_point).x = }\DecValTok{12}\NormalTok{; }
+\NormalTok{(*ptr_point).y = }\DecValTok{0}\NormalTok{; }
+\end{Highlighting}
+\end{Shaded}
+\item
+  Avec l'opérateur \textbf{-\textgreater{}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{point pt1;}
+\KeywordTok{struct}\NormalTok{ point * ptr_point = &pt1; }
+\NormalTok{ptr_point->x = }\DecValTok{12}\NormalTok{; }
+\NormalTok{ptr_point->y = }\DecValTok{0}\NormalTok{; }
+\end{Highlighting}
+\end{Shaded}
+
+  \begin{quote}
+  \textbf{Règle} : \textbf{Il faut utiliser la notation -\textgreater{}}
+  \end{quote}
+\end{enumerate}
+
+    \subsubsection{Tableau et pointeurs}\label{tableau-et-pointeurs}
+
+En C, le nom de la variable tableau est \textbf{l'identifiant d'un
+pointeur sur la première case} du tableau. On peut donc accéder au
+contenu de la première case par ce pointeur. Par exemple :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \DataTypeTok{int}\NormalTok{ tab[] = \{}\DecValTok{1}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{16}\NormalTok{\};}
+    \CommentTok{// tab est un pointeur sur la case 0}
+\NormalTok{    *tab = }\DecValTok{20}\NormalTok{; }\CommentTok{// équivalent à tab[0] = 20}
+\end{Highlighting}
+\end{Shaded}
+
+Il est possible d'accéder à la case suivante \textbf{en incrémentant de
+1 le pointeur} (arithmétique des pointeurs) :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    *(tab+}\DecValTok{1}\NormalTok{) = }\DecValTok{40}\NormalTok{; }\CommentTok{// équivalent à tab[1] = 40}
+    \CommentTok{// déclaration d'un pointeur sur la 4e case du tableau}
+    \DataTypeTok{int}\NormalTok{* ptr = tab+}\DecValTok{3}\NormalTok{;}
+\NormalTok{    assert(*ptr == }\DecValTok{16}\NormalTok{);}
+\end{Highlighting}
+\end{Shaded}
+
+L'opérateur \textbf{-} permet de se déplacer vers la gauche dans le
+tableau :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    ptr = ptr}\DecValTok{-2}\NormalTok{;}
+    \CommentTok{//ptr pointe sur la 2e case du tableau}
+\NormalTok{    assert(*ptr == }\DecValTok{40}\NormalTok{);}
+\end{Highlighting}
+\end{Shaded}
+
+    \subsection{\#\#\# Exercice 17}\label{exercice-17}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{{[}17.1{]}} Ré-écrire la fonction \texttt{initialiser} de
+l'exercice 15 avec la notation pointeur du tableau et l'arithmétique
+associée. (cf fichier \textbf{\texttt{exercice17.c}}).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}\PY{c+c1}{ }
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdbool.h\PYZgt{}}
+        
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define CAPACITE 20}
+        \PY{c+c1}{// Definition du type tableau}
+        \PY{c+c1}{// TODO }
+        
+        \PY{c+cm}{/**}
+        \PY{c+cm}{ * \PYZbs{}brief Initialiser les éléments d\PYZsq{}un tableau de réels avec 0.0}
+        \PY{c+cm}{ * \PYZbs{}param[out] tab tableau à initialiser}
+        \PY{c+cm}{ * \PYZbs{}param[in] taille nombre d\PYZsq{}éléments du tableau}
+        \PY{c+cm}{ * \PYZbs{}pre taille \PYZlt{}= CAPACITE}
+        \PY{c+cm}{ */} 
+        \PY{k+kt}{void} \PY{n+nf}{initialiser}\PY{p}{(}\PY{n}{t\PYZus{}tableau} \PY{n}{tab}\PY{p}{,} \PY{k+kt}{int} \PY{n}{taille}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{taille} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{CAPACITE}\PY{p}{)}\PY{p}{;}
+            \PY{c+c1}{// TODO}
+        \PY{p}{\PYZcb{}}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{n}{t\PYZus{}tableau} \PY{n}{T}\PY{p}{;}
+            \PY{c+c1}{//Initialiser les éléments d\PYZsq{}une variable tableau à 0.0}
+            \PY{n}{initialiser}\PY{p}{(}\PY{n}{T}\PY{p}{)}\PY{p}{;}
+            
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{\#\# Les sous-programmes}\label{les-sous-programmes}
+
+    Le langage C ne permet pas de différencier les fonctions des procédures
+algorithmiques. Le seul sous-programme utilisable est la fonction :
+
+\begin{quote}
+\texttt{type\_retour\ identificateur\_fonction\ (\ type\_param1\ id\_param1,\ type\_param2\ id\_param2,\ ...)}
+\end{quote}
+
+Chaque paramètre formel est typé et \textbf{passé par valeur} (mode IN
+algorithmique). Ainsi, l'appel à une fonction sur des paramètres réels
+variables ne modifie pas la donnée. Par contre, les instructions de la
+fonction connaissent la donnée (valeur) et peuvent la manipuler pour
+fournir l'unique résulat retourné via le type retour.
+
+    \subsubsection{Illustration du passage par
+valeur}\label{illustration-du-passage-par-valeur}
+
+Exécuter le programme suivant (cf fichier \textbf{\texttt{valeur.c}}):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        
+        \PY{c+c1}{// Definition d\PYZsq{}une fonction f1}
+        \PY{k+kt}{int} \PY{n+nf}{f1}\PY{p}{(}\PY{k+kt}{int} \PY{n}{valeur}\PY{p}{)} \PY{p}{\PYZob{}} 
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{   valeur au début de f1 : \PYZpc{}i }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{valeur}\PY{p}{)}\PY{p}{;}
+            \PY{n}{valeur} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{   valeur à la fin de f1 : \PYZpc{}i }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{valeur}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{valeur}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{k+kt}{int} \PY{n}{donnee} \PY{o}{=} \PY{l+m+mi}{20}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{donnee dans main() avant f1 : \PYZpc{}i  }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{donnee}\PY{p}{)}\PY{p}{;}
+            \PY{k+kt}{int} \PY{n}{donnee\PYZus{}retournee} \PY{o}{=} \PY{n}{f1}\PY{p}{(}\PY{n}{donnee}\PY{p}{)}\PY{p}{;} \PY{c+c1}{// la fonction utilise la valeur de donnee}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{donnee dans main() après f1 : \PYZpc{}i  }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{donnee}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{donnee\PYZus{}retournee dans main() : \PYZpc{}i }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{donnee\PYZus{}retournee}\PY{p}{)}\PY{p}{;} 
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \subsubsection{Passage par adresse}\label{passage-par-adresse}
+
+Pour pouvoir modifier le contenu d'une variable passée en paramètre
+d'une fonction (mode OUT ou IN OUT algorithmique), on fournit à la
+fontion \textbf{l'adresse de la variable}. Connaissant l'adresse, la
+fonction pourra alors modifier sa valeur.
+
+On passe l'adresse d'une variable à une fonction à l'aide d'un pointeur.
+Pour se faire, il faut déclarer la fonction avec des paramètres formels
+qui sont des pointeurs.
+
+Petite illustration du \textbf{passage de paramètres par adresse} (cf
+fichier \textbf{\texttt{adresse.c}}):
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         
+         \PY{c+c1}{// Definition d\PYZsq{}une fonction f1 avec un paramètre pointeur qui }
+         \PY{c+c1}{// peut enregistrer d\PYZsq{}adresse d\PYZsq{}un entier}
+         \PY{k+kt}{int} \PY{n+nf}{f1}\PY{p}{(}\PY{k+kt}{int}\PY{o}{*} \PY{n}{valeur}\PY{p}{)} \PY{p}{\PYZob{}} 
+             \PY{o}{*}\PY{n}{valeur} \PY{o}{+}\PY{o}{=} \PY{o}{*}\PY{n}{valeur}\PY{p}{;} \PY{c+c1}{// Accès à la variable au travers du pointeur. }
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{valeur dans f1 après incrémentation : \PYZpc{}i }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{o}{*}\PY{n}{valeur}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{o}{*}\PY{n}{valeur}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k+kt}{int} \PY{n}{donnee} \PY{o}{=} \PY{l+m+mi}{20}\PY{p}{;}
+             \PY{c+c1}{// Pour utiliser la fonction, on donne l\PYZsq{}adresse de la variable  }
+             \PY{k+kt}{int} \PY{n}{nouvelle\PYZus{}donnee} \PY{o}{=} \PY{n}{f1}\PY{p}{(}\PY{o}{\PYZam{}}\PY{n}{donnee}\PY{p}{)}\PY{p}{;} 
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{donnee dans main() après incrémentation : \PYZpc{}i  }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{donnee}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{nouvelle\PYZus{}donne dans main() : \PYZpc{}i }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{nouvelle\PYZus{}donnee}\PY{p}{)}\PY{p}{;} 
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+valeur dans f1 après incrémentation : 40 
+donnee dans main() après incrémentation : 40  
+nouvelle\_donne dans main() : 40 
+
+    \end{Verbatim}
+
+    Pour ce passage par adresse, il faut : - utiliser des pointeurs pour
+définir les paramètres formels - dans les instructions de la fonction,
+accéder à la donnée pointée avec l'opérateur * - lors de l'appel du
+sous-programme, fournir une adresse valide d'une variable à modifier
+avec l'opérateur \&.
+
+    \subsubsection{Passage d'un paramètre de type tableau en
+C}\label{passage-dun-paramuxe8tre-de-type-tableau-en-c}
+
+Un tableau étant un pointeur, le passage par valeur d'un paramètre
+tableau offre naturellement un passage en mode \texttt{in\ out}. Ainsi :
+
+\begin{itemize}
+\tightlist
+\item
+  Il n'est pas nécessaire de passer un tableau par adresse si on
+  souhaite in mode \texttt{in\ out}.
+\item
+  Si on veut définir un mode \texttt{in}, il faut empêche la
+  modification en utilisant \texttt{const} :
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{/*}
+\CommentTok{ * \textbackslash{}brief Affiche un tableau de taille éléments}
+\CommentTok{ * \textbackslash{}param[in] tab tableau à afficher}
+\CommentTok{ * \textbackslash{}param[in] taille nombre d'éléments du tableau}
+\CommentTok{ * \textbackslash{}pre taille <= CAPACITE}
+\CommentTok{ */} 
+\DataTypeTok{void}\NormalTok{ afficher_tab (}\DataTypeTok{const} \DataTypeTok{int}\NormalTok{[] tab, }\DataTypeTok{int}\NormalTok{ taille)}
+\end{Highlighting}
+\end{Shaded}
+
+    \subsection{\#\#\# Exercice 18 : passage par
+adresse}\label{exercice-18-passage-par-adresse}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Compléter le programme suivant en répondant aux questions suivantes (cf
+fichier \textbf{\texttt{exercice18.c}}):
+
+\textbf{{[}18.1{]}} Définir le type \texttt{t\_note}, caractérisé par sa
+valeur et son coefficient. Par exemple, la note de 14 a été obtenue pour
+le BE d'algorithmique et programmation qui compte coefficient 1/4.
+
+\textbf{{[}18.2{]}} Définir le type \texttt{t\_tab\_notes} qui permet
+d'enregistrer 5 notes.
+
+\textbf{{[}18.3{]}} Compléter et corriger la fonction qui initialise une
+note à partir de sa valeur et de son coefficient.
+
+\textbf{{[}18.4{]}} Compléter et corriger la fonction qui calcule la
+moyenne des notes d'un tableau de notes.
+\textgreater{}\textbf{Attention} il faut respecter le mode \texttt{in}
+du paramètre tableau.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}\PY{c+c1}{ }
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdbool.h\PYZgt{}}
+        
+        \PY{c+c1}{// Definition du type t\PYZus{}note}
+        \PY{c+c1}{// TODO }
+        
+        \PY{c+c1}{// Definition d\PYZsq{}un tableau de notes t\PYZus{}tab\PYZus{}notes de 5 éléments.}
+        \PY{c+c1}{// TODO}
+        
+        \PY{c+cm}{/**}
+        \PY{c+cm}{ * \PYZbs{}brief Initialiser une note}
+        \PY{c+cm}{ * \PYZbs{}param[out] note note à initialiser}
+        \PY{c+cm}{ * \PYZbs{}param[in] valeur nombre de points}
+        \PY{c+cm}{ * \PYZbs{}param[in] coef coefficient}
+        \PY{c+cm}{ * \PYZbs{}pre valeur \PYZlt{}= 20 \PYZam{}\PYZam{} valeur \PYZgt{}= 0}
+        \PY{c+cm}{ * \PYZbs{}pre coef \PYZlt{}= 1 \PYZam{}\PYZam{} coef \PYZgt{}= 0}
+        \PY{c+cm}{ */} 
+        \PY{k+kt}{void} \PY{n+nf}{initialiser\PYZus{}note}\PY{p}{(}\PY{n}{t\PYZus{}note} \PY{n}{note}\PY{p}{,} \PY{k+kt}{float} \PY{n}{valeur}\PY{p}{,} \PY{k+kt}{float} \PY{n}{coef}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{valeur} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{20} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{valeur} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{coef} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{l+m+mi}{20} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{coef} \PY{o}{\PYZgt{}}\PY{o}{=} \PY{l+m+mi}{0}\PY{p}{)}\PY{p}{;}
+            \PY{c+c1}{// TODO}
+        \PY{p}{\PYZcb{}}
+        
+        
+        \PY{c+cm}{/**}
+        \PY{c+cm}{ * \PYZbs{}brief Calculer la moyenne des notes du tableau }
+        \PY{c+cm}{ * \PYZbs{}param[in] tab\PYZus{}notes tableau de nodes}
+        \PY{c+cm}{ * \PYZbs{}param[in] nb\PYZus{}notes nombre de notes}
+        \PY{c+cm}{ */} 
+        \PY{k+kt}{float} \PY{n+nf}{moyenne}\PY{p}{(}\PY{n}{t\PYZus{}tab\PYZus{}notes} \PY{n}{tab\PYZus{}notes}\PY{p}{,} \PY{k+kt}{int} \PY{n}{nb\PYZus{}notes}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{c+c1}{// TODO}
+            \PY{k}{return} \PY{l+m+mi}{0}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+        
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{n}{t\PYZus{}tab\PYZus{}note} \PY{n}{notes}\PY{p}{;}
+            
+            \PY{c+c1}{//Initialiser les éléments d\PYZsq{}une variable tableau à 0.0}
+            \PY{n}{initialiser}\PY{p}{(}\PY{n}{notes}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mf}{0.2}\PY{p}{)}\PY{p}{;}
+            \PY{n}{initialiser}\PY{p}{(}\PY{n}{notes}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mf}{0.3}\PY{p}{)}\PY{p}{;}
+            \PY{n}{initialiser}\PY{p}{(}\PY{n}{notes}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{;}
+            
+            \PY{c+c1}{//Calculer la moyenne des 3 notes}
+            \PY{k+kt}{float} \PY{n}{moy} \PY{o}{=} \PY{n}{moyenne}\PY{p}{(}\PY{n}{notes}\PY{p}{,} \PY{l+m+mi}{3}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{moy} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{10}\PY{o}{*}\PY{l+m+mf}{0.2} \PY{o}{+} \PY{l+m+mi}{1}\PY{o}{*}\PY{l+m+mf}{0.3} \PY{o}{+} \PY{l+m+mi}{12}\PY{o}{*}\PY{l+m+mf}{0.5}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{\#\# Arguments de la ligne de
+commande}\label{arguments-de-la-ligne-de-commande}
+
+Il est possible de fournir des arguments pour paramétrer l'exécution
+d'un programme. On pourra par exemple personnaliser le message affiché à
+l'utilisateur dans le \texttt{premier\_programme} en exécutant :
+
+\texttt{./premier\_programme\ Michel}
+
+pour qu'il présente l'affichage suivant
+*************************************
+********* Bienvenue Michel **********
+*************************************
+    Pour se faire, il faut déclarer la signature du programme principal avec
+les paramètres \texttt{argc} et \texttt{argv{[}{]}} :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{int} \PY{n}{argc}\PY{p}{,} \PY{k+kt}{char}\PY{o}{*} \PY{n}{argv}\PY{p}{[}\PY{p}{]}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{quote}
+\texttt{int\ argc} : nombre d'arguments.
+\end{quote}
+
+\begin{quote}
+\texttt{char*\ argv{[}{]}} : tableau de chaines de caractères
+\end{quote}
+
+La chaîne à l'indice 0 existe toujours et contient le nom de
+l'exécutable. Les autres éventuelles chaines listent les arguments dans
+l'ordre où ils sont présentés.
+
+    \subsection{\#\#\# Exercice 19 : Lister les arguments de la ligne de
+commande}\label{exercice-19-lister-les-arguments-de-la-ligne-de-commande}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\textbf{{[}19.1{]}} Ecrire un programme qui permet d'afficher les
+arguments de la ligne de commande (cf. fichier
+\textbf{\texttt{exercice19.c}}).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}\PY{c+c1}{ }
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{int} \PY{n}{argc}\PY{p}{,} \PY{k+kt}{char}\PY{o}{*} \PY{n}{argv}\PY{p}{[}\PY{p}{]}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Les arguments sont : }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{c+c1}{// Afficher ici les argc arguments}
+            
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \subsection{\#\# Exercices BILAN 2}\label{exercices-bilan-2}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{quote}
+\textbf{ATTENTION} - Les deux exercices bilan suivants \textbf{sont à
+rendre à votre intervenant} de TP sous SVN.
+\end{quote}
+
+    \subsubsection{Exercice 1 : Portée et masquage des
+variables.}\label{exercice-1-portuxe9e-et-masquage-des-variables.}
+
+Le programme fourni suivant compile sans erreur, même avec l'option
+-Wall. On répondra aux questions suivantes dans \textbf{un fichier texte
+\texttt{Bilan2\_Exercice1.txt} prévu à cet effet sous SVN}, sans
+compiler ni exécuter le programme.
+
+\begin{figure}
+\centering
+\includegraphics{https://www.irit.fr/~Katia.Jaffres/Cours/portee.png}
+\caption{algo portee masquage}
+\end{figure}
+
+    \textbf{{[}B1.1{]}} Quelle est la portée de chaque variable déclarée ?
+Pour chaque variable, on donnera le numéro de ligne où commence et se
+termine sa portée.
+
+\textbf{{[}B1.2{]}} Y a-t-il un exemple de masquage de variable dans ce
+programme ?
+
+\textbf{{[}B1.3{]}} Peut-on savoir ce que devrait afficher l'exécution
+de ce programme ?
+
+\textbf{{[}B1.4{]}} Même s'il compile sans erreur, ce programme est
+faux. Pourquoi ?
+
+\textbf{{[}B1.5{]}} La valeur de \texttt{p} change-t-elle après
+l'initialisation de la ligne 14 ?
+
+\textbf{{[}B1.6{]}} Que se passerait-il si on modifiait \texttt{*p}
+après la ligne 19 ?
+
+    \subsubsection{Exercice 2 : Définition d'une
+monnaie.}\label{exercice-2-duxe9finition-dune-monnaie.}
+
+Dans cet exercice nous nous intéressons à la notion de monnaie. Une
+monnaie est caractérisée par sa valeur et sa devise. Nous considérerons
+que la valeur est réelle et que la devise est représentée par un
+caractère. La valeur d'une monnaie doit toujours être positive. Par
+exemple, la monnaie «cinq euros» sera représentée par la valeur 5 et le
+caractère « e », « dix dollars » par la valeur 10 et le caractère « \$
+».
+
+\textbf{Vos réponses sont attendues dans un fichier \texttt{monnaie.c}
+sous SVN} prévu à cet effet.
+
+    \textbf{{[}B2.1{]}} Définir le type \texttt{monnaie}.
+
+\textbf{{[}B2.2{]}} Écrire un sous-programme qui initialise une monnaie
+à partir d'une valeur et d'une devise. La valeur doit être strictement
+positive. On utilisera la programmation par contrat pour le spécifier.
+
+\textbf{{[}B2.3{]}} Écrire un sous-programme qui permet d'ajouter à une
+monnaie la valeur d'une autre monnaie. Les deux monnaies doivent avoir
+même devise pour que l'opération soit possible. Par exemple, si on
+ajoute une monnaie \texttt{m1} qui vaut 5 euros à une monnaie
+\texttt{m2} qui vaut 7 euros alors \texttt{m2} vaut 12 euros après
+l'opération et \texttt{m1} est inchangée. Si les deux monnaies n'ont pas
+la même devise, l'opération n'aura pas lieu.
+
+On utilisera la programmation défensive et un code d'erreur, ici un
+booléen (valeur retournée) indiquera si l'opération a été réalisée ou
+non.
+
+\textbf{{[}B2.4{]}} Écrire des sous-programmes de test des
+sous-programmes définis sur le type \texttt{monnaie}.
+
+\textbf{{[}B2.5{]}} Écrire un programme principal qui : 1. déclare un
+tableau de 5 monnaies appelé porte\_monnaie (5 doit être une constante
+préprocesseur), 2. initialise chaque élément du tableau en demandant la
+valeur et la devise d'une monnaie à l'utilisateur, 3. affiche la somme
+de toutes les monnaies qui sont dans une devise demandée à
+l'utilisateur.
+
+Il est bien entendu possible de créer des sous-programmes issus d'un
+raffinement du programme principal.
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

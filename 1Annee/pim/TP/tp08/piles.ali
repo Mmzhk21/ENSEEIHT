@@ -1,0 +1,94 @@
+V "GNAT Lib v2019"
+A -gnatA
+A -gnatwa
+A -gnata
+A -g
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_ALLOCATORS
+RV NO_IO
+RV NO_LOCAL_ALLOCATORS
+RV NO_RECURSION
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_UNCHECKED_DEALLOCATION
+RV NO_DEFAULT_INITIALIZATION
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U piles%b		piles.adb		a7337f15 NE OO PK GE
+W ada%s			ada.ads			ada.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W ada.unchecked_deallocation%s
+
+U piles%s		piles.ads		a5951ce6 BN EE NE OO PK GE
+
+D ada.ads		20190518041255 76789da1 ada%s
+D a-except.ads		20190518041255 291912d5 ada.exceptions%s
+D a-ioexce.ads		20190518041254 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20190518041255 119b8fb3 ada.streams%s
+D a-tags.ads		20190518041256 491b781d ada.tags%s
+D a-textio.ads		20190518041256 aef4d56d ada.text_io%s
+D a-unccon.ads		20190518041255 0e9b276f ada.unchecked_conversion%s
+D a-uncdea.ads		20190518041255 eff36322 ada.unchecked_deallocation%s
+D interfac.ads		20190518041254 5ab55268 interfaces%s
+D i-cstrea.ads		20190518041254 e53d8b8e interfaces.c_streams%s
+D piles.ads		20201104150845 a5951ce6 piles%s
+D piles.adb		20201104150845 43a1d5bc piles%b
+D system.ads		20190518041255 4635ec04 system%s
+D s-crtl.ads		20190518041254 0ebbdb71 system.crtl%s
+D s-exctab.ads		20190518041255 54135002 system.exception_table%s
+D s-ficobl.ads		20190518041256 078245e4 system.file_control_block%s
+D s-parame.ads		20190518041256 48ec542b system.parameters%s
+D s-secsta.ads		20190518041256 20bbe636 system.secondary_stack%s
+D s-soflin.ads		20190518041255 a7318a92 system.soft_links%s
+D s-stache.ads		20190518041256 a37c21ec system.stack_checking%s
+D s-stalib.ads		20190518041256 09bd3940 system.standard_library%s
+D s-stoele.ads		20190518041256 2dc34a04 system.storage_elements%s
+D s-traent.ads		20190518041254 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20190518041255 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20190518041255 1b7d22d2 system.wch_con%s
+G a e
+G c Z s b [piles standard 6 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 12|3r6 4r6 4r24 10r21
+X 6 a-textio.ads
+57K13*Text_IO 727e16 12|4w10 4r28
+392U14*Put 12|84s17
+465U14*Put 12|74s33 78s33 86s17
+X 8 a-uncdea.ads
+20u15*Unchecked_Deallocation 12|3w10 10r25
+X 11 piles.ads
+4+14 T_Element 21r51 27r63 43r65 55r34 12|25r51 31r63
+6k9*Piles 4z14 49E14 59l5 59e10 12|7b14 90l5 90t10
+8P14*T_Pile 12r43 17r38 21r36 27r42 32r42 38r39 44r39 51c14 56r34 12|10r60
+. 13r43 19r38 25r36 31r42 32r35 43r42 44r30 52r39 65r39 69r56
+12U19*Initialiser 12<32 12|13b19 16l13 16t24
+12p32 Pile{8P14} 13r35 12|13b32 15m17
+17V18*Est_Vide{boolean} 13s25 17>28 22s28 33s28 12|19b18 22l13 22t21
+17p28 Pile{8P14} 12|19b28 21r24
+21V18*Sommet{4+14} 21>26 28s25 12|25b18 28l13 28t19
+21p26 Pile{8P14} 22r38 12|25b26 27r24
+27U19*Empiler 27=28 27>50 12|31b19 41l13 41t20
+27p28 Pile{8P14} 28r33 12|31b28 37r49 40m17
+27*50 Element{4+14} 28r41 12|31b50 36r49
+32U19*Depiler 32=28 12|43b19 49l13 49t20
+32p28 Pile{8P14} 33r38 12|43b28 46r31 47m17 47r25
+38U19*Detruire 38=29 12|52b19 55s25 60l13 60t21
+38p29 P{8P14} 12|52b29 54r20 55r35 56m31
+43U32 Afficher_Element 43>50 12|75s33 79s33
+43*50 Un_Element{4+14}
+44u19*Afficher 44>29 12|65b19 87l13 87t21
+44p29 Pile{8P14} 12|65b29 85r36
+49R14 T_Cellule 51r31 53c14 57e27 12|10r49 35r41
+55*25 Element{4+14} 12|27r33 36m38 75r60 79r60
+56p25 Suivant{8P14} 12|37m38 47r34 55m41 73r40 77r61
+X 12 piles.adb
+9U19 Free[8|20] 48s17 56s25
+32p17 Nouvelle_Cellule{11|8P14} 35m17 36r17 37r17 40r25
+44p17 A_Detruire{11|8P14} 46m17 48m23 48r23
+69U27 Afficher_Elements 69b27 69>46 77s33 81l21 81t38 85s17
+69p46 Pile{11|8P14} 71r28 73r31 75r51 77r52 79r51
+

@@ -1,0 +1,1563 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{1SN\_LangageC\_C3}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{quote}
+\section{Langage C - Notebook C3}\label{langage-c---notebook-c3}
+
+\subsection{\texorpdfstring{Modules en C et compilation automatique avec
+\texttt{make}.}{Modules en C et compilation automatique avec make.}}\label{modules-en-c-et-compilation-automatique-avec-make.}
+
+\mbox{}%
+\paragraph{Katia Jaffrès-Runser, Xavier
+Crégut}\label{katia-jaffruxe8s-runser-xavier-cruxe9gut}
+
+Toulouse INP - ENSEEIHT, 1ère année, Dept. Sciences du Numérique,
+2020-2021.
+\end{quote}
+
+    \#\# ++++ ATTENTION +++++ \textgreater{} - Les exercices présents dans
+ce notebook C3 \textbf{ne seront pas réalisés via le Notebook}. Vous
+travaillerez \textbf{uniquement} sur les fichiers C présents dans le
+répertoire SVN \texttt{c3}. \textgreater{} - L'exercice bilan, donné à
+la fin de ce notebook, est à rendre (cf. échéance sur Moodle).
+\textgreater{} - Un exercice supplémentaire, proposé dans le notebook
+'1SN\_LangageC\_Extra' est optionnel. Il vous permet d'aller plus loin
+si vous le désirez, notamment sur la notion de généricité en C.
+
+    \subsection{\#\# 1. Déroulement du cours
+(rappel)}\label{duxe9roulement-du-cours-rappel}
+
+Ce cours se déroule sur 6 séances de TP.
+
+\begin{itemize}
+\tightlist
+\item
+  Lors des trois premières séances, vous avez suivi le sujet C1 sous la
+  forme d'un notebook Jupyter.
+\item
+  Lors des trois dernières séances, vous suivez deux autres notebook
+  Jupyter, C2 et C3, à votre rythme.
+\end{itemize}
+
+Chaque sujet, C1, C2 et C3, se termine par un exercice Bilan à rendre
+via votre dépot SVN. Les échéances sont indiquées sur Moodle. Les 3
+exercices bilans sont notés, et leur moyenne fournit une note
+d'exercices.
+
+Vous aurez, en fin de cours, un QCM d'une heure. La note finale est une
+moyenne des deux notes (QCM et exercices rendus).
+
+    \subsection{2. Objectifs (rappel)}\label{objectifs-rappel}
+
+Ce cours, sous la forme de notebooks Jupyter et d'un ensemble
+d'exercices à réaliser en TP, a pour objectif de vous présenter les
+spécificités de la programmation en langage C. Il se base sur vos acquis
+du cours de Programmation Impérative en algorithmique et vous détaille
+les éléments du langage C nécessaires à la production d'un programme en
+C.
+
+Un support de cours PDF vous est également fournit sur Moodle :
+\href{http://moodle-n7.inp-toulouse.fr/pluginfile.php/49240/mod_resource/content/5/LangageC_poly.pdf}{Cours
+C}.
+
+    \subsection{\#\# 3. Plan du sujet C3.}\label{plan-du-sujet-c3.}
+
+Les éléments suivants de la programmation en Langage C sont présentés
+dans ce sujet : - Les modules en C - L'automatisation de la compilation
+avec l'outil \texttt{make}
+
+Quelques éléments au sujet de la généricité sont présentés dans le
+notebook \texttt{Extra}, optionnel.
+
+    \subsection{4. Jupyter notebook (rappel)}\label{jupyter-notebook-rappel}
+
+Le support de cours que vous lisez est un notebook Jupyter. Pour
+visualiser le notebook, lancer l'editeur web avec la commande\\
+\textgreater{} \texttt{jupyter-notebook}
+
+et rechercher le fichier dans l'arborescence. Le fichier est édité dans
+votre navigateur Web par défaut. L'enregistrement est automatique
+(\texttt{CTRL\ S} pour le forcer).
+
+Pour fermer votre fichier, il faut fermer le navigateur et terminer le
+processus serveur qui s'exécute dans le terminal (\texttt{CTRL\ C}, puis
+\texttt{y}).
+
+\begin{quote}
+\textbf{Important} : - Pour faire fonctionner le kernel C de jupyter
+notebook, il faut, avant une \textbf{première utilisation} de Notebook,
+lancer la commande suivante dans un \texttt{Terminal} :
+\end{quote}
+
+\begin{quote}
+\texttt{install\_c\_kernel\ -\/-user}
+\end{quote}
+
+Ce notebook se compose de cellules présentant soit : - Des éléments de
+cours, au format
+\href{https://fr.wikipedia.org/wiki/Markdown}{Markdown}. Ce langage est
+traduit en HTML pour un affichage aisé quand on clique sur la flèche
+\texttt{Exécuter\ (run)} et que la cellule est active. - Du code en
+Langage C (ou Python, ou autre..). Pour compiler et exécuter le code
+écrit dans la cellule active, on clique sur la flèche
+\texttt{Exécuter\ (run)}. Si la compilation se déroule sans erreur ni
+avertissement, le programme est exécuté et les sorties sont affichées en
+bas de la cellule. Si ce n'est pas le cas, les avertissements et
+warnings sont affichés en bas de la cellule.
+
+En double-cliquant sur une cellule, on peut éditer son contenu. Vous
+pouvez ainsi : - Editer une cellule markdown pour y intégrer vos propres
+notes. - Modifier les programmes pour répondre aux questions et
+exercices proposés.
+
+Il est possible d'exporter votre travail en PDF, HTML, etc. Il est aussi
+possible d'afficher les numéros de ligne dans le menu
+\textbf{Affichage}.
+
+Le programme dans la cellule suivante s'exécute sans erreur. Vous pouvez
+- le tester en l'exécutant. - y introduire une erreur (suppression d'un
+point-virgule par exemple) pour observer la sortie du compilateur.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}\PY{c+c1}{ }
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{******************************}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{******** Langage C ***********}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{******************************}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{5. Les modules}\label{les-modules}
+
+\begin{quote}
+\textbf{Note :} L'ensemble des fichiers liés à cette partie se trouvent
+dans le répertoire : \textbf{\texttt{c3/fichiers\_C/modules}}.
+\end{quote}
+
+    \subsubsection{5.1 Rappels : les modules en
+algorithmique}\label{rappels-les-modules-en-algorithmique}
+
+\paragraph{Définition d'un module}\label{duxe9finition-dun-module}
+
+C'est une partie d'un programme définissant une \textbf{unité
+structurelle et fonctionnelle}.\\
+Un module regroupe : - Un ensemble de déclarations, de constantes, de
+types, d'attributs et de sous-programmes\\
+- L'ensemble des implantations (corps) de ces sous-programmes
+satisfaisant au principe de séparation.
+
+\paragraph{Structure d'un module}\label{structure-dun-module}
+
+Un module se compose : - d'une \textbf{interface (ou spécification)} qui
+permet de déclarer les constantes, types, attributs au module et de
+spécifier les sous-programmes.\\
+- d'un \textbf{corps (ou définition)} où on regroupe l'implantation des
+différents sous-programmes spécifiés dans l'interface. Et éventuellement
+d'autres constantes, types, attributs et sous-programmes internes au
+module.
+
+    \subsubsection{5.2 Les modules en C}\label{les-modules-en-c}
+
+\begin{quote}
+\begin{quote}
+=\textgreater{} n'existent pas à proprement parler !!!\\
+En effet, le langage C n'offre pas de \emph{support syntaxique} à la
+définition des modules.
+\end{quote}
+\end{quote}
+
+Le principe est le suivant. Un fichier C est : - Soit un programme
+principal avec un (et un seul) programme principal \texttt{int\ main()};
+- Soit un \texttt{module}
+
+Un module en C, c'est : - Une \textbf{convention de nommage} qui
+décompose un module en deux fichiers, l'en-tête \texttt{.h} et le corps
+\texttt{.c}.\\
+Par exemple, le module \texttt{complexe} se compose : \textgreater{} -
+d'un fichier d'interface typiquement nommé \texttt{complexe.h}
+\textgreater{} - d'un fichier corps typiquement nommé
+\texttt{complexe.c} - Un outillage pour compiler cette structure de
+fichiers : \textgreater{} - Comme le compilateur C ne sait travailler
+que sur un unique fichier qui regroupe interface et corps, il faut
+\textbf{inclure l'interface \texttt{complexe.h} au début du corps
+\texttt{complexe.c}} à l'aide de la commande pré-processeur
+\texttt{\#include\ "complexe.h"}. \textgreater{} - \textbf{Pour utiliser
+un module \texttt{complexe} dans un programme principal}
+(\texttt{calculer.c} par exemple), on inclut son interface
+\texttt{complexe.h} au début du fichier avec la commande\\
+\texttt{\#include\ "complexe.h"}
+
+    \textbf{Note} : la commande \texttt{\#include} indique le nom du module
+à inclure de deux façons différentes. - Soit entre
+\texttt{\textless{}\ \textgreater{}} comme pour
+\texttt{\#include\ \textless{}stdlib.h\textgreater{}}. - Soit entre
+guillements, comme pour \texttt{\#include\ "complexe.h"}.
+
+Dans le premier cas, le module est recherché par le pré-processeur dans
+des répertoires systèmes pré-définis.\\
+Dans le second cas, le module est recherché dans le répertoire courant.
+Il est possible d'indiquer le chemin relatif ou absolu du fichier
+d'en-tête si on le souhaite :\\
+\texttt{\#include\ "libs/complexe.h"} recherche le fichier d'en-tête
+dans le sous-répertoire \texttt{libs} du répertoire courant.
+
+    \paragraph{\texorpdfstring{Interface ou fichier d'en-tête
+(\texttt{.h})}{Interface ou fichier d'en-tête (.h)}}\label{interface-ou-fichier-den-tuxeate-.h}
+
+Pour expliciter ce que fournit le module, on décrit dans l'interface :\\
+- la spécification avec la \textbf{déclaration en avant} des
+sous-programmes, - la déclaration des éventuels types, constantes (et
+variables globales).
+
+\paragraph{\texorpdfstring{Corps ou définition
+(\texttt{.c})}{Corps ou définition (.c)}}\label{corps-ou-duxe9finition-.c}
+
+Le corps du module comporte : - l'inclusion de l'interface
+\texttt{\#include\ "module.h"} - la définition des sous-programmes
+déclarés en avant dans le fichier d'en-tête, - la déclaration
+d'éventuels types, constantes (et variables globales), - la
+spécification et définition des sous-programmes \textbf{internes} au
+modules.
+
+    \subsubsection{\texorpdfstring{5.3 Exemple : module
+\texttt{date}}{5.3 Exemple : module date}}\label{exemple-module-date}
+
+Voici l'exemple des deux fichiers composant l'en-tête et le corps du
+module \texttt{date}, tous deux disponibles sur SVN.
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subparagraph{\texorpdfstring{L'en-tête
+\texttt{date.h}:}{L'en-tête date.h:}}\label{len-tuxeate-date.h}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{/**}
+\CommentTok{ *  module date}
+\CommentTok{ */}
+
+\CommentTok{// Inclusion des bibliothèques nécessaires à l'interface __ET__ au corps}
+\PreprocessorTok{#include }\ImportTok{<time.h>}
+
+\CommentTok{// Declaration des types }
+\KeywordTok{enum}\NormalTok{ NomJour \{DIMANCHE, LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI\};}
+\KeywordTok{enum}\NormalTok{ Mois \{JAN, FEV, MAR, AVR, MAI, JUIN, JUIL, AOUT, SEPT, OCT, NOV, DEC \};}
+\KeywordTok{typedef} \KeywordTok{enum}\NormalTok{ NomJour NomJour;}
+\KeywordTok{typedef} \KeywordTok{enum}\NormalTok{ Mois Mois;}
+
+\KeywordTok{struct}\NormalTok{ Date \{}
+    \DataTypeTok{int}\NormalTok{ jour;}
+\NormalTok{    NomJour nomJour;}
+\NormalTok{    Mois mois;}
+    \DataTypeTok{int}\NormalTok{ annee;}
+    \CommentTok{// Invariant : jour>=1 && jour<=31; annee>0}
+\NormalTok{\};}
+\KeywordTok{typedef} \KeywordTok{struct}\NormalTok{ Date Date;}
+
+
+\CommentTok{// Declaration (en avant !) des fonctions et procedures}
+
+\CommentTok{// Initialise une date. Elle vaut alors Jeudi 01/01/1970.}
+\DataTypeTok{void}\NormalTok{ initialiser(Date* date);}
+
+\CommentTok{// Retourne la date d'aujourd'hui}
+\NormalTok{Date date_aujourd_hui();}
+
+\CommentTok{// Affiche dans stdout la date d'aujourd'hui au format d.jour/(d.mois+1)/d.annee}
+\DataTypeTok{void}\NormalTok{ afficher_date(Date d);}
+
+\CommentTok{// Convertit la date au format time_t de time.h en une date de type Date}
+\DataTypeTok{void}\NormalTok{ convertir_vers_date(time_t t, Date* date); }
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\subparagraph{\texorpdfstring{Le corps \texttt{date.c}
+:}{Le corps date.c :}}\label{le-corps-date.c}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{/**}
+\CommentTok{ *  Module date}
+\CommentTok{ */}
+
+\CommentTok{// Inclure l'interface Date.h}
+\PreprocessorTok{#include }\ImportTok{"date.h"}
+
+\CommentTok{// Inclure les bibliothèques uniquement nécessaire à Date.c }
+\PreprocessorTok{#include }\ImportTok{<stdio.h>}
+\PreprocessorTok{#include }\ImportTok{<math.h>}
+
+\DataTypeTok{void}\NormalTok{ initialiser(Date *date)\{}
+\NormalTok{    date->jour = }\DecValTok{1}\NormalTok{;}
+\NormalTok{    date->nomJour = JEUDI;}
+\NormalTok{    date->mois = JAN;}
+\NormalTok{    date->annee = }\DecValTok{1970}\NormalTok{;}
+\NormalTok{\}}
+\DataTypeTok{void}\NormalTok{ convertir_vers_date(time_t t, Date* date)\{}
+    \KeywordTok{struct}\NormalTok{ tm now;}
+\NormalTok{    localtime_r(&t, &now);}\CommentTok{//convertion fuseau horaire}
+\NormalTok{    date->jour = now.tm_mday;}\CommentTok{//jour}
+\NormalTok{    date->nomJour = now.tm_wday;}\CommentTok{//jour de la semaine }
+\NormalTok{    date->mois = now.tm_mon;}\CommentTok{//mois}
+\NormalTok{    date->annee = now.tm_year+}\DecValTok{1900}\NormalTok{;}\CommentTok{//annee (a partir de 1900) }
+\NormalTok{\}}
+\NormalTok{Date date_aujourd_hui()\{}
+\NormalTok{    time_t t = time(}\DecValTok{0}\NormalTok{);   }\CommentTok{// date systeme avec #include <time.h>}
+\NormalTok{    Date auj;}
+\NormalTok{    convertir_vers_date(t, &auj);}
+    \ControlFlowTok{return}\NormalTok{ auj;}
+\NormalTok{\}}
+\DataTypeTok{void}\NormalTok{ afficher_date(Date d)\{}
+\NormalTok{    printf(}\StringTok{"Date %i/%i/%i }\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{,d.jour, (d.mois+}\DecValTok{1}\NormalTok{), d.annee);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+    \subsubsection{5.4 Compiler un module.}\label{compiler-un-module.}
+
+On peut compiler un module une fois l'interface et le corps définis avec
+l'option \texttt{-c}:\\
+\textgreater{}\textgreater{}\texttt{c99\ -Wextra\ -pedantic\ -c\ date.c}
+
+Dans cette étape, les commandes pré-processeur (\texttt{\#define},
+\texttt{\#include}, etc) sont réalisées, puis le compilateur vérifie la
+correction syntaxique du fichier et \textbf{génère un binaire
+(non-exécutable)} appelé \texttt{date.o}
+
+\begin{quote}
+\textbf{Exercice}\\
+- Compiler, dans le répertoire SVN, le module \texttt{date} déjà
+présent.
+\end{quote}
+
+    \subsubsection{5.5 Comment utiliser un module
+?}\label{comment-utiliser-un-module}
+
+On l'inclut dans l'application voulue à l'aide de la commande
+pré-processeur :\\
+\texttt{\#include\ "nom\_module.h"}
+
+Voici un exemple d'utilisation du module \texttt{date} dans une
+application \texttt{ephemeride.c} qui affiche la date du jour :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{#include }\ImportTok{"date.h"}\PreprocessorTok{   }\CommentTok{//Inclure le module date}
+\DataTypeTok{int}\NormalTok{ main()\{}
+\NormalTok{    Date auj = date_aujourd_hui();}
+\NormalTok{    afficher_date(auj);}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Il est possible de compiler ce fichier \texttt{ephemeride.c} sans
+générer d'exécutable. Comme pour un module, on génère un fichier binaire
+\texttt{ephemeride.o} avec la commande :\\
+\textgreater{}\texttt{c99\ -Wextra\ -pedantic\ -c\ ephemeride.c}
+
+Le fichier \texttt{executable.o} n'est pas un exécutable car il lui
+manque la définition des sous-programmes du module \texttt{date}.
+
+\begin{quote}
+\textbf{Exercice}\\
+- Compiler, dans le répertoire SVN, le programme \texttt{ephemeride.c}
+déjà présent pour obtenir \texttt{ephemeride.o}.
+\end{quote}
+
+    \subsubsection{5.6 Compilation d'une application
+modulaire}\label{compilation-dune-application-modulaire}
+
+Pour générer un fichier exécutable, il faut lier les fichiers
+\texttt{.o} entre eux pour créer l'exécutable final. C'est la phase
+\textbf{d'édition de liens}.\\
+Pour cela il faut: - Ne pas mettre l'option \texttt{-c} - Lister
+l'ensemble des fichiers \texttt{.o} - Qu'il n'y ait qu'une unique
+fonction \texttt{main()} dans tous les fichiers objet \texttt{.o} -
+Donner le nom de l'exécutable après l'option \texttt{-o} (à défaut, un
+exécutable avec un nom par défaut est créé).
+
+La ligne de commande suivante génère l'exécutable \texttt{main}:
+\textgreater{} c99 date.o ephemeride.o -o main
+
+Ce fichier exécutables, \texttt{main}, s'exécute avec la commande
+système habituelle : \textgreater{} ./main
+
+\paragraph{Exemple de compilation
+séparée}\label{exemple-de-compilation-suxe9paruxe9e}
+
+Voici un exemple de \textbf{compilation séparée} de tous les fichiers,
+avec création des fichiers objet d'abord, puis l'édition de liens à la
+fin :
+
+\begin{verbatim}
+    c99 -Wextra -pedantic -c  date.c 
+    c99 -Wextra -pedantic -c  ephemeride.c
+    c99  date.o ephemeride.o -o main 
+\end{verbatim}
+
+\begin{quote}
+\textbf{Exercice}\\
+- Créer le fichier exécutable dénommé \texttt{ephemeride} dans le
+répertoire SVN. L'exécuter.
+\end{quote}
+
+\paragraph{Exemple de compilation
+directe}\label{exemple-de-compilation-directe}
+
+Il est possible de réaliser toutes ces étapes en utilisant une seule
+ligne de commande.\\
+Dans ce cas, le compilateur réalise automatiquement les étapes de
+compilation et d'édition de liens.
+
+Pour cela, il faut lister l'ensemble des fichiers \texttt{.c} comme dans
+l'exemple suivant :
+
+\begin{verbatim}
+    c99  date.c ephemeride.c -o main 
+\end{verbatim}
+
+\begin{quote}
+\textbf{Exercice}\\
+- Dans le répertoire SVN, supprimer les fichiers objet \texttt{date.o}
+et \texttt{ephemeride.o}, ainsi que l'exécutable \texttt{ephemeride}. -
+Réaliser la compilation directe pour engendrer \texttt{ephemeride} -
+Observer les fichiers créés. Qu'en déduire ?
+\end{quote}
+
+    \subsubsection{5.7 Inclusion multiple d'un même
+module}\label{inclusion-multiple-dun-muxeame-module}
+
+Supposons que l'on souhaite développer une application \texttt{EDT} qui
+permette de gérer un emploi du temps pour une école. Cette application
+va définir un ensemble de modules pour réprésenter les ressources à
+gérer : - les enseignants, - les salles, - les élèves, - les cours,
+etc..
+
+Supposons également que les modules \texttt{enseignant} et
+\texttt{salle} aient besoin de manipuler des dates, et donc d'inclure le
+module \texttt{date} dans leur en-tête.\\
+Pour définir un module \texttt{cours}, on a besoin d'inclure les modules
+\texttt{enseignant} et \texttt{salle}.\\
+On se retrouve alors dans la situation suivante : -
+\texttt{enseignant.h} inclut \texttt{date.h} - \texttt{salle.h} inclut
+\texttt{date.h} - \texttt{cours.h} inclut \texttt{enseignant.h} et
+\texttt{salle.h}.
+
+\begin{quote}
+\textbf{Inclusions multiples}\\
+Les inclusions du pré-processeur ne sont que des 'copier/coller' des
+fichiers en lieu et place de la commande \texttt{\#include}.\\
+Le pré-processeur fournit ainsi au compilateur un fichier unique
+\texttt{cours.cpp} qui comporte l'inclusion de \texttt{enseignant.h} et
+\texttt{salle.h}, qui eux-même incluent \texttt{cours.h}.\\
+On retrouve donc \textbf{deux inclusions de \texttt{cours.h}}.
+\end{quote}
+
+Or, \textbf{le langage C interdit la déclaration multiple de variables,
+types ou sous-programmes de même nom.}\\
+Ainsi, le compilateur vérifie dans \texttt{cours.cpp} qu'il n'existe pas
+deux identificateurs ou plus qui soient identiques.
+
+\begin{quote}
+\textbf{!!! Problème !!! : Le compilateur ici refuse de compiler le
+module \texttt{cours}}\\
+car il annonce la double définition du type struct date, et des
+sous-programmes de \texttt{date.h}.
+\end{quote}
+
+    \subsubsection{5.8 Solution : la garde
+conditionnelle}\label{solution-la-garde-conditionnelle}
+
+Pour résoudre ce problème, on doit rajouter à l'interface \textbf{la
+garde conditionnelle} avec les commandes pré-processeur suivantes :
+
+\begin{Shaded}
+\begin{Highlighting}[]
+    \PreprocessorTok{#ifndef DATE__H  }\CommentTok{// Garde conditionnelle : si la variable DATE__H n'existe pas }
+    \PreprocessorTok{#define DATE__H  }\CommentTok{// La déclarer.}
+    
+    \CommentTok{/**}
+\CommentTok{     *  module date}
+\CommentTok{     */}
+
+    \CommentTok{// Inclusion des bibliothèques nécessaires à l'interface __ET__ au corps}
+    \PreprocessorTok{#include }\ImportTok{<time.h>}
+
+    \CommentTok{// Declaration des types }
+    \KeywordTok{enum}\NormalTok{ NomJour \{ DIMANCHE, LUNDI, MARDI, MERCREDI, JEUDI, VENDREDI, SAMEDI\};}
+    \KeywordTok{enum}\NormalTok{ Mois \{JAN, FEV, MAR, AVR, MAI, JUIN, JUIL, AOUT, SEPT, OCT, NOV, DEC \};}
+    
+\NormalTok{    ..... }
+    
+\NormalTok{    .....}
+    
+    \PreprocessorTok{#endif }\CommentTok{// on clot la garde conditionne à la toute fin du fichier date.h}
+\end{Highlighting}
+\end{Shaded}
+
+Ainsi: - lors de la première inclusion de \texttt{date.h}, la variable
+pré-processeur \texttt{DATE\_\_H} n'existe pas, et le contenu de
+\texttt{date.h} est inclut. \texttt{DATE\_\_H} est déclarée et existe
+pour tous les traitements suivants du pré-processeur. - lors des
+instructions d'inclusion suivantes, la variable \texttt{DATE\_\_H}
+existe déjà. Avec la close \texttt{\#ifndef}, tout ce qui se trouve
+avant \texttt{\#endif} n'est pas considéré pour l'inclusion si
+\texttt{DATE\_H} existe.
+
+\begin{quote}
+\textbf{Règle importante, voire fondamentale !}\\
+Il faut TOUJOURS ajouter une garde conditionnelle à son fichier
+d'en-tête.
+\end{quote}
+
+\textbf{Note} L'identificateur de la constante pré-processeur est choisi
+arbitrairement. Il est d'usage d'utiliser le nom du module pour garantir
+son unicité.
+
+    \begin{quote}
+\textbf{Exercice}\\
+- Dans le répertoire SVN, compiler les fichiers \texttt{enseignant.c},
+\texttt{cours.c}, \texttt{salle.c}, \texttt{date.c} et \texttt{EDT.c}
+afin de créer l'exécutable \texttt{EDT}. - Quels erreurs de double
+inclusion observez-vous ? - Corriger les fichiers d'en-tête qui en sont
+responsables.
+\end{quote}
+
+    \subsubsection{5.9 Visibilité des variables en
+C}\label{visibilituxe9-des-variables-en-c}
+
+Par défaut, tous les sous-programmes et variables globales définies dans
+\textbf{le corps \texttt{module.c} sont visibles} par les modules et
+programmes qui l'incluent.
+
+\begin{quote}
+Il faut \emph{explicitement} rendre une variable ou fonction locale au
+module.
+\end{quote}
+
+\paragraph{\texorpdfstring{La propriété
+\texttt{static}}{La propriété static}}\label{la-propriuxe9tuxe9-static}
+
+Pour fournir une visibilité locale à une variable ou à un
+sous-programme, il faut précéder sa déclaration avec le mot-clé
+\texttt{static}. \textgreater{} \textbf{Attention} : on ne peut pas
+rendre un type static
+
+\paragraph{Exemple}\label{exemple}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{#ifndef EXEMPLE_STATIC__H}
+\PreprocessorTok{#define EXEMPLE_STATIC__H}
+
+\CommentTok{// Unique fonction}
+\CommentTok{// visible par}
+\CommentTok{// les autres modules}
+\DataTypeTok{int}\NormalTok{ f();}
+
+\PreprocessorTok{#endif}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+Et voici le corps \texttt{exemple\_static.c}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule
+\begin{minipage}[b]{0.04\columnwidth}\raggedright\strut
+\texttt{c\ \#include\ "exemple\_static.h"\ //\ fonction\ locale\ au\ module\ Static\ //\ non\ visible\ des\ autres\ modules.\ static\ int\ max(int\ a,\ int\ b)\ \{\ if\ (a\ \textgreater{}\ b)\ \{\ return\ a;\ \}\ else\ \{\ return\ b;\ \}\ \}\ //\ fonction\ f()\ presente\ dans\ le\ .h,\ //\ visible\ par\ les\ autres\ modules\ int\ f()\{\ int\ val1\ =\ 2;\ int\ val2\ =\ 8;\ return\ max(val1,\ val2);\ \}}\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.04\columnwidth}\raggedright\strut
+La fonction \texttt{max} est ici \texttt{static}, et donc uniquement
+visible des sous-programmes du corps du module.\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+    \paragraph{\texorpdfstring{Cas d'utilisation de
+\texttt{static}}{Cas d'utilisation de static}}\label{cas-dutilisation-de-static}
+
+Voici quelques cas d'utilisation (non exhaustifs) : - Pour définir une
+fonction, localement au module, qui présente le même identificateur
+qu'une fonction déjà présente dans un des modules inclus dans
+l'interface.\\
+Typiquement, si on souhaite définir sa propre fonction \texttt{max}
+alors qu'on a inclut \texttt{math.h} dans l'interface. - Pour définir
+une variable, à portée globale pour le module, mais que l'on ne veut pas
+visible au reste de l'application.
+
+    \begin{quote}
+\textbf{Exercice}\\
+- Dans le répertoire SVN, rendre \texttt{static} le sous-programme
+\texttt{afficher\_date} du module \texttt{date}. Compiler à nouveau
+l'application \texttt{ephemeride}.\\
+Observer que ce sous-programme n'est plus visible.
+\end{quote}
+
+    \subsubsection{5.10 Externaliser une variable du
+module}\label{externaliser-une-variable-du-module}
+
+Il est possible de déclarer une variable globale au module, et de la
+rendre utilisable par le reste de l'application.\\
+Cette variable globale est visible et modifiable par tous les
+sous-programmes appartenant aux modules et au programme principal qui
+incluent ce module.
+
+On prendra l'exemple d'un module \texttt{compteur} qui présente une
+variable globale \texttt{compteur}, que l'on souhaite consulter,
+incrémenter ou ré-initialiser par les modules qui incluent
+\texttt{module.h}.\\
+Dans l'exemple suivant, \texttt{compteur.h} offre des sous-programmes
+qui permettent de maniputer ce \texttt{compteur}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{#ifndef _COMPTEUR_H}
+\PreprocessorTok{#define _COMPTEUR_H}
+
+\CommentTok{// Specification de la procédure re-initialiser}
+\DataTypeTok{void}\NormalTok{ re_initialiser();}
+\CommentTok{// Specification de la procedure incrementer}
+\DataTypeTok{void}\NormalTok{ incrementer();}
+\CommentTok{// Specification de la function valeur}
+\DataTypeTok{int}\NormalTok{ valeur();}
+
+\PreprocessorTok{#endif }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{#include }\ImportTok{<stdio.h>}
+
+\CommentTok{// declaration de la variable globale + initialisation à 0. }
+\DataTypeTok{int}\NormalTok{ compteur = }\DecValTok{0}\NormalTok{;}
+
+\DataTypeTok{void}\NormalTok{ re_initialiser() \{}
+\NormalTok{    compteur=}\DecValTok{0}\NormalTok{;}
+\NormalTok{\}}
+\DataTypeTok{void}\NormalTok{ incrementer() \{}
+\NormalTok{    compteur++;}
+\NormalTok{\}}
+\DataTypeTok{int}\NormalTok{ valeur() \{}
+    \ControlFlowTok{return}\NormalTok{ compteur;}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\PreprocessorTok{#include }\ImportTok{"compteur.h"}
+\PreprocessorTok{#include }\ImportTok{<stdio.h>}
+
+\CommentTok{// acces au compteur de compteur.c}
+\KeywordTok{extern} \DataTypeTok{int}\NormalTok{ compteur;}
+
+\DataTypeTok{int}\NormalTok{ main()\{}
+  \CommentTok{// initialiser}
+\NormalTok{  re_initialiser();}
+\NormalTok{  printf(}\StringTok{"Init Compteur c=%d}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, valeur());}
+  \CommentTok{// incrementer}
+\NormalTok{  incrementer();}
+\NormalTok{  printf(}\StringTok{"Incrementer c=%d}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, valeur());}
+  \CommentTok{// access au compteur sans appel a valeur()}
+\NormalTok{  incrementer();}
+\NormalTok{  incrementer();}
+\NormalTok{  printf(}\StringTok{"Acces direct a compteur c=%d}\SpecialCharTok{\textbackslash{}n}\StringTok{"}\NormalTok{, compteur);}
+
+  \ControlFlowTok{return} \DecValTok{0}\NormalTok{; }
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+    \begin{quote}
+\textbf{Exercice}\\
+- Dans le répertoire SVN, compiler le fichier \texttt{test\_compteur.c}.
+Observer que le compteur s'incrémente bien. - Dé-commenter les deux
+instructions qui se trouvent entre les commentaires
+\texttt{//\ ***\ DECOMMENTER\ ***} et
+\texttt{//****\ FIN\ DECOMMENTER\ ***}.\\
+Qu'observez-vous ? Que peut-on en conclure sur la possibilité
+d'encapsuler complètement une variable externalisée ?
+\end{quote}
+
+    \subsubsection{5.10 Exercice - UNO}\label{exercice---uno}
+
+La correction des exercices 2 et 3 qui ont été traités dans le sujet C2
+est disponible sous SVN, dans le répertoire
+\texttt{c3/fichiers\_C/modules/UNO}.\\
+\textbf{Sans créer de nouveaux sous-programmes}, il est demandé dans ce
+travail de réorganiser le code des ces deux fichiers \texttt{.c} pour en
+extraire des modules.\\
+Pour cela, on vous demande de :
+
+\begin{itemize}
+\tightlist
+\item
+  Créer 4 modules (\texttt{carte}, \texttt{main}, \texttt{jeu} et
+  \texttt{UNO}) ;
+\item
+  Produire les exécutables \texttt{tester\_UNO} et \texttt{jouer\_UNO}.
+\end{itemize}
+
+L'exécutable \texttt{jouer\_UNO} permet de lancer le jeu de UNO. Il
+n'est pas complet car l'ensemble des sous-programmes nécessaires au jeu
+n'est pas disponible. Dans les faits, il ne fera que préparer le jeu.
+
+\emph{Attention à la garde conditionnelle !}
+
+Pour sauvegarder ce travail, vous ajouterez vos fichiers au répertoire
+UNO avec la commande \texttt{svn\ add} (ce travail n'est pas évalué).
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{6. L'outil Make pour automatiser la
+compilation}\label{loutil-make-pour-automatiser-la-compilation}
+
+\begin{quote}
+\textbf{Note :} L'ensemble des fichiers liés à cette partie se trouvent
+dans le répertoire : \textbf{\texttt{c3/fichiers\_C/make}}.
+\end{quote}
+
+    \subsubsection{6.1 Rappel : modules en C}\label{rappel-modules-en-c}
+
+Un module en C, c'est : - Une convention de nommage qui décompose un
+module en deux fichiers, l'en-tête \texttt{.h} et le corps
+\texttt{.c}.\\
+Par exemple, le module \texttt{complexe} se compose : \textgreater{} -
+d'un fichier d'interface typiquement nommé \texttt{complexe.h}
+\textgreater{} - d'un fichier corps typiquement nommé
+\texttt{complexe.c} - Un outillage pour compiler cette structure de
+fichiers : \textgreater{} - Comme le compilateur C ne sait travailler
+que sur un unique fichier qui regroupe interface et corps, il faut
+\textbf{inclure l'interface \texttt{complexe.h} au début du corps
+\texttt{complexe.c}} à l'aide de la commande pré-processeur
+\texttt{\#include\ "complexe.h"}. \textgreater{} - \textbf{Pour utiliser
+un module \texttt{complexe} dans un programme principal}
+(\texttt{calculer.c} par exemple), on inclut son interface
+\texttt{complexe.h} au début du fichier avec la commande\\
+\texttt{\#include\ "complexe.h"}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsubsection{6.2 Rappel : compilation d'une application
+modulaire}\label{rappel-compilation-dune-application-modulaire}
+
+La compilation d'une application modulaire peut-être réalisée de deux
+façon différentes : la compilation séparée, et la compilation directe.
+
+Dans la suite de ce sujet C3, on reprend l'exemple des applications
+\texttt{ephemeride} et \texttt{EDT}, qui incluent les modules
+\texttt{date}, \texttt{cours}, \texttt{enseignant} et \texttt{salle}.
+
+\paragraph{Exemple de compilation
+séparée}\label{exemple-de-compilation-suxe9paruxe9e}
+
+Voici un exemple de \textbf{compilation séparée} de tous les fichiers,
+avec création des fichiers objet :
+
+\begin{verbatim}
+    c99 -Wextra -pedantic -c  date.c 
+    c99 -Wextra -pedantic -c  salle.c 
+    c99 -Wextra -pedantic -c  enseignant.c 
+    c99 -Wextra -pedantic -c  cours.c 
+    c99 -Wextra -pedantic -c  EDT.c 
+    c99 -Wextra -pedantic -c  ephemeride.c
+\end{verbatim}
+
+\begin{quote}
+\textbf{Note} : on peut réaliser cette étape avec la commande
+\texttt{c99\ -Wextra\ -pedantic\ -c\ *.c}.\\
+On obtient alors les fichiers objet de TOUS LES FICHIERS .c qui se
+trouvent dans le répertoire courant.
+\end{quote}
+
+Et création des exécutables \texttt{ephemeride} et \texttt{EDT} par
+l'étape d'édition des liens :
+
+\begin{verbatim}
+    c99  date.o ephemeride.o -o ephemeride 
+    c99  date.o salle.o enseignant.o cours.o EDT.o -o EDT 
+\end{verbatim}
+
+\paragraph{Exemple de compilation
+directe}\label{exemple-de-compilation-directe}
+
+Il est possible de réaliser toutes ces étapes en utilisant une seule
+ligne de commande.\\
+Dans ce cas, le compilateur réalise automatiquement les étapes de
+compilation et d'édition de liens.
+
+Pour cela, il faut lister l'ensemble des fichiers \texttt{.c} comme dans
+l'exemple suivant :
+
+\begin{verbatim}
+    c99  date.c ephemeride.c -o ephemeride
+    c99  date.c salle.c enseignant.c cours.c EDT.c -o EDT     
+\end{verbatim}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsubsection{6.3 Automatiser la
+compilation}\label{automatiser-la-compilation}
+
+Il est possible d'automatiser la compilation d'une application modulaire
+avec l'outil \texttt{make}. \textgreater{} \textbf{Note} : L'outil
+\texttt{make} n'est pas uniquement utilisé pour compiler du C.\\
+Il peut automatiser des commandes qui engendrent des fichiers (ou non !)
+de nature différente.
+
+La commande \texttt{make} réalise les étapes suivantes : 1. Elle
+recherche le fichier dénommé \texttt{Makefile} ou \texttt{makefile} dans
+le répertoire courant 2. \textbf{Exécute la première règle} qu'elle
+trouve dans le fichier.
+
+Il est possible de lui spécifier un nom de fichier avec l'option
+\texttt{-f} : \texttt{make\ -f\ mon\_makefile}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsubsection{\texorpdfstring{6.4 Le fichier
+\texttt{Makefile}}{6.4 Le fichier Makefile}}\label{le-fichier-makefile}
+
+\paragraph{Une règle}\label{une-ruxe8gle}
+
+Le fichier présente une liste de \textbf{règles}. Chaque règle : 1. a
+pour objectif de créer un fichier que l'on appelle la \textbf{cible}. 2.
+indique également quelle \textbf{commande} sera lancée pour obtenir la
+cible. 3. présente une \textbf{liste des dépendances}, sous la forme
+d'une liste de fichiers qui doivent être présents dans le répertoire
+pour engendrer la cible.
+
+L'écriture d'une règle suit \textbf{strictement} la syntaxe suivante :
+
+\begin{verbatim}
+nom_cible: dependances_regle1
+[tab]commande_regle1
+\end{verbatim}
+
+\begin{quote}
+\textbf{Attention}: - \textbf{pas d'espace} entre le nom de la cible et
+\texttt{:} - par contre, il y a un espace entre le caractère \texttt{:}
+et le premier fichier de la liste des dépendances. - la seconde ligne de
+la règle commance par une tabulation
+\end{quote}
+
+    \subsubsection{\texorpdfstring{Exemple d'utilisation pour l'application
+\texttt{ephemeride}.}{Exemple d'utilisation pour l'application ephemeride.}}\label{exemple-dutilisation-pour-lapplication-ephemeride.}
+
+Voici un fichier \texttt{Makefile} permettant de générer l'exécutable
+\texttt{ephemeride}.\\
+Il comporte 4 règles permettant de générer les cibles
+\texttt{ephemeride}, \texttt{date.o}, \texttt{ephemeride.o} et
+\texttt{clean}.
+
+\begin{verbatim}
+ephemeride: date.o ephemeride.o
+    c99 date.o ephemeride.o -o ephemeride
+
+date.o: date.c date.h
+    c99 -Wextra -pedantic -c date.c
+
+ephemeride.o: ephemeride.c
+    c99 -Wextra -pedantic -c ephemeride.c
+    
+clean:
+    rm *.o ephemeride
+\end{verbatim}
+
+\begin{quote}
+\textbf{Exercice}\\
+- Ce fichier Makefile se trouve dans le répertoire SVN. L'exécuter en
+tapant la commande \texttt{make}. - Dans quel ordre les commandes
+sont-elles exécutées ? - Quels sont les fichiers générés par cette
+commande ?
+\end{quote}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsubsection{\texorpdfstring{6.5 Comportement de
+\texttt{make}}{6.5 Comportement de make}}\label{comportement-de-make}
+
+La commande : - \texttt{make} exécute la \textbf{première règle}. -
+\texttt{make\ date.o} exécute la seconde règle, la commande
+\texttt{make\ ephemeride.o} la troisième, etc.
+
+\begin{quote}
+\textbf{Exercice}\\
+- Executer la commande \texttt{make\ clean}. - Que se passe-t-il ? Quels
+sont les fichiers supprimés ?
+\end{quote}
+
+La première règle du fichier :
+
+\begin{verbatim}
+ephemeride: date.o ephemeride.o
+    c99 date.o ephemeride.o -o ephemeride
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  permet de générer la cible \texttt{ephemeride}
+\item
+  avec la commande \texttt{c99\ date.o\ ephemeride.o\ -o\ ephemeride}
+\item
+  et présente les dépendances \texttt{date.o\ ephemeride.o}.
+\end{itemize}
+
+Ainsi, pour que la cible puisse être générée avec la commande donnée, il
+faut que les fichiers \texttt{date.o} et \texttt{ephemeride.o} soient
+présents dans le répertoire courant. \textbf{Si un fichier n'existe pas,
+\texttt{make} recherche une règle dans le \texttt{Makefile} qui lui
+permet de la produire}.\\
+Par exemple, si \texttt{date.o} est absent, \texttt{make} exécute la
+seconde règle pour générer \texttt{date.o}.
+
+\begin{quote}
+\textbf{Exercice}\\
+- Tapez à nouveau la commande \texttt{make} pour lancer la première
+règle.
+\end{quote}
+
+On observe que la première commande exécutée est la commande
+\texttt{c99\ -Wextra\ -pedantic\ -c\ date.c} car la dépendance
+\texttt{date.o} n'existe pas. La seconde commande permet de générer
+\texttt{ephemeride.o} et la dernière commande exécutée est la commande
+qui produit l'exécutable \texttt{ephemeride}.
+
+\begin{quote}
+\textbf{Exercice}\\
+- Tapez à nouveau la commande \texttt{make} pour lancer la première
+règle. Qu'observez-vous ?
+\end{quote}
+
+La commande nous indique que les cibles sont à jour : aucune commande
+n'est exécutée.
+
+\begin{quote}
+\textbf{Exercice}\\
+- Modifier le fichier date.c en y ajoutant un commentaire par exemple.\\
+- Taper à nouveau la commande \texttt{make} pour lancer la première
+règle. Qu'observez-vous ?
+\end{quote}
+
+Seuls la création des cibles \texttt{date.o} et \texttt{ephemeride} est
+lancée. La règle \texttt{ephemeride.o} n'est pas activée.\\
+En effet, elle n'est pas concernée par les changements réalisés dans le
+fichier \texttt{date.c}.
+
+\begin{quote}
+\begin{quote}
+La commande \texttt{make} ne génère une cible que si celle-ci présente
+une date de modification \textbf{antérieure} à celle de l'un des
+fichiers listés dans ses dépendances.\\
+En d'autres termes, si une des dépendances est plus récente que la
+cible, \texttt{make} relance la règle correspondante pour que la cible
+soit mise à jour.\\
+La \textbf{liste des dépendances est donc très importante}.
+\end{quote}
+\end{quote}
+
+\paragraph{Règles sans dépendances}\label{ruxe8gles-sans-duxe9pendances}
+
+La règle \texttt{clean} ne présente pas de dépendances. Elle est
+uniquement appliquée quand on l'appelle explicitement avec la commande
+\texttt{make\ clean}.
+
+\paragraph{Règles qui ne génèrent pas de
+fichier}\label{ruxe8gles-qui-ne-guxe9nuxe8rent-pas-de-fichier}
+
+On peut indiquer à \texttt{make} que la règle \texttt{clean} ne produit
+pas un fichier dénommé \texttt{clean} en rajoutant la ligne à la fin du
+\texttt{Makefile} :
+
+\begin{verbatim}
+.PHONY: clean
+\end{verbatim}
+
+Ainsi, \texttt{make} n'ira pas vérifier si le fichier \texttt{clean}
+existe avant d'exécuter la règle. Il se comporte comme si les fichiers
+listés après \texttt{.PHONY} n'étaient jamais à jour.
+
+    \begin{quote}
+\textbf{Exercice}\\
+1. Ajouter la règle suivante \textbf{au début} du \texttt{Makefile} :\\
+\texttt{all:\ ephemeride} 2. Insérer la ligne suivante \textbf{à la fin}
+du \texttt{Makefile} :\\
+\texttt{.PHONY:\ clean\ all} A quoi sert la règle \texttt{all} ? 3.
+Ajouter les règles nécessaires à la création de l'exécutable
+\texttt{EDT} dans \texttt{Makefile}. 4. S'assurer que les deux
+exécutables, \texttt{ephemeride} et \texttt{EDT} soient générés quand on
+tape \texttt{make\ all}.
+\end{quote}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsubsection{6.6 Variables et
+commentaires}\label{variables-et-commentaires}
+
+\paragraph{Commentaires}\label{commentaires}
+
+Il est possible d'insérer \textbf{des commentaires} dans un
+\texttt{Makefile} en utilisant la balise \texttt{\#}.
+
+\paragraph{Variables}\label{variables}
+
+Il est également possible de définir \textbf{des variable} pour rendre
+le \texttt{Makefile} plus générique.\\
+L'accès \textbf{au contenu} de la variable se fait par la notation
+\texttt{S(VAR)}, comme illustré ici :
+
+\begin{verbatim}
+# Ceci est un commentaire pour introdure la variable CC qui comporte le nom du compilateur utilisé :
+CC=c99
+# Les variables CFLAGS et LDFLAGS comportent les options de compilation et d'édition des liens :
+CFLAGS=-Wextra -pedantic -c
+LDFLAGS=
+
+ephemeride: date.o ephemeride.o
+    $(CC) $(LDFLAGS) date.o ephemeride.o -o ephemeride
+
+date.o: date.c date.h
+    $(CC) $(CFLAGS) date.c
+
+ephemeride.o: ephemeride.c
+    $(CC) $(CFLAGS) ephemeride.c
+    
+clean:
+    rm *.o ephemeride
+    
+.PHONY: clean
+\end{verbatim}
+
+\paragraph{Variables automatiques}\label{variables-automatiques}
+
+Des variables automatiques peuvent être utilisées pour définir une règle
+de façon encore plus générique : - \texttt{\$@} : le nom de la cible de
+la règle courante - \texttt{\$\textless{}} : le nom du premier fichier
+dans la liste des dépendances - \texttt{\$\^{}} : le nom de tous les
+fichiers (séparés par un espace) listées dans les dépendances de la
+règle courante - \texttt{\$?} : le nom de tous les fichiers listés dans
+les dépendances et qui sont plus récents que la cible courante
+
+On obtient par exemple :
+
+\begin{verbatim}
+date.o: date.c date.h
+    $(CC) $(CFLAGS) $<
+\end{verbatim}
+
+avec \texttt{\$\textless{}} qui représente ainsi le nom \texttt{date.c}.
+
+\begin{quote}
+\textbf{Exercice}\\
+1. Editer votre fichier \texttt{Makefile} pour ajouter les variables
+\texttt{CC},\texttt{CFLAGS} et \texttt{LDFLAGS}. 2. Editer votre fichier
+en utilisant les variables automatiques \texttt{\$@} et
+\texttt{@\textless{}}
+\end{quote}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsubsection{6.7 Règles implicites}\label{ruxe8gles-implicites}
+
+Certaines règles sont déjà connues de \texttt{make}, on dit qu'elles
+sont \texttt{implicites}.\\
+Par exemple, il n'est pas nécessaire d'écrire de règle pour engendrer un
+fichier objet \texttt{.o}.
+
+\begin{quote}
+\textbf{Exercice}\\
+1. Supprimer les règles qui permettent de générer des fichiers objet
+(\texttt{date.o}, \texttt{ephemeride.o}, etc.) 2. Lancer la commande
+\texttt{make\ clean} 3. Lancer la commande \texttt{make\ all}\\
+Observer que la création des fichiers objets est réalisée tout de même !
+\end{quote}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsubsection{\texorpdfstring{6.8 L'outil \texttt{makedepend} pour les
+\texttt{.h}}{6.8 L'outil makedepend pour les .h}}\label{loutil-makedepend-pour-les-.h}
+
+Nous avons vu qu'il est nécessaire de lister l'ensemble des fichiers
+\texttt{.c} et \texttt{.h} dans les dépendances d'une règle qui compile
+une application modulaire.\\
+Or, la commande qui génère l'exécutable ne liste en général que les
+\texttt{.o} (compilation séparée) ou que les \texttt{.c} (compilation
+directe).
+
+Pour s'affranchir de lister \emph{à la main} les fichiers d'en-tête
+\texttt{.h} en plus des \texttt{.c} dans les dépendances, on peut
+utiliser l'outil \texttt{makedepend}.
+
+Pour l'utiliser, il faut lancer la commande système suivante dans le
+répertoire qui contient les sources :
+
+\begin{verbatim}
+makedepend *.c -Y.
+\end{verbatim}
+
+L'outil inclut les lignes suivantes à la fin du \texttt{Makefile}
+
+\begin{verbatim}
+# DO NOT DELETE
+
+EDT.o: cours.h salle.h date.h enseignant.h
+cours.o: cours.h salle.h date.h enseignant.h
+date.o: date.h
+enseignant.o: enseignant.h date.h
+ephemeride.o: date.h
+salle.o: salle.h date.h
+\end{verbatim}
+
+Ces lignes représentent les dépendantes existant entre les fichiers
+objet et les fichiers d'en-tête. Ainsi, si on utilise
+\texttt{makedepend}, on peut s'affranchir d'ajouter \texttt{date.h} dans
+les dépendances de la règle \texttt{date.o} par exemple.
+
+\paragraph{\texorpdfstring{Règle \texttt{depend} dans le
+\texttt{Makefile}}{Règle depend dans le Makefile}}\label{ruxe8gle-depend-dans-le-makefile}
+
+Il est d'usage d'ajouter la règle suivante dans le \texttt{Makefile} :
+
+\begin{verbatim}
+depend: 
+    makedepend *.c -Y.
+\end{verbatim}
+
+Ainsi, après avoir rédigé son \texttt{Makefile} avec cette règle, on
+lance la commande \texttt{makedepend} en utilisation directement la
+règle \texttt{depend} du makefile : il suffit de taper la commande
+\texttt{make\ depend} dans un terminal pour mettre à jour les
+dépendances à la fin du fichier \texttt{Makefile}.
+
+\begin{quote}
+\textbf{Exercice} 1. Ajouter la règle \texttt{depend} au
+\texttt{Makefile} 2. Lancer la commande \texttt{make\ depend}
+\end{quote}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsubsection{6.9 Exercice - UNO}\label{exercice---uno}
+
+La correction de l'exercice 5.10 de ce sujet est disponible dans le
+répertoire \texttt{c3/fichiers\_C/make/UNO}. Dans cet exercice, vous
+aviez conçu l'application modulaire UNO qui se compose : - de 4 modules
+(\texttt{carte}, \texttt{main}, \texttt{jeu} et \texttt{UNO}) ; - des
+exécutables \texttt{test\_UNO} et \texttt{jouer\_UNO}.
+
+Ici, il est demandé d'écrire un fichier \texttt{Makefile} qui permet de
+générer les deux exécutables à partir des modules.\\
+Vous ajouterez aussi une règle \texttt{clean} pour nettoyer le
+répertoire et une règle \texttt{All} comme première règle pour générer
+toutes les cibles automatiquement. On vous encourage à utiliser les
+variables usuelles (\texttt{CC}, \texttt{CFLAGS}, \texttt{LDFLAGS}) et
+les variables automatiques.
+
+Pour sauvegarder ce travail, vous ajouterez le fichier \texttt{Makefile}
+au répertoire UNO avec la commande \texttt{svn\ add}.
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{\#\# BILAN sur les modules en C et Make (à
+rendre)}\label{bilan-sur-les-modules-en-c-et-make-uxe0-rendre}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{Définition d'une file
+d'attente.}\label{duxe9finition-dune-file-dattente.}
+
+Une file d'attente est une structure de données qui contient des
+éléments de même nature. Le principe de la file d'attente que l'on
+observe ici est \emph{First In First Out} (FIFO) : le premier élément
+inséré dans la file est le premier à en être retiré.
+
+Les opérations sur une telle file sont les suivantes :
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{initialiser} : initialiser une file (une variable de type
+  File). Une file ne peut être utilisée que si elle a été initialisée ;
+\item
+  \textbf{detruire} : détruire un file, elle ne pourra plus être
+  utilisée (sauf à être de nouveau initialisée) ;
+\item
+  \textbf{inserer} : insérer un nouvel élément dans la file ;
+\item
+  \textbf{extraire} : extraire le plus ancien élément de la file ;
+\item
+  \textbf{tete} : retourne la valeur de l'élément en tête de la file
+  (mais ne le supprime pas) ;
+\item
+  \textbf{est\_vide} : savoir si une file est vide ou non ;
+\item
+  \textbf{longueur} : obtenir la longueur de la file ;
+\end{itemize}
+
+On choisit de représenter la file en utilisant une structure chaînée.
+Chaque élément de la file est représenté par une cellule composée de
+l'élément conservé et d'un pointeur sur la cellule suivante. Pour des
+raisons d'efficacité, on décide de représenter le type file comme un
+enregistrement composé d'un pointeur sur la première cellule de la file
+et d'un pointeur sur la dernière.
+
+    \subsection{Questions}\label{questions}
+
+Dans le répertoire SVN \texttt{c3/fichiers\_C/bilan}, vous trouverez les
+fichiers \texttt{file.h}, \texttt{file.c}, \texttt{test\_file.c},
+\texttt{exemple\_file.c}, \texttt{Makefile} et \texttt{reponses1.txt}.
+
+Le module \texttt{file} permet ici d'enregistrer des éléments de type
+caractères.
+
+    \subsubsection{\texorpdfstring{1. Module
+\texttt{file}.}{1. Module file.}}\label{module-file.}
+
+\paragraph{Question 1.1}\label{question-1.1}
+
+\begin{quote}
+Dans le fichier \texttt{reponses1.txt}, indiquer : - comment obtenir le
+ou les exécutables \emph{par compilation séparée}. - les dépendances
+entre les fichiers qui constituent l'application (pour l'exemple et les
+tests). - le rôle de la règle \texttt{.PHONY}.
+\end{quote}
+
+\paragraph{Question 1.2}\label{question-1.2}
+
+\begin{quote}
+Compléter le fichier \texttt{Makefile} (et vérifier qu'il fonctionne).
+On définira en particulier - la cible \texttt{all} pour produire les
+deux exécutables ; - la cible \texttt{clean} qui supprime les fichiers
+engendrés (fichiers .o et exécutables) ; - la cible \texttt{depend} qui
+appelle l'outil \texttt{makedepend} qui automatise l'inclusion des
+interfaces des modules dans les dépendances.\\
+On utilisera : - les variables usuelles \texttt{CC}, \texttt{CFLAGS},
+\texttt{LDFLAGS}. - les variables automatiques \texttt{\$@} et
+\texttt{\$\^{}}
+\end{quote}
+
+\paragraph{Question 1.3}\label{question-1.3}
+
+\begin{quote}
+On s'intéresse ici à la spécification des sous-programmes qui est donnée
+dans \texttt{file.h}. - Ce fichier contient une erreur dans sa
+structure. L'identifier et la corriger.
+\end{quote}
+
+\paragraph{Question 1.4}\label{question-1.4}
+
+\begin{quote}
+Écrire l'implantation du module \texttt{file} (et tester le module grâce
+au module de test fourni).
+\end{quote}
+
+\paragraph{Question 1.5}\label{question-1.5}
+
+\begin{quote}
+La réponse aux questions suivantes est attendue dans le fichier
+\texttt{reponses1.txt}. - Quel est le sous-programme non-visible des
+autres modules ? - Que se passe-t-il si on enlève le mot-clé static à la
+compilation ? - Que risque-t-on a ne pas utiliser le mot-clé statique ?
+\end{quote}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

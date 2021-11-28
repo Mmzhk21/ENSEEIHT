@@ -1,0 +1,3 @@
+pagerank_naive.adb:3:11: cannot compile subprogram in file "pagerank_naive.adb"
+pagerank_naive.adb:3:11: incorrect spec in file "pagerank_naive.ads" must be removed first
+pagerank_naive.ads:1:01: compilation unit expected

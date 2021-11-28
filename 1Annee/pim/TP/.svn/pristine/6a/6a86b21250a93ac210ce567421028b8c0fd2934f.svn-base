@@ -1,0 +1,15 @@
+Dans ce fichier `reponses2.txt`, indiquer : 
+
+[Question 2.2] 
+- Que se passerait-il si vous renommez void initialiser_point(Point *p, float longi, float lat) avec l'identificateur initialiser ?
+
+
+[Question 2.5] 
+- Est-ce que l'utilisation du langage C pour la définition de modules génériques vous semble possible ? 
+
+
+
+[Question 2.6]
+- Est-ce que l'utilisation de l'outil `make` se borne à l'automatisation de la compilation en langage C ? Argumenter.
+
+- Si non, proposer une règle qui ne soit pas en lien avec une opération de compilation C.

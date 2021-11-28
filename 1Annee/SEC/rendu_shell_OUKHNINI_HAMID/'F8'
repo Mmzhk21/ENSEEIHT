@@ -1,0 +1,1 @@
+cat <nom_fichier> | tr ' ' '\n' | grep <la_chaine> | wc -l

@@ -1,0 +1,100 @@
+% Compte-rendu minimal du mini-projet SDA : LCA et TH
+% Auteur : OUKHNINI HAMID 
+% Groupe de TP : L1
+
+
+**Consigne :** Vous devez écrire vos réponse à la place des ... en laissant
+une ligne vide avant et deux après votre réponse.
+
+**Remarque :** Ce document utilise le langage Markdown. On peut en engendrer
+une version PDF en faisant par exemple :
+
+~~~
+pandoc --toc -N -o LISEZ-MOI.pdf LISEZ-MOI.txt
+~~~
+
+
+# Exercice 1
+
+## Question 1.4
+
+**Indiquer les inconvénients/avantages d'une implantation par listes chaînées
+d'une SDA.**
+
+avantages:
+ 
+-facile à implimenter
+-on ne dispose pas de contrainte quand à la taille de cette liste.
+inconvénients:
+
+-Compléxité grande lors de plusieurs opérations (Taille, Vider, Supprimer, Cle_Presente) O(n) ce qui implique 
+       -un temps d'exsécution long 
+-la représentation mémoire est plus coûteuse que pour un tableau : pour stocker un élément, il faut deux mot une clé et une valeur
+--Pour accéder à un élément if faut parcourir la liste
+
+
+
+
+# Évaluation expérimentale.
+
+## Performance comparée de LCA et TH
+
+Indiquer ici les résultats obtenus.
+
+--   time ./evaluer_alea_th 1000 10000   donne
+Borne  : 1000
+Taille : 10000
+Min : 1
+Max : 21
+
+real	0m0,008s
+user	0m0,008s
+sys	0m0,000s
+
+--  time ./evaluer_alea_lca 1000 10000  donne
+Borne  : 1000
+Taille : 10000
+Min : 2
+Max : 21
+
+real	0m15,662s
+user	0m15,660s
+sys	0m0,000s
+
+
+
+## Qualité du générateur aléatoire
+
+Indiquer les conclusions quant à la qualité du générateur aléatoire.
+
+on remarque bien que pour un échantillon de grande taille par rapport à la valeur de Borne que la différence entre Min et Max est faible (exemple taille = 10000 et borne=1000 : Max-Min=19<< taille) donc le générateur aléatoire est de bonne qualité
+
+
+
+# Principales difficultés rencontrées
+
+Indiquer ici les principales difficultés rencontrées lors de la réalisation de
+ce projet et comment elles ont été surmontées ou contournéeS.
+
+-Avoir mal à comprendre les erreures retournées par gps 
+
+
+
+# Informations complémentaires
+
+Indiquer ici les informations qui pourraient aider à la compréhension du
+travail réalisé.
+
+Cette partie peut être vide.
+
+...
+
+
+
+# Bilan personnel
+
+Quel bilan personnel tirez vous de ce mini-projet ?
+
+-avant d'écrire le programme il faut analyser et bien comprendre le probléme posé 
+ car il n'ya pas de solution unique pour un probleme, pour trouver la bonne solution en terme de simplicité et complexité.
+

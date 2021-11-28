@@ -1,0 +1,203 @@
+V "GNAT Lib v2019"
+M P W=b
+A -gnatA
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U pagerank%b		pagerank.adb		39532e8e NE OO SU
+W ada%s			ada.ads			ada.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.io_exceptions%s	a-ioexce.ads		a-ioexce.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+Z ada.text_io.float_aux%s  a-tiflau.adb		a-tiflau.ali
+Z ada.text_io.float_io%s
+W gnat%s		gnat.ads		gnat.ali
+W gnat.os_lib%s		g-os_lib.ads		g-os_lib.ali
+W google_creuse%s	google_creuse.adb	google_creuse.ali
+W google_naive%s	google_naive.adb	google_naive.ali
+Z system.fat_flt%s	s-fatflt.ads		s-fatflt.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.val_int%s	s-valint.adb		s-valint.ali
+Z system.val_real%s	s-valrea.adb		s-valrea.ali
+W vecteurs_creux%s	vecteurs_creux.adb	vecteurs_creux.ali
+
+D ada.ads		20190518041255 76789da1 ada%s
+D a-charac.ads		20190518041255 2d3ec45b ada.characters%s
+D a-chlat1.ads		20190518041255 66457d31 ada.characters.latin_1%s
+D a-comlin.ads		20190518041255 4aa66568 ada.command_line%s
+D a-except.ads		20190518041255 291912d5 ada.exceptions%s
+D a-finali.ads		20190518041255 bf4f806b ada.finalization%s
+D a-flteio.ads		20190518041255 e18a47a0 ada.float_text_io%s
+D a-inteio.ads		20190518041256 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20190518041254 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20190518041255 119b8fb3 ada.streams%s
+D a-string.ads		20190518041255 90ac6797 ada.strings%s
+D a-strmap.ads		20190518041255 e8bb714a ada.strings.maps%s
+D a-strunb.ads		20190518041255 1656705b ada.strings.unbounded%s
+D a-tags.ads		20190518041256 491b781d ada.tags%s
+D a-textio.ads		20190518041256 aef4d56d ada.text_io%s
+D a-tiflau.ads		20190518041255 c0393f21 ada.text_io.float_aux%s
+D a-tiflio.ads		20190518041254 bf196650 ada.text_io.float_io%s
+D a-tiflio.adb		20190518041255 fd9b1cfc ada.text_io.float_io%b
+D a-tiinio.ads		20190518041254 390edddb ada.text_io.integer_io%s
+D a-unccon.ads		20190518041255 0e9b276f ada.unchecked_conversion%s
+D a-uncdea.ads		20190518041255 eff36322 ada.unchecked_deallocation%s
+D gnat.ads		20190518041256 b5988c27 gnat%s
+D g-os_lib.ads		20190518041254 0db74523 gnat.os_lib%s
+D google_creuse.ads	20210118194406 93710436 google_creuse%s
+D google_naive.ads	20201219224655 63a09358 google_naive%s
+D google_naive.adb	20201219222317 55a0df9d google_naive%b
+D interfac.ads		20190518041254 5ab55268 interfaces%s
+D i-cstrea.ads		20190518041254 e53d8b8e interfaces.c_streams%s
+D pagerank.adb		20210118193125 b5b4c358 pagerank%b
+D system.ads		20190518041255 4635ec04 system%s
+D s-atocou.ads		20190518041256 b45c2d8d system.atomic_counters%s
+D s-crtl.ads		20190518041254 0ebbdb71 system.crtl%s
+D s-exctab.ads		20190518041255 54135002 system.exception_table%s
+D s-fatflt.ads		20190518041255 11beb392 system.fat_flt%s
+D s-fatgen.ads		20190518041256 49cbaf86 system.fat_gen%s
+D s-ficobl.ads		20190518041256 078245e4 system.file_control_block%s
+D s-finmas.ads		20190518041255 7811a767 system.finalization_masters%s
+D s-finroo.ads		20190518041256 4ff27390 system.finalization_root%s
+D s-os_lib.ads		20190518041255 5703ce4c system.os_lib%s
+D s-parame.ads		20190518041256 48ec542b system.parameters%s
+D s-secsta.ads		20190518041256 20bbe636 system.secondary_stack%s
+D s-soflin.ads		20190518041255 a7318a92 system.soft_links%s
+D s-stache.ads		20190518041256 a37c21ec system.stack_checking%s
+D s-stalib.ads		20190518041256 09bd3940 system.standard_library%s
+D s-stoele.ads		20190518041256 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20190518041255 b16154c2 system.storage_pools%s
+D s-stposu.ads		20190518041254 97a6219c system.storage_pools.subpools%s
+D s-stratt.ads		20190518041254 aedef97e system.stream_attributes%s
+D s-string.ads		20190518041255 8fe54fb7 system.strings%s
+D s-traent.ads		20190518041254 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20190518041255 34867c83 system.unsigned_types%s
+D s-valint.ads		20190518041255 b5ff6963 system.val_int%s
+D s-valrea.ads		20190518041256 0e7fecd5 system.val_real%s
+D s-wchcon.ads		20190518041255 1b7d22d2 system.wch_con%s
+D vecteurs_creux.ads	20210118191933 70e42ea5 vecteurs_creux%s
+D vecteurs_creux.adb	20210118192413 09c2f650 vecteurs_creux%b
+G a e
+G c Z b b [pagerank standard 11 11 none]
+G r i none [pagerank standard 11 11 none] [google_naive standard 6 9 none]
+G r c none [pagerank standard 11 11 none] [obtenir_nb_pages_c google_creuse 14 17 none]
+G r c none [pagerank standard 11 11 none] [matrice_initiale_c google_creuse 20 18 none]
+G r c none [pagerank standard 11 11 none] [matrice_h_c google_creuse 32 17 none]
+G r c none [pagerank standard 11 11 none] [initialiser_p_c google_creuse 29 17 none]
+G r c none [pagerank standard 11 11 none] [obtenir_gij_c google_creuse 26 17 none]
+G r c none [pagerank standard 11 11 none] [trier_p_c google_creuse 35 17 none]
+G r c none [pagerank standard 11 11 none] [fichier_pagerank_c google_creuse 41 17 none]
+G r c none [pagerank standard 11 11 none] [creer_fichier_p_c google_creuse 38 17 none]
+G r c none [pagerank standard 11 11 none] [vider_c google_creuse 23 17 none]
+G r s t_matrice_c [pagerank standard 11 11 none] [t_matrice_cIP google_creuse 11 13 none]
+X 1 ada.ads
+16K9*Ada 20e8 29|1r6 2r6 2r23 3r6 3r29 4r6 4r31 5r6 5r28 6r6 6r33
+X 4 a-comlin.ads
+36K13*Command_Line 144e21 29|5w10 5r32
+39V13*Argument_Count{natural} 29|25s32 31s29 40s46 55s30 61s27 87s4 96s7
+. 102s36 103s10 122s10 148s33 149s7 170s7
+52V13*Argument{string} 29|25s23 31s20 40s37 55s21 61s18 90s7 101s7 102s27
+. 103s36 104s43 109s21 110s51 122s36 123s44 128s25 130s51 148s24 149s33 150s37
+. 155s16 156s49 170s33 171s37 176s16 178s47
+X 7 a-flteio.ads
+20K13*Float_Text_IO[17|46] 29|3w10 3r33
+X 8 a-inteio.ads
+18K13*Integer_Text_IO[19|46] 29|4w10 4r35
+X 9 a-ioexce.ads
+18K13*IO_Exceptions 30e22 29|1w10
+X 11 a-string.ads
+16K13*Strings 35e16 29|6r10 6r37
+X 13 a-strunb.ads
+82K21*Unbounded 756e26 29|6w18 6r45
+92V13*Length{natural} 29|104s16 123s17 150s10 171s10
+103V13*To_Unbounded_String{87R9} 29|104s23 123s24 150s17 171s17
+X 15 a-textio.ads
+57K13*Text_IO 727e16 29|2w10 2r27
+64P9*File_Type 29|13r6
+264U14*New_Line 29|98s8 106s16 125s19 152s10 173s10
+465U14*Put 29|82s25 97s8 105s16 113s30 116s33 124s19 133s32 138s35 151s10
+. 159s28 162s31 172s10 181s28 186s31
+544X4*Name_Error 29|82r12
+X 22 gnat.ads
+34K9*GNAT 57e9 29|10r6 21r4
+X 23 g-os_lib.ads
+51K14*OS_Lib=51:36 29|10w11 21r9
+X 24 google_creuse.ads
+5K9*google_creuse 47e18 29|8w6 8r25
+9A13*T_Vecteur_c(float)<integer> 29|27r3 28r3
+11A13*T_matrice_c(55|6P14[6])<integer> 29|29r3
+14V17*Obtenir_nb_pages_c{integer} 29|25s4
+20U18*Matrice_Initiale_c 29|31s1
+23U17*Vider_c 29|50s1
+26V17*Obtenir_Gij_c{float} 29|40s23
+29U17*Initialiser_P_c 29|33s1
+32U17*matrice_H_c 29|32s1
+35U17*Trier_P_c 29|47s1
+38U17*Creer_Fichier_P_c 29|49s1
+41U17*fichier_pagerank_c 29|48s1
+X 25 google_naive.ads
+6k9*Google_Naive 32e17 29|7w6 16r23
+9A13 T_Vecteur(float)<integer> 29|57r3[16] 58r3[16]
+10A13 T_matrice(float)<integer><integer> 29|59r3[16]
+13V16 Obtenir_nb_pages{integer} 29|55s4[16] 102s10[16] 148s7[16]
+15U17 Matrice_Initiale 29|61s1[16]
+17U17 matrice_H 29|62s1[16]
+19V17 Obtenir_Gij{float} 29|70s23[16]
+21U17 Initialiser_P 29|63s1[16]
+23U17 Trier_P 29|77s1[16]
+25U17 Creer_Fichier_P 29|79s1[16]
+27U17 Calculer_Rank 29|78s1[16]
+X 29 pagerank.adb
+11U11*Pagerank 11b11 204l5 204t13
+12i1 N{integer} 25m1 27r18 28r18 29r18 31r47 32r15 33r17 37r17 39r21 40r68
+. 47r13 48r22 49r21 55m1 57r16 58r16 59r16 59r23 63r15 67r17 69r21 70r41
+. 77r11 78r17 79r19 102m7 148m4
+13p1 file{15|64P9}
+14i1 Nb_it{integer} 36r13 49r29 66r13 79r27 89m4 110m30 156m28
+16K9 Google[25|6] 16r48
+17f1 alpha{float} 40r70 49r23 70r43 79r21 88m4 130m32 178m28
+18f1 T{float} 38m9 40m13 40r16 42r15 68m9 70m13 70r16 72r15
+19U11 stop 19b11 22l5 22t9 99s8 107s16 114s28 117s31 126s19 134s28 139s31
+. 153s10 160s28 163s31 174s10 182s28 187s31
+23U11 pagerank_creuse 23b11 52l5 52t20 93s7 145s8
+27a1 P{24|9A13} 33m19 33r19 35r4 40r18 44m5 46r4 47m11 47r11 48r20 49r19
+28a1 V{24|9A13} 35m1 42m9 44r8 46m1 48r24
+29a1 H{24|11A13} 31m45 31r45 32m13 32r13 40r66 50m9 50r9
+36i5 k{integer}
+37i9 i{integer} 40r64 42r11
+39i13 j{integer} 40r20 40r62
+53U11 pagerank_naive 53b11 83l5 83t19 91s7 193s4
+57a1 P{25|9A13[16]} 63m17 63r17 64r4 70r18 74m5 76r4 77m9 77r9 78r15 79r17
+58a1 V{25|9A13[16]} 64m1 72m9 74r8 76m1 78r19
+59a1 H{25|10A13[16]} 61m43 62m11 62r11 70r39
+66i5 k{integer}
+67i9 i{integer} 70r37 72r11
+69i13 j{integer} 70r20 70r35
+X 39 s-os_lib.ads
+1045U14*OS_Exit 29|21s16
+X 55 vecteurs_creux.ads
+4k9*vecteurs_creux 29|9w6 55|59e19
+6P14*T_Vecteur_Creux
+

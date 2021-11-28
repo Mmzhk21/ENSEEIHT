@@ -1,0 +1,1824 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{1SN\_LangageC\_C2}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@fm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vm\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sa\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@dl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{Langage C - Notebook C2}\label{langage-c---notebook-c2}
+
+\subsection{Allocation dynamique}\label{allocation-dynamique}
+
+\paragraph{Katia Jaffrès-Runser, Xavier
+Crégut}\label{katia-jaffruxe8s-runser-xavier-cruxe9gut}
+
+Toulouse INP - ENSEEIHT,
+
+1ère année, Dept. Sciences du Numérique, 2020-2021.
+
+    \subsection{\#\# 1. Déroulement du cours}\label{duxe9roulement-du-cours}
+
+Ce cours se déroule sur 6 séances de TP.
+
+\begin{itemize}
+\tightlist
+\item
+  Lors des trois premières séances, vous avez suivi le sujet C1 sous la
+  forme d'un notebook Jupyter.
+\item
+  Lors des trois dernières séances, vous suivrez deux autres notebook
+  Jupyter, C2 et C3, à votre rythme.
+\end{itemize}
+
+Chaque sujet, C1, C2 et C3, se termine par un exercice Bilan à rendre
+via votre dépot SVN. Les échéances sont indiquées sur Moodle. Les 3
+exercices bilans sont notés, et leur moyenne fournit une note
+d'exercices.
+
+Vous aurez, en fin de cours, un QCM d'une heure. La note finale est une
+moyenne des deux notes (QCM et exercices rendus).
+
+    \subsection{2. Objectifs}\label{objectifs}
+
+Ce cours, sous la forme de notebooks Jupyter et d'un ensemble
+d'exercices à réaliser en TP, a pour objectif de vous présenter les
+spécificités de la programmation en langage C. Il se base sur vos acquis
+du cours de Programmation Impérative en algorithmique et vous détaille
+les éléments du langage C nécessaires à la production d'un programme en
+C.
+
+Un support de cours PDF vous est également fournit sur Moodle :
+\href{http://moodle-n7.inp-toulouse.fr/pluginfile.php/49240/mod_resource/content/5/LangageC_poly.pdf}{Cours
+C}.
+
+    \subsection{\#\# 3. Plan du sujet C2.}\label{plan-du-sujet-c2.}
+
+Ce sujet se focalise sur l'allocation dynamique de mémoire en C. Il vous
+présente :
+
+\begin{itemize}
+\tightlist
+\item
+  Les principaux allocateurs de mémoire, et leur utilisation.
+\item
+  La libération de mémoire, et son utilisation.
+\item
+  La distinction entre manipulation d'un tableau statique et dynamique
+  en C
+\item
+  Le sous-programme de réallocation de mémoire
+\end{itemize}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{Rappel : Jupyter notebook}\label{rappel-jupyter-notebook}
+
+Le support de cours que vous lisez est un notebook Jupyter. Pour
+visualiser le notebook, lancer l'editeur web avec la commande\\
+\textgreater{} \texttt{jupyter-notebook}
+
+et rechercher le fichier dans l'arborescence. Le fichier est édité dans
+votre navigateur Web par défaut. L'enregistrement est automatique
+(\texttt{CTRL\ S} pour le forcer).
+
+Pour fermer votre fichier, il faut fermer le navigateur et terminer le
+processus serveur qui s'exécute dans le terminal (\texttt{CTRL\ C}, puis
+\texttt{y}).
+
+\begin{quote}
+\textbf{Important} : - Pour faire fonctionner le kernel C de jupyter
+notebook, il faut, avant une \textbf{première utilisation} de Notebook,
+lancer la commande suivante dans un \texttt{Terminal} :
+\end{quote}
+
+\begin{quote}
+\texttt{install\_c\_kernel\ -\/-user}
+\end{quote}
+
+Ce notebook se compose de cellules présentant soit : - Des éléments de
+cours, au format
+\href{https://fr.wikipedia.org/wiki/Markdown}{Markdown}. Ce langage est
+traduit en HTML pour un affichage aisé quand on clique sur la flèche
+\texttt{Exécuter\ (run)} et que la cellule est active. - Du code en
+Langage C (ou Python, ou autre..). Pour compiler et exécuter le code
+écrit dans la cellule active, on clique sur la flèche
+\texttt{Exécuter\ (run)}. Si la compilation se déroule sans erreur ni
+avertissement, le programme est exécuté et les sorties sont affichées en
+bas de la cellule. Si ce n'est pas le cas, les avertissements et
+warnings sont affichés en bas de la cellule.
+
+En double-cliquant sur une cellule, on peut éditer son contenu. Vous
+pouvez ainsi : - Editer une cellule markdown pour y intégrer vos propres
+notes. - Modifier les programmes pour répondre aux questions et
+exercices proposés.
+
+Il est possible d'exporter votre travail en PDF, HTML, etc. Il est aussi
+possible d'afficher les numéros de ligne dans le menu
+\textbf{Affichage}.
+
+Le programme dans la cellule suivante s'exécute sans erreur. Vous pouvez
+- le tester en l'exécutant. - y introduire une erreur (suppression d'un
+point-virgule par exemple) pour observer la sortie du compilateur.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}1}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}\PY{c+c1}{ }
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{******************************}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{******** Langage C ***********}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{******************************}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+******************************
+******** Langage C ***********
+******************************
+
+    \end{Verbatim}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsection{4. Allocation dynamique de
+mémoire}\label{allocation-dynamique-de-muxe9moire}
+
+    \subsubsection{4.1 Structure de la
+mémoire}\label{structure-de-la-muxe9moire}
+
+La mémoire vive de votre ordinateur est structurée en différentes
+parties : - \textbf{Le mémoire statique} Zone de la mémoire où sont
+stockées les données qui ont la même durée de vie que le programme
+(variables globales). - \textbf{La mémoire automatique} Zone de la
+mémoire appelée \textbf{pile d'exécution} où sont stockés les blocs
+d'activation, paramètres et variables locales des sous-programmes. Cette
+mémoire est gérée automatiquement par le compilateur (réservation et
+libération). La mémoire est contigüe (sans trous). - \textbf{La mémoire
+dynamique} Zone de la mémoire aussi appelée \textbf{tas} dans laquelle
+le programmeur peut explicitement réserver (allouer) de la place. Il
+devra la libérer explicitement. Cette zone est fragmentée (trous).
+
+    \paragraph{Utilisation de la mémoire
+dynamique}\label{utilisation-de-la-muxe9moire-dynamique}
+
+L'enregistrement d'une donnée dans une zone de la mémoire dynamique
+nécessite une \textbf{demande d'allocation explicite} de ladite zone.
+Cette zone mémoire est référencée à traver \textbf{un pointeur}. Ainsi,
+l'écriture et la lecture de la donnée se fait exclusivement par ce
+pointeur.
+
+Quand la zone mémoire n'est plus utile, il faut \textbf{demander
+explicitement la libération} de l'espace mémoire en C. Attention, quand
+on réalise cette opération, il faut s'assurer qu'aucun pointeur ne
+référence plus cette zone mémoire un fois désallouée.
+
+    \subsubsection{4.2 Allocation de
+mémoire}\label{allocation-de-muxe9moire}
+
+La bibliothèque \texttt{stdlib.h} (ou \texttt{malloc.h}) offre 3
+procédures d'allocation de mémoire : \texttt{malloc}, \texttt{calloc} et
+\texttt{realloc}. Elle définit aussi une procédure de libération de
+mémoire \texttt{free}.
+
+\paragraph{\texorpdfstring{L'allocateur
+\texttt{malloc}}{L'allocateur malloc}}\label{lallocateur-malloc}
+
+C'est l'allocateur utilisé le plus couramment : \textgreater{}
+\texttt{void*\ malloc(size\_t\ taille);}
+
+Ici on trouve : - Le type de retour \texttt{void\ *} qui représente un
+type pointeur générique sur une zone mémoire. Le pointeur retourné vaut
+\texttt{NULL} si l'allocation échoue (manque d'espace mémoire contigüe).
+- Le type \texttt{size\_t} qui est un alias de \texttt{unsigned\ int} et
+représente la \textbf{taille en octets} de la zone mémoire réservée.
+
+\paragraph{\texorpdfstring{L'opérateur
+\texttt{sizeof}}{L'opérateur sizeof}}\label{lopuxe9rateur-sizeof}
+
+\begin{itemize}
+\tightlist
+\item
+  Pour obtenir la taille en octets d'une variable ou d'un type, on
+  utilise la fonction \texttt{sizeof()} : \textgreater{}
+  \texttt{sizeof(ma\_variable)} ou \texttt{sizeof(type)}
+\end{itemize}
+
+    \subparagraph{Exemples d'allocations :}\label{exemples-dallocations}
+
+\begin{verbatim}
+    char* un_char = malloc(sizeof(char));
+    char* autre_char = malloc(sizeof(*autre_char)); //taille du type pointé
+    
+    enum genre = {H, F, NC};
+    enum genre * il = malloc(sizeof(enum genre));
+\end{verbatim}
+
+    \paragraph{\texorpdfstring{L'allocateur
+\texttt{calloc}}{L'allocateur calloc}}\label{lallocateur-calloc}
+
+C'est une variante de malloc : \textgreater{}
+\texttt{void*\ calloc(size\_t\ nombre,\ size\_t\ taille\_element);}
+
+Ici, la taille de la zone mémoire allouée est décrite avec deux
+paramètres : - La taille d'un élément avec \texttt{taille\_element} - Et
+le nombre d'éléments de cette taille avec \texttt{nombre}. Ainsi, on
+alloue \texttt{nombre\ *\ taille\_element} octets.
+
+\begin{quote}
+\textbf{Note :} À la différence de malloc, tous les bits de la zone
+allouée sont positionnés à zéro.
+\end{quote}
+
+    \paragraph{\texorpdfstring{Libérer la mémoire avec \texttt{free}
+:}{Libérer la mémoire avec free :}}\label{libuxe9rer-la-muxe9moire-avec-free}
+
+Désallouer se fait avec la fonction : \textgreater{}
+\texttt{void\ free(void*\ pointeur);}
+
+L'unique paramètre est le pointeur qui désigne l'adresse de la mémoire à
+désallouer. \textgreater{} \textbf{Attention} la libération ne modifie
+pas l'adresse enregistrée dans le pointeur. Il faut explicitement
+oublier l'adresse non-valide en initialisant le pointeur à \texttt{NULL}
+:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{    free(ptr_int);}
+\NormalTok{    ptr_int = NULL;}
+\end{Highlighting}
+\end{Shaded}
+
+    Voici un exemple d'allocation, utilisation et libération de la mémoire
+(cf. fichier \textbf{\texttt{Exemple4\_2.c}}) :
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+        
+        \PY{k+kt}{void} \PY{n+nf}{exemple\PYZus{}dynamique}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{c+c1}{//Allouer dynamiquement un entier}
+            \PY{k+kt}{unsigned} \PY{k+kt}{int} \PY{n}{taille} \PY{o}{=} \PY{k}{sizeof}\PY{p}{(}\PY{k+kt}{int}\PY{p}{)}\PY{p}{;}
+            \PY{k+kt}{int} \PY{o}{*}\PY{n}{mon\PYZus{}entier} \PY{o}{=} \PY{n}{malloc}\PY{p}{(}\PY{n}{taille}\PY{p}{)}\PY{p}{;}
+            \PY{c+c1}{//Vérifier le succès de la demande d\PYZsq{}allocation}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{mon\PYZus{}entier} \PY{o}{!}\PY{o}{=} \PY{n+nb}{NULL}\PY{p}{)}\PY{p}{;}
+            
+            \PY{c+c1}{//Initialiser la donnée à travers le pointeur mon\PYZus{}entier}
+            \PY{o}{*}\PY{n}{mon\PYZus{}entier} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{;}
+            \PY{c+c1}{//Accéder à la donnée}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Donnée enregistrée : \PYZpc{}d}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{o}{*}\PY{n}{mon\PYZus{}entier}\PY{p}{)}\PY{p}{;}
+            
+            \PY{c+c1}{//Libérer la mémoire dynamique}
+            \PY{n}{free}\PY{p}{(}\PY{n}{mon\PYZus{}entier}\PY{p}{)}\PY{p}{;}
+            \PY{c+c1}{//Oublier l\PYZsq{}adresse mémoire}
+            \PY{n}{mon\PYZus{}entier} \PY{o}{=} \PY{n+nb}{NULL}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)} \PY{p}{\PYZob{}}
+            \PY{n}{exemple\PYZus{}dynamique}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Donnée enregistrée : 10
+
+    \end{Verbatim}
+
+    On observe les éléments suivants :
+
+\begin{itemize}
+\item
+  L'allocation est ici réalisée avec la fonction \texttt{malloc(taille)}
+  qui retourne un pointeur. Elle demande l'allocation de \texttt{taille}
+  octets. Si l'allocation est réalisée avec succès, elle retourne
+  l'adresse de la zone mémoire via le pointeur. Sinon, elle retourne
+  \texttt{NULL}.
+\item
+  L'accès à la donnée est réalisé via le pointeur \texttt{mon\_entier}
+\item
+  La libération de la mémoire utilise la fonction
+  \texttt{free(mon\_entier)}.
+\end{itemize}
+
+\begin{quote}
+\textbf{Attention} la libération ne modifie pas l'adresse enregistrée
+dans le pointeur. Il faut explicitement oublier l'adresse non-valide en
+initialisant le pointeur à \texttt{NULL}.
+\end{quote}
+
+    \subsubsection{\texorpdfstring{4.3 Allocation d'un tableau avec
+\texttt{malloc}}{4.3 Allocation d'un tableau avec malloc}}\label{allocation-dun-tableau-avec-malloc}
+
+Pour allouer un tableau de N éléments dynamiquement, il suffit de
+demander l'espace mémoire pour contenir les N éléments :
+
+\begin{verbatim}
+    // Allocation d'un tableau de 10 entiers
+    int* mon_tableau = malloc(10*sizeof(int));
+\end{verbatim}
+
+On peut alors utiliser la notation \texttt{mon\_tableau{[}..{]}} pour
+accéder aux éléments du tableau. En effet, les 10 entiers sont
+enregistrés dans une portion de mémoire dynamique contigüe.
+\texttt{mon\_tableau} est un pointeur qui comporte l'adresse de la
+première case du tableau, et l'accès à la 3ème case se fait par simple
+décalage d'indice avec l'opérateur \texttt{{[}{]}}.
+
+\begin{verbatim}
+    mon_tableau[2] = 20;
+\end{verbatim}
+
+\begin{quote}
+\textbf{Attention} : \texttt{sizeof(mon\_tableau)} retourne uniquement
+la taille du pointeur \texttt{mon\_tableau} alloué dynamiquement ! Par
+contre, si un tableau est alloué statiquement, \texttt{sizeof} retourne
+la taille totale du tableau.
+\end{quote}
+
+    \subparagraph{Exemple}\label{exemple}
+
+Voici un exemple d'allocation de tableaux dynamiques et statiques, et de
+la valeur retournée par \texttt{sizeof}. Vous pouvez manipuler le
+fichier \textbf{\texttt{Exemple4\_3.c}}.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}3}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+        \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+        
+        \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+            \PY{k+kt}{int} \PY{n}{taille\PYZus{}entier} \PY{o}{=} \PY{k}{sizeof}\PY{p}{(}\PY{k+kt}{int}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Taille d\PYZsq{}un entier : \PYZpc{}d}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{taille\PYZus{}entier}\PY{p}{)}\PY{p}{;}
+            \PY{k+kt}{int} \PY{n}{taille\PYZus{}pointeur} \PY{o}{=} \PY{k}{sizeof}\PY{p}{(}\PY{k+kt}{int}\PY{o}{*}\PY{p}{)}\PY{p}{;}
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{Taille d\PYZsq{}un pointeur : \PYZpc{}d}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{taille\PYZus{}pointeur}\PY{p}{)}\PY{p}{;}
+            
+            \PY{c+c1}{// Allouer un tableau de 10 entiers}
+            \PY{k+kt}{int}\PY{o}{*} \PY{n}{mon\PYZus{}tableau} \PY{o}{=} \PY{n}{malloc}\PY{p}{(}\PY{l+m+mi}{10}\PY{o}{*}\PY{n}{taille\PYZus{}entier}\PY{p}{)}\PY{p}{;}
+            \PY{k+kt}{int} \PY{n}{taille\PYZus{}dynamique} \PY{o}{=} \PY{k}{sizeof}\PY{p}{(}\PY{n}{mon\PYZus{}tableau}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{taille\PYZus{}dynamique} \PY{o}{=}\PY{o}{=} \PY{n}{taille\PYZus{}pointeur}\PY{p}{)}\PY{p}{;}
+            
+            \PY{c+c1}{// Declarer un tableau statique de 10 entiers }
+            \PY{k+kt}{int} \PY{n}{mon\PYZus{}tab}\PY{p}{[}\PY{l+m+mi}{10}\PY{p}{]}\PY{p}{;}
+            \PY{k+kt}{int} \PY{n}{taille\PYZus{}statique} \PY{o}{=} \PY{k}{sizeof}\PY{p}{(}\PY{n}{mon\PYZus{}tab}\PY{p}{)}\PY{p}{;}
+            \PY{n}{assert}\PY{p}{(}\PY{n}{taille\PYZus{}statique} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{10}\PY{o}{*}\PY{n}{taille\PYZus{}entier}\PY{p}{)}\PY{p}{;}
+            
+            \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+            \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+        \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Taille d'un entier : 4
+Taille d'un pointeur : 8
+Bravo ! Tous les tests passent.
+
+    \end{Verbatim}
+
+    \paragraph{Conséquence sur la définition d'un type tableau
+dynamique}\label{consuxe9quence-sur-la-duxe9finition-dun-type-tableau-dynamique}
+
+Il n'est pas possible d'utiliser \texttt{sizeof} pour connaitre la
+taille d'un tableau dynamique.
+
+\begin{quote}
+\textbf{Bonne pratique :} Il convient donc d'enregistrer dans une
+variable la capacité actuelle du tableau à l'aide d'une enregistrement
+\end{quote}
+
+\begin{verbatim}
+    struct tab {
+        int* tableau; //Le tableau, alloué dynamiquement à l'initialisation
+        int capacite; //La capacité
+    };
+    typedef struct tab tab;
+\end{verbatim}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsubsection{Exercice 1a : Manipuler les
+allocateurs}\label{exercice-1a-manipuler-les-allocateurs}
+
+Cet exercice a pour but de vous faire manipuler l'allocateur
+\texttt{malloc} et de libérer la mémoire avec \texttt{free}. Vous pouvez
+compléter le fichier \textbf{\texttt{Exercice1a.c}} si besoin.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         
+         \PY{c+c1}{// Consignes pour une obtenir une exécution sans erreur : }
+         \PY{c+c1}{//     \PYZhy{} compléter les instruction **** TODO **** }
+         \PY{c+c1}{// Attention : toutes les variables sont ici allouées et libérées dynamiquent}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+         
+              \PY{c+c1}{//un entier en mémoire dynamique }
+             \PY{k+kt}{unsigned} \PY{k+kt}{int} \PY{n}{taille} \PY{o}{=} \PY{k}{sizeof}\PY{p}{(}\PY{k+kt}{int}\PY{p}{)}\PY{p}{;}
+             \PY{k+kt}{int} \PY{o}{*}\PY{n}{ptr\PYZus{}int} \PY{o}{=} \PY{n}{malloc}\PY{p}{(}\PY{n}{taille}\PY{p}{)}\PY{p}{;}
+             \PY{o}{*}\PY{n}{ptr\PYZus{}int} \PY{o}{=} \PY{l+m+mi}{100}\PY{p}{;}
+             \PY{c+c1}{// Allocation et initialisation à la valeur 100;}
+         
+         
+             \PY{n}{assert}\PY{p}{(}\PY{o}{*}\PY{n}{ptr\PYZus{}int} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{100}\PY{p}{)}\PY{p}{;}
+         
+                 
+             \PY{n}{free} \PY{p}{(}\PY{n}{ptr\PYZus{}int}\PY{p}{)}\PY{p}{;}
+             \PY{n}{ptr\PYZus{}int} \PY{o}{=} \PY{n+nb}{NULL}\PY{p}{;}
+             \PY{c+c1}{//Libérer toute la mémoire dynamique}
+             
+             \PY{n}{assert}\PY{p}{(}\PY{o}{!}\PY{n}{ptr\PYZus{}int}\PY{p}{)}\PY{p}{;}
+         
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Bravo ! Tous les tests passent.
+
+    \end{Verbatim}
+
+    \subsubsection{Exercice 1b : Manipuler les
+allocateurs}\label{exercice-1b-manipuler-les-allocateurs}
+
+Cet exercice a pour but de vous faire manipuler l'allocateur
+\texttt{calloc} et de libérer la mémoire avec \texttt{free}. Vous pouvez
+compléter le fichier \textbf{\texttt{Exercice1b.c}} si besoin.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         
+         \PY{c+c1}{// Consignes pour une obtenir une exécution sans erreur : }
+         \PY{c+c1}{//     \PYZhy{} compléter les instruction **** TODO **** }
+         \PY{c+c1}{// Attention : toutes les variables sont ici allouées et libérées dynamiquent}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+         
+         
+              \PY{c+c1}{//un réel en mémoire dynamique }
+             \PY{c+c1}{// **** TODO ****}
+             \PY{k+kt}{unsigned} \PY{k+kt}{int} \PY{n}{taille\PYZus{}element} \PY{o}{=} \PY{k}{sizeof}\PY{p}{(}\PY{k+kt}{float}\PY{p}{)}\PY{p}{;}
+             \PY{k+kt}{float}\PY{o}{*} \PY{n}{ptr\PYZus{}float} \PY{o}{=} \PY{n}{calloc}\PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{n}{taille\PYZus{}element}\PY{p}{)}\PY{p}{;}
+             \PY{c+c1}{// Allocation du réel avec CALLOC;}
+         
+             \PY{n}{assert}\PY{p}{(}\PY{o}{*}\PY{n}{ptr\PYZus{}float} \PY{o}{=}\PY{o}{=} \PY{l+m+mf}{0.0}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{//**** TODO **** }
+             \PY{n}{free}\PY{p}{(}\PY{n}{ptr\PYZus{}float}\PY{p}{)}\PY{p}{;}
+             \PY{n}{ptr\PYZus{}float} \PY{o}{=} \PY{n+nb}{NULL}\PY{p}{;}
+             \PY{c+c1}{//Libérer toute la mémoire dynamique}
+             \PY{n}{assert}\PY{p}{(}\PY{o}{!}\PY{n}{ptr\PYZus{}float}\PY{p}{)}\PY{p}{;}
+                 
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Bravo ! Tous les tests passent.
+
+    \end{Verbatim}
+
+    \subsubsection{Exercice 1c : Manipuler les
+allocateurs}\label{exercice-1c-manipuler-les-allocateurs}
+
+Cet exercice a pour but de vous faire manipuler l'allocateur
+\texttt{calloc} et de libérer la mémoire avec \texttt{free}. Vous pouvez
+compléter le fichier \textbf{\texttt{Exercice1c.c}} si besoin.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define XXX 1}
+         
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         
+         \PY{c+c1}{// Consignes pour une obtenir une exécution sans erreur : }
+         \PY{c+c1}{//     \PYZhy{} Remplacer XXX par le bon résultat dans la suite.}
+         \PY{c+c1}{// Attention : toutes les variables sont ici allouées et libérées dynamiquent}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+         
+             \PY{k}{enum} \PY{n}{chat} \PY{p}{\PYZob{}}\PY{n}{SIAMOIS}\PY{p}{,} \PY{n}{CALICO}\PY{p}{,} \PY{n}{PERSAN}\PY{p}{,} \PY{n}{TABBY}\PY{p}{\PYZcb{}}\PY{p}{;}
+             \PY{k}{enum} \PY{n}{chat} \PY{o}{*} \PY{n}{my\PYZus{}cat}\PY{p}{;}
+             \PY{n}{my\PYZus{}cat} \PY{o}{=} \PY{n}{calloc}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,} \PY{k}{sizeof}\PY{p}{(}\PY{k}{enum} \PY{n}{chat}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{o}{*}\PY{n}{my\PYZus{}cat} \PY{o}{=}\PY{o}{=} \PY{n}{SIAMOIS}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{//**** TODO **** }
+             \PY{n}{free}\PY{p}{(}\PY{n}{my\PYZus{}cat}\PY{p}{)}\PY{p}{;}
+             \PY{n}{my\PYZus{}cat}\PY{o}{=} \PY{n+nb}{NULL}\PY{p}{;}
+             \PY{c+c1}{//Libérer toute la mémoire dynamique}
+             
+             \PY{n}{assert}\PY{p}{(}\PY{o}{!}\PY{n}{my\PYZus{}cat}\PY{p}{)}\PY{p}{;}
+         
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Bravo ! Tous les tests passent.
+
+    \end{Verbatim}
+
+    \subsubsection{Exercice 1.d : Manipuler les
+allocateurs}\label{exercice-1.d-manipuler-les-allocateurs}
+
+Cet exercice a pour but de vous faire allouer de la mémoire pour
+enregistrer un tableau de caractères. Vous pouvez completer le fichier
+\textbf{\texttt{Exercice1d.c}} si besoin.
+
+Pour rappel, en C, une chaine de caratères est un tableau de caractères
+qui termine par le caractère \texttt{\textbackslash{}0}. Cet exercice
+utilise la bibliothèque
+\href{https://fr.wikipedia.org/wiki/String.h}{\texttt{string.h}} qui
+offre des sous-programmes permettant de manipuler des chaines de
+caractère.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}string.h\PYZgt{}}
+         
+         \PY{c+c1}{// Consignes pour une obtenir une exécution sans erreur : }
+         \PY{c+c1}{//     \PYZhy{} compléter les instruction **** TODO ****}
+         \PY{c+c1}{// Attention : toutes les variables sont ici allouées et libérées dynamiquent}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+              \PY{c+c1}{//une chaine de caractère dynamique}
+             \PY{c+c1}{// **** TODO ****}
+             \PY{k+kt}{char}\PY{o}{*} \PY{n}{chaine} \PY{o}{=} \PY{n}{malloc}\PY{p}{(}\PY{l+m+mi}{10}\PY{o}{*}\PY{k}{sizeof}\PY{p}{(}\PY{k+kt}{char}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{c+c1}{// Allocation pour pouvoir y copier la chaine constante \PYZdq{}LANGAGE\PYZus{}C\PYZdq{}}
+             
+             \PY{c+c1}{// à l\PYZsq{}aide de la procédure strcpy() de string.h}
+         
+         
+             \PY{n}{strcpy}\PY{p}{(}\PY{n}{chaine}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{LANGAGE\PYZus{}C}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{strcmp}\PY{p}{(}\PY{n}{chaine}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{LANGAGE\PYZus{}C}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{o}{=}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{chaine}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{=}\PY{o}{=} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{L}\PY{l+s+sc}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{chaine}\PY{p}{[}\PY{l+m+mi}{9}\PY{p}{]} \PY{o}{=}\PY{o}{=} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{\PYZbs{}0}\PY{l+s+sc}{\PYZsq{}}\PY{p}{)}\PY{p}{;}
+             
+             \PY{c+c1}{//**** TODO **** }
+             \PY{c+c1}{//Libérer toute la mémoire dynamique}
+             \PY{n}{free}\PY{p}{(}\PY{n}{chaine}\PY{p}{)}\PY{p}{;}
+             \PY{n}{chaine} \PY{o}{=} \PY{n+nb}{NULL}\PY{p}{;}
+             
+             \PY{n}{assert}\PY{p}{(}\PY{o}{!}\PY{n}{chaine}\PY{p}{)}\PY{p}{;}
+                 
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s}{Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Bravo ! Tous les tests passent.
+
+    \end{Verbatim}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsubsection{Exercice 2 : Allocation dynamique et statique d'un
+tableau.}\label{exercice-2-allocation-dynamique-et-statique-dun-tableau.}
+
+Dans l'exercice suivant, il faut compléter des sous-programmes
+permettant d'initialiser et manipuler les structures de données
+nécessaires à la réalisation d'une version simplifiée du jeu de UNO.
+
+Dans ce jeu, il y a 10 cartes de 4 couleurs différentes (jaune, rouge,
+vert et bleu), numérotées entre 0 et 9. Une main de 7 cartes est
+distribuée à 2 joueurs. Le premier joueur à avoir posé toutes ses cartes
+est le vainqueur. Une carte ne peut être jouée que si elle présente le
+même numéro OU la même couleur que la précédente. Si un joueur ne peut
+poser une carte, il doit piocher une carte dans le tas de cartes
+restantes.
+
+Cet exercice a pour but de vous faire pratiquer la manipulation des
+tableaux dynamiques et statiques. Les consignes précises sont décrites
+dans le fichier ci-après. Vous pouvez completer le fichier
+\textbf{\texttt{Exercice2.c}} si besoin.
+
+L'objectif de l'exercice est de réaliser une exécution sans erreur du
+programme de test proposé (\texttt{test\_preparer\_jeu\_UNO}). Ce
+programme de test permet de vérifier la bonne préparation du jeu, et
+donc des étapes suivantes : - la création du jeu de 4*10 cartes, - la
+création de la main des deux joueurs. Chaque main comporte 7 cartes. -
+la création de la derniere carte posée pour démarrer le jeu.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}54}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define XXX 1}
+         
+         \PY{c+c1}{// Consignes : }
+         \PY{c+c1}{//  1. Remplacer XXX par le bon résultat dans la suite.}
+         \PY{c+c1}{//  2. Compléter avec les instructions nécessaires en lieu et place de }
+         \PY{c+c1}{//     **** TODO ****}
+         
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdbool.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}time.h\PYZgt{}}
+         
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define NB\PYZus{}VALEURS 4}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define NB\PYZus{}CARTES 4*NB\PYZus{}VALEURS}
+         
+         \PY{c+c1}{//Définition du type enseigne}
+         \PY{k}{enum} \PY{n}{couleur} \PY{p}{\PYZob{}}\PY{n}{JAUNE}\PY{p}{,} \PY{n}{ROUGE}\PY{p}{,} \PY{n}{VERT}\PY{p}{,} \PY{n}{BLEU}\PY{p}{\PYZcb{}}\PY{p}{;}
+         \PY{k}{typedef} \PY{k}{enum} \PY{n}{couleur} \PY{n}{couleur}\PY{p}{;}
+         
+         \PY{c+c1}{//Tableau de caractères représentant les couleurs}
+         \PY{k+kt}{char} \PY{n}{C}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{J}\PY{l+s+sc}{\PYZsq{}}\PY{p}{,} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{R}\PY{l+s+sc}{\PYZsq{}}\PY{p}{,} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{V}\PY{l+s+sc}{\PYZsq{}}\PY{p}{,} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{B}\PY{l+s+sc}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{;}
+         
+         \PY{c+c1}{//Définition du type carte}
+         \PY{k}{struct} \PY{n+nc}{carte} \PY{p}{\PYZob{}}
+             \PY{n}{couleur} \PY{n}{couleur}\PY{p}{;}
+             \PY{k+kt}{int} \PY{n}{valeur}\PY{p}{;} \PY{c+c1}{//valeur \PYZgt{}= 0 \PYZam{}\PYZam{} valeur \PYZlt{} NB\PYZus{}VALEURS}
+             \PY{k+kt}{bool} \PY{n}{presente}\PY{p}{;} \PY{c+c1}{// la carte est\PYZhy{}elle presente dans le jeu ?}
+         \PY{p}{\PYZcb{}}\PY{p}{;}
+         \PY{k}{typedef} \PY{k}{struct} \PY{n+nc}{carte} \PY{n}{carte}\PY{p}{;}
+         
+         \PY{c+c1}{//Définition du type jeu complet pour enregistrer NB\PYZus{}CARTES cartes.}
+         \PY{k}{typedef} \PY{n}{carte} \PY{n}{jeu}\PY{p}{[}\PY{n}{NB\PYZus{}CARTES}\PY{p}{]}\PY{p}{;}
+         
+         \PY{c+c1}{//Définition du type t\PYZus{}main, capable d\PYZsq{}enregistrer un nombre variable de cartes.}
+         \PY{k}{struct} \PY{n+nc}{main} \PY{p}{\PYZob{}}
+             \PY{n}{carte} \PY{o}{*} \PY{n}{main}\PY{p}{;} \PY{c+c1}{//tableau des cartes dans la main. }
+             \PY{k+kt}{int} \PY{n}{nb}\PY{p}{;} \PY{c+c1}{//monbre de cartes}
+         \PY{p}{\PYZcb{}}\PY{p}{;}
+         \PY{k}{typedef} \PY{k}{struct} \PY{n+nc}{main} \PY{n}{t\PYZus{}main}\PY{p}{;}
+         
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Initialiser une carte avec une couleur et une valeur. }
+         \PY{c+cm}{ * \PYZbs{}param[in] c couleur de la carte}
+         \PY{c+cm}{ * \PYZbs{}param[in] v valeur de la carte}
+         \PY{c+cm}{ * \PYZbs{}param[in] ej booléen presente}
+         \PY{c+cm}{ * \PYZbs{}param[out] la\PYZus{}carte }
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{init\PYZus{}carte}\PY{p}{(}\PY{n}{carte}\PY{o}{*} \PY{n}{la\PYZus{}carte}\PY{p}{,} \PY{n}{couleur} \PY{n}{c}\PY{p}{,} \PY{k+kt}{int} \PY{n}{v}\PY{p}{,} \PY{k+kt}{bool} \PY{n}{pr}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{la\PYZus{}carte}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{couleur} \PY{o}{=} \PY{n}{c}\PY{p}{;}
+             \PY{n}{la\PYZus{}carte}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{valeur} \PY{o}{=} \PY{n}{v}\PY{p}{;}
+             \PY{n}{la\PYZus{}carte}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{presente} \PY{o}{=} \PY{n}{pr}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Vérifie si la valeur de la carte est conforme à l\PYZsq{}invariant.}
+         \PY{c+cm}{ * \PYZbs{}param[in] c la carte}
+         \PY{c+cm}{ * \PYZbs{}return bool vrai si la valeur est conforme, faux sinon.}
+         \PY{c+cm}{ */}
+          \PY{k+kt}{bool} \PY{n+nf}{est\PYZus{}conforme}\PY{p}{(}\PY{n}{carte} \PY{n}{c}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k}{return} \PY{p}{(}\PY{n}{c}\PY{p}{.}\PY{n}{valeur}\PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mi}{0} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{c}\PY{p}{.}\PY{n}{valeur}\PY{o}{\PYZlt{}}\PY{n}{NB\PYZus{}VALEURS}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Initialiser une main.}
+         \PY{c+cm}{ * \PYZbs{}param[in] N nombre de cartes composant la main.  Précondition : N \PYZlt{}= (NB\PYZus{}CARTES \PYZhy{} 1) div 2}
+         \PY{c+cm}{ * \PYZbs{}param[out] la\PYZus{}main créée}
+         \PY{c+cm}{ * \PYZbs{}return true si l\PYZsq{}initialisation a échouée.}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{bool} \PY{n+nf}{init\PYZus{}main}\PY{p}{(}\PY{n}{t\PYZus{}main}\PY{o}{*} \PY{n}{la\PYZus{}main}\PY{p}{,} \PY{k+kt}{int} \PY{n}{N}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{N} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{p}{(}\PY{n}{NB\PYZus{}CARTES}\PY{l+m+mi}{\PYZhy{}1}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{;}
+             \PY{c+c1}{// ***** TODO ***** }
+             \PY{c+c1}{// Corriger l\PYZsq{}initialisation du tableau main}
+             \PY{n}{la\PYZus{}main}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{main} \PY{o}{=} \PY{n}{malloc}\PY{p}{(}\PY{k}{sizeof}\PY{p}{(}\PY{n}{la\PYZus{}main}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{main}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{la\PYZus{}main}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{nb} \PY{o}{=} \PY{n}{N}\PY{p}{;}
+             \PY{k}{return} \PY{p}{(}\PY{n}{la\PYZus{}main}\PY{o}{=}\PY{o}{=}\PY{n+nb}{NULL}\PY{p}{)}\PY{p}{;} \PY{c+c1}{//allocation réussie ?}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Initialiser le jeu en ajoutant toutes les cartes possibles au jeu. }
+         \PY{c+cm}{ * \PYZbs{}brief Chaque carte est alors présente dans le jeu.}
+         \PY{c+cm}{ * \PYZbs{}param[out] le\PYZus{}jeu tableau de cartes avec les 4 couleurs et NB\PYZus{}VALEURS valeurs possibles}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{init\PYZus{}jeu}\PY{p}{(}\PY{n}{jeu} \PY{n}{le\PYZus{}jeu}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k+kt}{int} \PY{n}{k}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{;}
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0} \PY{p}{;} \PY{n}{i}\PY{o}{\PYZlt{}}\PY{l+m+mi}{4} \PY{p}{;} \PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{j}\PY{o}{=}\PY{l+m+mi}{0} \PY{p}{;} \PY{n}{j}\PY{o}{\PYZlt{}}\PY{n}{NB\PYZus{}VALEURS} \PY{p}{;} \PY{n}{j}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                     \PY{n}{init\PYZus{}carte}\PY{p}{(}\PY{o}{\PYZam{}}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n+nb}{true}\PY{p}{)}\PY{p}{;}
+                     \PY{n}{k}\PY{o}{+}\PY{o}{+}\PY{p}{;}
+                 \PY{p}{\PYZcb{}}
+             \PY{p}{\PYZcb{}}
+         \PY{p}{\PYZcb{}}
+         
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Copie les valeurs de la carte src dans la carte dest.}
+         \PY{c+cm}{ * \PYZbs{}param[in] src carte à copier}
+         \PY{c+cm}{ * \PYZbs{}param[out] dest carte destination de la copie }
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{copier\PYZus{}carte}\PY{p}{(}\PY{n}{carte}\PY{o}{*} \PY{n}{dest}\PY{p}{,} \PY{n}{carte} \PY{n}{src}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{dest}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{couleur} \PY{o}{=} \PY{n}{src}\PY{p}{.}\PY{n}{couleur}\PY{p}{;}
+             \PY{n}{dest}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{valeur} \PY{o}{=} \PY{n}{src}\PY{p}{.}\PY{n}{valeur}\PY{p}{;}
+             \PY{n}{dest}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{presente} \PY{o}{=} \PY{n}{src}\PY{p}{.}\PY{n}{presente}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Afficher une carte.}
+         \PY{c+cm}{ * \PYZbs{}param[in] cte carte à afficher}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{afficher\PYZus{}carte}\PY{p}{(}\PY{n}{carte} \PY{n}{cte}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{(\PYZpc{}c;\PYZpc{}d;\PYZpc{}d)}\PY{l+s+se}{\PYZbs{}t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{C}\PY{p}{[}\PY{n}{cte}\PY{p}{.}\PY{n}{couleur}\PY{p}{]}\PY{p}{,} \PY{n}{cte}\PY{p}{.}\PY{n}{valeur}\PY{p}{,} \PY{n}{cte}\PY{p}{.}\PY{n}{presente}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Afficher le jeu.}
+         \PY{c+cm}{ * \PYZbs{}param[in] le\PYZus{}jeu complet}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{afficher\PYZus{}jeu}\PY{p}{(}\PY{n}{jeu} \PY{n}{le\PYZus{}jeu}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{c+c1}{// ***** TODO ***** }
+             \PY{c+c1}{// Afficher le jeu complet. Les carte sont listées sur une même ligne, }
+             \PY{c+c1}{// et séparées par une tabulation \PYZbs{}t}
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{;}\PY{n}{i}\PY{o}{\PYZlt{}}\PY{n}{NB\PYZus{}VALEURS}\PY{p}{;}\PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{n}{afficher\PYZus{}carte}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+                 \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Afficher une main.}
+         \PY{c+cm}{ * \PYZbs{}param[in] la\PYZus{}main la main a afficher}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{afficher\PYZus{}main}\PY{p}{(}\PY{n}{t\PYZus{}main} \PY{n}{la\PYZus{}main}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{c+c1}{// ***** TODO ***** }
+             \PY{c+c1}{// Afficher le jeu complet. Les carte sont listées sur une même ligne, }
+             \PY{c+c1}{// et séparées par une tabulation \PYZbs{}t}
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{i} \PY{o}{=}\PY{l+m+mi}{0}\PY{p}{;}\PY{n}{i}\PY{o}{\PYZlt{}}\PY{n}{la\PYZus{}main}\PY{p}{.}\PY{n}{nb}\PY{p}{;}\PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{n}{afficher\PYZus{}carte}\PY{p}{(}\PY{n}{la\PYZus{}main}\PY{p}{.}\PY{n}{main}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+                 \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}t}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief mélange le jeu.}
+         \PY{c+cm}{ * \PYZbs{}param[in out] le\PYZus{}jeu complet mélangé}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{melanger\PYZus{}jeu}\PY{p}{(}\PY{n}{jeu} \PY{n}{le\PYZus{}jeu}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{k}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{;} \PY{n}{k}\PY{o}{\PYZlt{}}\PY{l+m+mi}{1000}\PY{p}{;} \PY{n}{k}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{c+c1}{// Choisir deux cartes aléatoirement}
+                 \PY{k+kt}{int} \PY{n}{i} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZpc{}}\PY{n}{NB\PYZus{}CARTES}\PY{p}{;}
+                 \PY{k+kt}{int} \PY{n}{j} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZpc{}}\PY{n}{NB\PYZus{}CARTES}\PY{p}{;}        
+                 \PY{c+c1}{// Les échanger}
+                 \PY{c+c1}{// ***** TODO **** }
+                \PY{n}{carte}\PY{o}{*} \PY{n}{dest} \PY{o}{=} \PY{n}{malloc}\PY{p}{(}\PY{k}{sizeof}\PY{p}{(}\PY{n}{carte}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+                \PY{n}{init\PYZus{}carte}\PY{p}{(}\PY{n}{dest}\PY{p}{,}\PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{.}\PY{n}{couleur}\PY{p}{,}\PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{.}\PY{n}{valeur}\PY{p}{,}\PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{.}\PY{n}{presente}\PY{p}{)}\PY{p}{;}
+                 \PY{n}{copier\PYZus{}carte}\PY{p}{(}\PY{o}{\PYZam{}}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{,}\PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+                 \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{.}\PY{n}{presente} \PY{o}{=} \PY{n+nb}{false}\PY{p}{;}
+                 \PY{n}{copier\PYZus{}carte}\PY{p}{(}\PY{n}{dest}\PY{p}{,}\PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ \PYZbs{}brief Distribuer N cartes à chacun des deux joueurs, en alternant les joueurs.}
+         \PY{c+cm}{ * \PYZbs{}param[in out] le\PYZus{}jeu complet.}
+         \PY{c+cm}{ *       Si la carte c est distribuée dans une main, c.presente devient faux.}
+         \PY{c+cm}{ * \PYZbs{}param[in] N nombre de cartes distribuées à chaque joueur.  Précondition : N \PYZlt{}= (NB\PYZus{}CARTES \PYZhy{} 1) div 2}
+         \PY{c+cm}{ * \PYZbs{}param[out] m1 main du joueur 1.}
+         \PY{c+cm}{ * \PYZbs{}param[out] m2 main du joueur 2.}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{distribuer\PYZus{}mains}\PY{p}{(}\PY{n}{jeu} \PY{n}{le\PYZus{}jeu}\PY{p}{,} \PY{k+kt}{int} \PY{n}{N}\PY{p}{,} \PY{n}{t\PYZus{}main}\PY{o}{*} \PY{n}{m1}\PY{p}{,} \PY{n}{t\PYZus{}main}\PY{o}{*} \PY{n}{m2}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{N} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{p}{(}\PY{n}{NB\PYZus{}CARTES}\PY{l+m+mi}{\PYZhy{}1}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{//Initialiser les mains de N cartes}
+             \PY{k+kt}{bool} \PY{n}{errA} \PY{o}{=} \PY{n}{init\PYZus{}main}\PY{p}{(}\PY{n}{m1}\PY{p}{,} \PY{n}{N}\PY{p}{)}\PY{p}{;}
+             \PY{k+kt}{bool} \PY{n}{errB} \PY{o}{=} \PY{n}{init\PYZus{}main}\PY{p}{(}\PY{n}{m2}\PY{p}{,} \PY{n}{N}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{o}{!}\PY{n}{errA} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{o}{!}\PY{n}{errB}\PY{p}{)}\PY{p}{;}
+             
+             \PY{c+c1}{//Distribuer les cartes}
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{;} \PY{n}{i}\PY{o}{\PYZlt{}}\PY{n}{N}\PY{p}{;} \PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{c+c1}{// ajout d\PYZsq{}une carte dans la main m1}
+                 \PY{n}{copier\PYZus{}carte}\PY{p}{(}\PY{o}{\PYZam{}}\PY{p}{(}\PY{n}{m1}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{main}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+                 \PY{c+c1}{// ajout d\PYZsq{}une carte dans la main m2}
+                 \PY{n}{copier\PYZus{}carte}\PY{p}{(}\PY{o}{\PYZam{}}\PY{p}{(}\PY{n}{m2}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{main}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+                 \PY{c+c1}{//mise à jour de presente à false dans le\PYZus{}jeu}
+                 \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{i}\PY{p}{]}\PY{p}{.}\PY{n}{presente} \PY{o}{=} \PY{n+nb}{false}\PY{p}{;}
+                 \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{.}\PY{n}{presente} \PY{o}{=} \PY{n+nb}{false}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Initialise le jeu de carte, les mains des joueurs et la carte \PYZsq{}last\PYZsq{}.}
+         \PY{c+cm}{ * \PYZbs{}param[out] le\PYZus{}jeu complet avec les 4 couleurs et 10 valeurs possibles.}
+         \PY{c+cm}{ *                Ce jeu est mélangé.}
+         \PY{c+cm}{ *                Si la carte est inclue dans une main ou est la derniere carte jouée,}
+         \PY{c+cm}{ *                Alors carte.presente vaut faux.}
+         \PY{c+cm}{ * \PYZbs{}param[in] N nombre de cartes par main.  Precondition : N \PYZlt{}= (NB\PYZus{}CARTES\PYZhy{}1)/2);}
+         \PY{c+cm}{ * \PYZbs{}param[out] main\PYZus{}A main du joueur A.}
+         \PY{c+cm}{ * \PYZbs{}param[out] main\PYZus{}B main du joueur B.}
+         \PY{c+cm}{ * \PYZbs{}param[out] last la derniere carte jouée par un des joueurs.}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{int} \PY{n+nf}{preparer\PYZus{}jeu\PYZus{}UNO}\PY{p}{(}\PY{n}{jeu} \PY{n}{le\PYZus{}jeu}\PY{p}{,} \PY{k+kt}{int} \PY{n}{N}\PY{p}{,} \PY{n}{t\PYZus{}main}\PY{o}{*} \PY{n}{main\PYZus{}A}\PY{p}{,} \PY{n}{t\PYZus{}main}\PY{o}{*} \PY{n}{main\PYZus{}B}\PY{p}{,} \PY{n}{carte}\PY{o}{*} \PY{n}{last}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{N} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{p}{(}\PY{n}{NB\PYZus{}CARTES}\PY{l+m+mi}{\PYZhy{}1}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{;}
+             
+             \PY{c+c1}{//Initialiser le générateur de nombres aléatoires}
+             \PY{k+kt}{time\PYZus{}t} \PY{n}{t}\PY{p}{;}
+             \PY{n}{srand}\PY{p}{(}\PY{p}{(}\PY{k+kt}{unsigned}\PY{p}{)} \PY{n}{time}\PY{p}{(}\PY{o}{\PYZam{}}\PY{n}{t}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+          
+             \PY{c+c1}{//Initialiser le jeu}
+             \PY{n}{init\PYZus{}jeu}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{)}\PY{p}{;}
+             
+             \PY{c+c1}{//Melanger le jeu}
+             \PY{n}{melanger\PYZus{}jeu}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{//Distribuer N cartes à chaque joueur}
+             \PY{n}{distribuer\PYZus{}mains}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{,} \PY{n}{N}\PY{p}{,} \PY{n}{main\PYZus{}A}\PY{p}{,} \PY{n}{main\PYZus{}B}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{//Initialiser last avec la (2N+1)\PYZhy{}ème carte du jeu.}
+             \PY{n}{copier\PYZus{}carte}\PY{p}{(}\PY{n}{last}\PY{p}{,} \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{N}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+             \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{N}\PY{p}{]}\PY{p}{.}\PY{n}{presente} \PY{o}{=} \PY{n+nb}{false}\PY{p}{;} \PY{c+c1}{//carte n\PYZsq{}est plus presente dans le\PYZus{}jeu}
+             
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{k+kt}{void} \PY{n+nf}{test\PYZus{}preparer\PYZus{}jeu\PYZus{}UNO}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{c+c1}{//Déclarer un jeu (tableau statique), les deux mains (tableaux dynamiques) et }
+             \PY{c+c1}{//la carte last.}
+             \PY{n}{jeu} \PY{n}{le\PYZus{}jeu}\PY{p}{;}
+             \PY{n}{t\PYZus{}main} \PY{n}{main\PYZus{}A}\PY{p}{,} \PY{n}{main\PYZus{}B}\PY{p}{;}
+             \PY{n}{carte} \PY{n}{last}\PY{p}{;}
+          
+             \PY{c+c1}{//Préparer le jeu, les deux mains de 7 cartes et la carte last}
+             \PY{k+kt}{int} \PY{n}{retour} \PY{o}{=} \PY{n}{preparer\PYZus{}jeu\PYZus{}UNO}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{o}{\PYZam{}}\PY{n}{main\PYZus{}A}\PY{p}{,} \PY{o}{\PYZam{}}\PY{n}{main\PYZus{}B}\PY{p}{,} \PY{o}{\PYZam{}}\PY{n}{last}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ Le jeu mélangé avec les cartes presentes (c ; v ; p) : }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{n}{afficher\PYZus{}jeu}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ Les deux mains : }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{n}{afficher\PYZus{}main}\PY{p}{(}\PY{n}{main\PYZus{}A}\PY{p}{)}\PY{p}{;}
+             \PY{n}{afficher\PYZus{}main}\PY{p}{(}\PY{n}{main\PYZus{}B}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ La carte last : }\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{n}{afficher\PYZus{}carte}\PY{p}{(}\PY{n}{last}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{//Vérifier le jeu et les mains.}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{retour} \PY{o}{=}\PY{o}{=} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{main\PYZus{}A}\PY{p}{.}\PY{n}{nb} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{7} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{main\PYZus{}B}\PY{p}{.}\PY{n}{nb} \PY{o}{=}\PY{o}{=} \PY{l+m+mi}{7}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{main\PYZus{}A}\PY{p}{.}\PY{n}{main} \PY{o}{!}\PY{o}{=} \PY{n+nb}{NULL} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{main\PYZus{}B}\PY{p}{.}\PY{n}{main} \PY{o}{!}\PY{o}{=} \PY{n+nb}{NULL}\PY{p}{)}\PY{p}{;}    
+             \PY{n}{assert}\PY{p}{(}\PY{n}{est\PYZus{}conforme}\PY{p}{(}\PY{n}{main\PYZus{}A}\PY{p}{.}\PY{n}{main}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{est\PYZus{}conforme}\PY{p}{(}\PY{n}{main\PYZus{}B}\PY{p}{.}\PY{n}{main}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{est\PYZus{}conforme}\PY{p}{(}\PY{n}{last}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+                 
+             \PY{c+c1}{//Détruire la mémoire allouée dynamiquement}
+             \PY{c+c1}{// ***** TODO *****}
+             \PY{n}{free}\PY{p}{(}\PY{n}{main\PYZus{}A}\PY{p}{.}\PY{n}{main}\PY{p}{)}\PY{p}{;}
+             \PY{n}{main\PYZus{}A}\PY{p}{.}\PY{n}{main} \PY{o}{=} \PY{n+nb}{NULL}\PY{p}{;}
+             \PY{n}{free}\PY{p}{(}\PY{n}{main\PYZus{}B}\PY{p}{.}\PY{n}{main}\PY{p}{)}\PY{p}{;}
+             \PY{n}{main\PYZus{}B}\PY{p}{.}\PY{n}{main} \PY{o}{=} \PY{n+nb}{NULL}\PY{p}{;}
+            
+             
+             \PY{n}{assert}\PY{p}{(}\PY{n}{main\PYZus{}A}\PY{p}{.}\PY{n}{main} \PY{o}{=}\PY{o}{=} \PY{n+nb}{NULL}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{main\PYZus{}B}\PY{p}{.}\PY{n}{main} \PY{o}{=}\PY{o}{=} \PY{n+nb}{NULL}\PY{p}{)}\PY{p}{;}
+          
+         \PY{p}{\PYZcb{}}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+           
+             \PY{n}{test\PYZus{}preparer\PYZus{}jeu\PYZus{}UNO}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+             
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+ Le jeu mélangé avec les cartes presentes (c ; v ; p) : 
+(J;0;0)		(J;1;0)		(J;2;0)		(J;3;0)		
+
+ Les deux mains : 
+(J;0;0)		(J;2;1)		(J;0;0)		(R;2;1)		(J;0;0)		(V;2;1)		(J;0;0)		
+(J;1;2)		(R;0;0)	
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+free(): invalid pointer
+[C kernel] Executable exited with code -6
+    \end{Verbatim}
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsubsection{\texorpdfstring{4.4 La réallocation avec
+\texttt{Realloc}}{4.4 La réallocation avec Realloc}}\label{la-ruxe9allocation-avec-realloc}
+
+En C, il est possible de réallouer une variable dynamique avec la
+procédure : \textgreater{}
+\texttt{void*\ realloc(void*\ ptr\_mem,\ size\_t\ taille)}
+
+Elle prend en paramètres : - le pointeur \texttt{ptr\_mem} sur la zone
+mémoire dont on veut modifier la taille, - la nouvelle \texttt{taille}
+de la zone mémoire.
+
+Elle retourne : - un pointeur sur la zone mémoire allouée. \textbf{Si
+cette réallocation échoue, elle retoune \texttt{NULL}}.
+
+\begin{quote}
+\textbf{Note :} La réallocation copie également les données enregistrées
+dans la zone mémoire initiale vers la nouvelle zone mémoire.
+\end{quote}
+
+On peut se servir de \texttt{realloc} pour : - Augmenter la taille
+mémoire allouée à l'origine. - Réduire la taille mémoire allouée à
+l'origine. - Libérer la mémoire. Dans ce cas, le paramètre
+\texttt{taille} vaut 0. Ce comportement est équivalement à
+\texttt{free}. - Allouer une nouvelle zone mémoire. Dans ce cas, le
+paramètre \texttt{ptr\_mem} vaut \texttt{NULL}. Ce comportement est
+équivalent à \texttt{malloc}.
+
+Voici quelques exemples d'utilisation.
+
+    \subsubsection{\texorpdfstring{Exemple d'une \emph{mauvaise} utilisation
+de
+\texttt{realloc}}{Exemple d'une mauvaise utilisation de realloc}}\label{exemple-dune-mauvaise-utilisation-de-realloc}
+
+Vous pouvez manipuler le fichier
+\textbf{\texttt{Exemple4\_4\_mauvaise.c}} si besoin.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}44}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define TAILLE 10}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+         
+             \PY{c+c1}{// Allouer un tableau de TAILLE entiers}
+             \PY{k+kt}{int}\PY{o}{*} \PY{n}{tableau} \PY{o}{=} \PY{n}{malloc}\PY{p}{(}\PY{n}{TAILLE}\PY{o}{*}\PY{k}{sizeof}\PY{p}{(}\PY{k+kt}{int}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{tableau}\PY{p}{)}\PY{p}{;} \PY{c+c1}{//allocation réussie ?}
+             
+             \PY{c+c1}{// Initialiser les éléments à 1}
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{;} \PY{n}{i}\PY{o}{\PYZlt{}}\PY{n}{TAILLE}\PY{p}{;} \PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{n}{tableau}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             
+             \PY{c+c1}{// Augmenter la taille du tableau pour enregistrer TAILLE entiers supplémentaires.}
+             \PY{n}{tableau} \PY{o}{=} \PY{n}{realloc}\PY{p}{(}\PY{n}{tableau}\PY{p}{,} \PY{p}{(}\PY{n}{TAILLE}\PY{o}{+}\PY{n}{TAILLE}\PY{p}{)}\PY{o}{*}\PY{k}{sizeof}\PY{p}{(}\PY{k+kt}{int}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{tableau}\PY{p}{)}\PY{p}{;} \PY{c+c1}{// ré\PYZhy{}allocation réussie ?}
+             
+             \PY{c+c1}{//test des 5 premiers éléments}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{tableau}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{o}{=}\PY{l+m+mi}{1} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{tableau}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{=}\PY{o}{=}\PY{l+m+mi}{1} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{tableau}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{=}\PY{o}{=}\PY{l+m+mi}{1} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{tableau}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{=}\PY{o}{=}\PY{l+m+mi}{1} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{tableau}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{=}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{;} 
+         
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{i}\PY{o}{=}\PY{n}{TAILLE}\PY{p}{;} \PY{n}{i}\PY{o}{\PYZlt{}}\PY{n}{TAILLE}\PY{o}{+}\PY{n}{TAILLE}\PY{p}{;} \PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{n}{tableau}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             
+             \PY{c+c1}{//test de 5 nouveaux éléments}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{tableau}\PY{p}{[}\PY{n}{TAILLE}\PY{p}{]}\PY{o}{=}\PY{o}{=}\PY{l+m+mi}{2} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{tableau}\PY{p}{[}\PY{n}{TAILLE}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{=}\PY{o}{=}\PY{l+m+mi}{2} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{tableau}\PY{p}{[}\PY{n}{TAILLE}\PY{o}{+}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{=}\PY{o}{=}\PY{l+m+mi}{2} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{tableau}\PY{p}{[}\PY{n}{TAILLE}\PY{o}{+}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{=}\PY{o}{=}\PY{l+m+mi}{2} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{tableau}\PY{p}{[}\PY{n}{TAILLE}\PY{o}{+}\PY{l+m+mi}{4}\PY{p}{]}\PY{o}{=}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{;} 
+             
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+ Bravo ! Tous les tests passent.
+
+    \end{Verbatim}
+
+    \textbf{Observation :} Ici, l'allocation et la réallocation se sont
+déroulées avec succès et les données présentes avant la réallocation
+sont toujours présentes après l'allocation. De plus, l'utilisation de
+l'espace supplémentaire se fait normalement.
+
+Dans l'exemple suivant, on vous propose d'augmenter la constante
+pré-processeur \texttt{INC} pour observer l'échec de la demande de
+réallocation. Vous pouvez manipuler le fichier
+\textbf{\texttt{Exemple4\_4\_mauvaise\_bis.c}} si besoin.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}51}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define TAILLE 1000000}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define INC 1e10}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+         
+             \PY{c+c1}{// Allouer un tableau de TAILLE entiers.}
+             \PY{k+kt}{int}\PY{o}{*} \PY{n}{tableau} \PY{o}{=} \PY{n}{malloc}\PY{p}{(}\PY{n}{TAILLE}\PY{o}{*}\PY{k}{sizeof}\PY{p}{(}\PY{k+kt}{int}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{tableau}\PY{p}{)}\PY{p}{;} \PY{c+c1}{//allocation réussie ?}
+             
+             \PY{c+c1}{// Initialiser les éléments à 1}
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{;} \PY{n}{i}\PY{o}{\PYZlt{}}\PY{n}{TAILLE}\PY{p}{;} \PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{n}{tableau}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             
+             \PY{c+c1}{// Augmenter la taille du tableau pour enregistrer INC entiers supplémentaires.}
+             \PY{n}{tableau} \PY{o}{=} \PY{n}{realloc}\PY{p}{(}\PY{n}{tableau}\PY{p}{,} \PY{p}{(}\PY{n}{TAILLE}\PY{o}{+}\PY{n}{INC}\PY{p}{)}\PY{o}{*}\PY{k}{sizeof}\PY{p}{(}\PY{k+kt}{int}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{tableau}\PY{p}{)}\PY{p}{;}
+             
+             \PY{c+c1}{// Initialiser l\PYZsq{}élément d\PYZsq{}indice 0 à 2}
+             \PY{n}{tableau}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{;}
+             
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+tmp4l14jo67.out: /tmp/tmp8k5uda3v.c:21: main: Assertion `tableau' failed.
+[C kernel] Executable exited with code -6
+    \end{Verbatim}
+
+    \textbf{Observations :}
+
+N.B. : Pour lire les obsevations, il faut afficher les numéros de ligne
+du programme. Pour cela, il faut se rendre dans le menu 'Affichage' et
+sélectionner l'option 'Afficher/Masquer les numéros de ligne'.
+
+Voici les principales observations :
+
+\begin{itemize}
+\item
+  L'assertion de la ligne 21 n'est pas vérifiée quand \texttt{INC}
+  devient trop grand : le pointeur tableau est donc \texttt{NULL}.
+\item
+  Si on commente l'instruction de la ligne 21, et que l'on ré-exécute le
+  programme, on obtient une erreur
+  \texttt{Executable\ exited\ with\ code\ -11}, ce qui correspond à un
+  accès à une adresse mémoire non valide (i.e. un segmentation fault).
+  L'adresse non valide est l'adresse \texttt{NULL} car à la ligne 24, on
+  accède au premier élément du tableau. Le premier élément n'est plus
+  disponible ici car la réallocation a échoué, et le pointeur tableau a
+  été mis à \texttt{NULL} à la ligne 20 par \texttt{realloc}.
+\end{itemize}
+
+\textbf{******* Ici, on a perdu l'accès aux données présentes dans le
+tableau d'origine avant réallocation *******}
+
+\begin{quote}
+On observe ici \textbf{une double peine} : - La réallocation a échoué, -
+Les données présentes dans le tableau avant l'appel à \texttt{realloc}
+sont définitivement perdues.
+\end{quote}
+
+    \subsubsection{\texorpdfstring{Exemple d'une \emph{bonne} utilisation de
+\texttt{realloc}.}{Exemple d'une bonne utilisation de realloc.}}\label{exemple-dune-bonne-utilisation-de-realloc.}
+
+Vous pouvez manipuler le fichier \textbf{\texttt{Exemple4\_4\_bonne.c}}
+si besoin.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}52}]:} \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define TAILLE 1e6}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define INC 1e14}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+         
+             \PY{c+c1}{// Allouer un tableau de TAILLE entiers initialisés à 1.}
+             \PY{k+kt}{int}\PY{o}{*} \PY{n}{tableau} \PY{o}{=} \PY{n}{malloc}\PY{p}{(}\PY{n}{TAILLE}\PY{o}{*}\PY{k}{sizeof}\PY{p}{(}\PY{k+kt}{int}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{tableau}\PY{p}{)}\PY{p}{;} \PY{c+c1}{//allocation réussie ?}
+             
+             \PY{c+c1}{// Initialisation à 1}
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{;} \PY{n}{i}\PY{o}{\PYZlt{}}\PY{n}{TAILLE}\PY{p}{;} \PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{n}{tableau}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             
+             \PY{c+c1}{// Augmentater la taille du tableau pour enregistrer 10 entiers.}
+             \PY{k+kt}{int}\PY{o}{*} \PY{n}{nouveau} \PY{o}{=} \PY{n}{realloc}\PY{p}{(}\PY{n}{tableau}\PY{p}{,} \PY{p}{(}\PY{n}{TAILLE}\PY{o}{+}\PY{n}{INC}\PY{p}{)}\PY{o}{*}\PY{k}{sizeof}\PY{p}{(}\PY{k+kt}{int}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{k}{if} \PY{p}{(}\PY{n}{nouveau}\PY{p}{)} \PY{p}{\PYZob{}}
+                 \PY{c+c1}{//recopie de l\PYZsq{}adresse uniquement si succès }
+                 \PY{n}{tableau} \PY{o}{=} \PY{n}{nouveau}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{tableau}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{=}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{;}
+             
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+
+ Bravo ! Tous les tests passent.
+
+    \end{Verbatim}
+
+    \textbf{Observations :}
+
+Un appel convenable à \texttt{realloc} est illustré à la ligne 20 : ici,
+l'éventuel échec d'allocation mettra le pointeur \texttt{nouveau} à
+\texttt{NULL}, et non le pointeur \texttt{tableau}. Si et seulement si
+\texttt{nouveau} n'est pas \texttt{NULL}, on recopie la nouvelle adresse
+dans le pointeur \texttt{tableau}. On évite ainsi la double peine.
+
+    \begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsubsection{Exercice 3 : Ré-allocation et jeu de
+Uno.}\label{exercice-3-ruxe9-allocation-et-jeu-de-uno.}
+
+Toujour dans le jeu de Uno, on cherche à tester la procédure qui permet
+de piocher une carte parmi les cartes qui ne sont pas en jeu. Une carte
+est en jeu si elle appartient à une des deux mains, ou si elle est la
+dernière jouée.
+
+Dans le tableau statique \texttt{le\_jeu} qui contient toutes les cartes
+du jeu, on référence une carte comme 'présente' si elle n'est pas en
+jeu. Quand on pioche, on cherche la première carte présente dans
+\texttt{le\_jeu} et on l'ajoute à la main courante. La carte piochée du
+tableau \texttt{le\_jeu} y est indiquée comme non-présente.
+
+L'objet de cet exercice est d'exécuter les tests de la procédure
+\texttt{carte\ *\ piocher(jeu\ le\_jeu,\ t\_main*\ main)} qui : -
+retourne un pointeur sur la carte piochée dans le jeu - null si elle
+aucune carte ne peut être piochée ou si la réallocation de mémoire
+échoue.
+
+L'essentiel du travail est à réaliser au niveau de cette procédure
+\texttt{piocher}. Vous pouvez manipuler le fichier
+\textbf{\texttt{Exercice3.c}} si besoin.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}81}]:} \PY{c+c1}{// Consignes : }
+         \PY{c+c1}{//  1. Compléter avec les instructions requises en lieu et place de *** TODO ***}
+         
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}assert.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdlib.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdio.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}stdbool.h\PYZgt{}}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{include} \PY{c+cpf}{\PYZlt{}time.h\PYZgt{}}
+         
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define NB\PYZus{}VALEURS 10}
+         \PY{c+cp}{\PYZsh{}}\PY{c+cp}{define NB\PYZus{}CARTES 4*NB\PYZus{}VALEURS}
+         
+         \PY{c+c1}{//Définition du type enseigne}
+         \PY{k}{enum} \PY{n}{couleur} \PY{p}{\PYZob{}}\PY{n}{JAUNE}\PY{p}{,} \PY{n}{ROUGE}\PY{p}{,} \PY{n}{VERT}\PY{p}{,} \PY{n}{BLEU}\PY{p}{\PYZcb{}}\PY{p}{;}
+         \PY{k}{typedef} \PY{k}{enum} \PY{n}{couleur} \PY{n}{couleur}\PY{p}{;}
+         
+         \PY{c+c1}{//Tableau de caractères représentant les couleurs}
+         \PY{k+kt}{char} \PY{n}{C}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{J}\PY{l+s+sc}{\PYZsq{}}\PY{p}{,} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{R}\PY{l+s+sc}{\PYZsq{}}\PY{p}{,} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{V}\PY{l+s+sc}{\PYZsq{}}\PY{p}{,} \PY{l+s+sc}{\PYZsq{}}\PY{l+s+sc}{B}\PY{l+s+sc}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{;}
+         
+         \PY{c+c1}{//Définition du type carte}
+         \PY{k}{struct} \PY{n+nc}{carte} \PY{p}{\PYZob{}}
+             \PY{n}{couleur} \PY{n}{couleur}\PY{p}{;}
+             \PY{k+kt}{int} \PY{n}{valeur}\PY{p}{;} \PY{c+c1}{// Invariant : valeur \PYZgt{}= 0 \PYZam{}\PYZam{} valeur \PYZlt{} NB\PYZus{}VALEURS}
+             \PY{k+kt}{bool} \PY{n}{presente}\PY{p}{;} \PY{c+c1}{// la carte est\PYZhy{}elle presente dans le jeu ?}
+         \PY{p}{\PYZcb{}}\PY{p}{;}
+         \PY{k}{typedef} \PY{k}{struct} \PY{n+nc}{carte} \PY{n}{carte}\PY{p}{;}
+         
+         \PY{c+c1}{//Définition du type jeu complet pour enregistrer NB\PYZus{}CARTES cartes.}
+         \PY{k}{typedef} \PY{n}{carte} \PY{n}{jeu}\PY{p}{[}\PY{n}{NB\PYZus{}CARTES}\PY{p}{]}\PY{p}{;}
+         
+         \PY{c+c1}{//Définition du type t\PYZus{}main, capable d\PYZsq{}enregistrer un nombre variable de cartes.}
+         \PY{k}{struct} \PY{n+nc}{main} \PY{p}{\PYZob{}}
+             \PY{n}{carte} \PY{o}{*} \PY{n}{main}\PY{p}{;} \PY{c+c1}{//tableau des cartes dans la main. }
+             \PY{k+kt}{int} \PY{n}{nb}\PY{p}{;} \PY{c+c1}{//monbre de cartes}
+         \PY{p}{\PYZcb{}}\PY{p}{;}
+         \PY{k}{typedef} \PY{k}{struct} \PY{n+nc}{main} \PY{n}{t\PYZus{}main}\PY{p}{;}
+         
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Initialiser une carte avec une couleur et une valeur. }
+         \PY{c+cm}{ * \PYZbs{}param[in] c couleur de la carte}
+         \PY{c+cm}{ * \PYZbs{}param[in] v valeur de la carte}
+         \PY{c+cm}{ * \PYZbs{}param[in] ej booléen presente}
+         \PY{c+cm}{ * \PYZbs{}param[out] la\PYZus{}carte }
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{init\PYZus{}carte}\PY{p}{(}\PY{n}{carte}\PY{o}{*} \PY{n}{la\PYZus{}carte}\PY{p}{,} \PY{n}{couleur} \PY{n}{c}\PY{p}{,} \PY{k+kt}{int} \PY{n}{v}\PY{p}{,} \PY{k+kt}{bool} \PY{n}{pr}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{la\PYZus{}carte}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{couleur} \PY{o}{=} \PY{n}{c}\PY{p}{;}
+             \PY{n}{la\PYZus{}carte}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{valeur} \PY{o}{=} \PY{n}{v}\PY{p}{;}
+             \PY{n}{la\PYZus{}carte}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{presente} \PY{o}{=} \PY{n}{pr}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Vérifie si la valeur de la carte est conforme à l\PYZsq{}invariant.}
+         \PY{c+cm}{ * \PYZbs{}param[in] c la carte}
+         \PY{c+cm}{ * \PYZbs{}return bool vrai si la valeur est conforme, faux sinon.}
+         \PY{c+cm}{ */}
+          \PY{k+kt}{bool} \PY{n+nf}{est\PYZus{}conforme}\PY{p}{(}\PY{n}{carte} \PY{n}{c}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k}{return} \PY{p}{(}\PY{n}{c}\PY{p}{.}\PY{n}{valeur}\PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mi}{0} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{c}\PY{p}{.}\PY{n}{valeur}\PY{o}{\PYZlt{}}\PY{n}{NB\PYZus{}VALEURS}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Copie les valeurs de la carte src dans la carte dest.}
+         \PY{c+cm}{ * \PYZbs{}param[in] src carte à copier}
+         \PY{c+cm}{ * \PYZbs{}param[out] dest carte destination de la copie }
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{copier\PYZus{}carte}\PY{p}{(}\PY{n}{carte}\PY{o}{*} \PY{n}{dest}\PY{p}{,} \PY{n}{carte} \PY{n}{src}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{dest}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{couleur} \PY{o}{=} \PY{n}{src}\PY{p}{.}\PY{n}{couleur}\PY{p}{;}
+             \PY{n}{dest}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{valeur} \PY{o}{=} \PY{n}{src}\PY{p}{.}\PY{n}{valeur}\PY{p}{;}
+             \PY{n}{dest}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{presente} \PY{o}{=} \PY{n}{src}\PY{p}{.}\PY{n}{presente}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Afficher une carte.}
+         \PY{c+cm}{ * \PYZbs{}param[in] cte carte à afficher}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{afficher\PYZus{}carte}\PY{p}{(}\PY{n}{carte} \PY{n}{cte}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{(\PYZpc{}c;\PYZpc{}d;\PYZpc{}d)}\PY{l+s+se}{\PYZbs{}t}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{n}{C}\PY{p}{[}\PY{n}{cte}\PY{p}{.}\PY{n}{couleur}\PY{p}{]}\PY{p}{,}\PY{n}{cte}\PY{p}{.}\PY{n}{valeur}\PY{p}{,} \PY{n}{cte}\PY{p}{.}\PY{n}{presente}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Initialiser une main.}
+         \PY{c+cm}{ * \PYZbs{}param[in] N nombre de cartes composant la main.  Précondition : N \PYZlt{}= (NB\PYZus{}CARTES \PYZhy{} 1) div 2}
+         \PY{c+cm}{ * \PYZbs{}param[out] la\PYZus{}main créée}
+         \PY{c+cm}{ * \PYZbs{}return true si l\PYZsq{}initialisation a échouée.}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{bool} \PY{n+nf}{init\PYZus{}main}\PY{p}{(}\PY{n}{t\PYZus{}main}\PY{o}{*} \PY{n}{la\PYZus{}main}\PY{p}{,} \PY{k+kt}{int} \PY{n}{N}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{N} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{p}{(}\PY{n}{NB\PYZus{}CARTES}\PY{l+m+mi}{\PYZhy{}1}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{;}
+             \PY{n}{la\PYZus{}main}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{main} \PY{o}{=} \PY{n}{malloc}\PY{p}{(}\PY{n}{N}\PY{o}{*}\PY{k}{sizeof}\PY{p}{(}\PY{n}{carte}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{la\PYZus{}main}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{nb} \PY{o}{=} \PY{n}{N}\PY{p}{;}
+             \PY{k}{return} \PY{p}{(}\PY{n}{la\PYZus{}main}\PY{o}{=}\PY{o}{=}\PY{n+nb}{NULL}\PY{p}{)}\PY{p}{;} \PY{c+c1}{//allocation réussie ?}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Initialiser le jeu en ajoutant toutes les cartes possibles au jeu.}
+         \PY{c+cm}{ * \PYZbs{}param[out] le\PYZus{}jeu tableau de cartes avec les 4 couleurs et NB\PYZus{}VALEURS valeurs possibles}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{init\PYZus{}jeu}\PY{p}{(}\PY{n}{jeu} \PY{n}{le\PYZus{}jeu}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k+kt}{int} \PY{n}{k}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{;}
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0} \PY{p}{;} \PY{n}{i}\PY{o}{\PYZlt{}}\PY{l+m+mi}{4} \PY{p}{;} \PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{j}\PY{o}{=}\PY{l+m+mi}{0} \PY{p}{;} \PY{n}{j}\PY{o}{\PYZlt{}}\PY{n}{NB\PYZus{}VALEURS} \PY{p}{;} \PY{n}{j}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                     \PY{n}{init\PYZus{}carte}\PY{p}{(}\PY{o}{\PYZam{}}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{i}\PY{p}{,} \PY{n}{j}\PY{p}{,} \PY{n+nb}{true}\PY{p}{)}\PY{p}{;}
+                     \PY{n}{k}\PY{o}{+}\PY{o}{+}\PY{p}{;}
+                 \PY{p}{\PYZcb{}}
+             \PY{p}{\PYZcb{}}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Afficher le jeu.}
+         \PY{c+cm}{ * \PYZbs{}param[in] le\PYZus{}jeu complet avec les 4 couleurs et 910valeurs possibles}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{afficher\PYZus{}jeu}\PY{p}{(}\PY{n}{jeu} \PY{n}{le\PYZus{}jeu}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{k}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{;} \PY{n}{k}\PY{o}{\PYZlt{}}\PY{n}{NB\PYZus{}CARTES}\PY{p}{;} \PY{n}{k}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{n}{afficher\PYZus{}carte}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Afficher une main.}
+         \PY{c+cm}{ * \PYZbs{}param[in] la\PYZus{}main la main a afficher}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{afficher\PYZus{}main}\PY{p}{(}\PY{n}{t\PYZus{}main} \PY{n}{la\PYZus{}main}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{k}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{;} \PY{n}{k}\PY{o}{\PYZlt{}}\PY{n}{la\PYZus{}main}\PY{p}{.}\PY{n}{nb}\PY{p}{;} \PY{n}{k}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{n}{afficher\PYZus{}carte}\PY{p}{(}\PY{n}{la\PYZus{}main}\PY{p}{.}\PY{n}{main}\PY{p}{[}\PY{n}{k}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief mélange le jeu.}
+         \PY{c+cm}{ * \PYZbs{}param[in out] le\PYZus{}jeu complet}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{melanger\PYZus{}jeu}\PY{p}{(}\PY{n}{jeu} \PY{n}{le\PYZus{}jeu}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{;} \PY{n}{i}\PY{o}{\PYZlt{}}\PY{l+m+mi}{1000}\PY{p}{;} \PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{c+c1}{// Choisir deux cartes aléatoirement}
+                 \PY{k+kt}{int} \PY{n}{i} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZpc{}}\PY{n}{NB\PYZus{}CARTES}\PY{p}{;}
+                 \PY{k+kt}{int} \PY{n}{j} \PY{o}{=} \PY{n}{rand}\PY{p}{(}\PY{p}{)}\PY{o}{\PYZpc{}}\PY{n}{NB\PYZus{}CARTES}\PY{p}{;}        
+                 \PY{c+c1}{// Les échanger}
+                 \PY{n}{carte} \PY{n}{mem}\PY{p}{;}
+                 \PY{n}{copier\PYZus{}carte}\PY{p}{(}\PY{o}{\PYZam{}}\PY{n}{mem}\PY{p}{,} \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{;} 
+                 \PY{n}{copier\PYZus{}carte}\PY{p}{(}\PY{o}{\PYZam{}}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{p}{;} 
+                 \PY{n}{copier\PYZus{}carte}\PY{p}{(}\PY{o}{\PYZam{}}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{j}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{mem}\PY{p}{)}\PY{p}{;} 
+             \PY{p}{\PYZcb{}}
+         \PY{p}{\PYZcb{}}
+         
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ \PYZbs{}brief Distribuer N cartes à chacun des deux joueurs, en alternant les joueurs.}
+         \PY{c+cm}{ * \PYZbs{}param[in out] le\PYZus{}jeu complet.}
+         \PY{c+cm}{ *       Si la carte c est distribuée dans une main, c.presente devient faux.}
+         \PY{c+cm}{ * \PYZbs{}param[in] N nombre de cartes distribuées à chaque joueur.  Précondition : N \PYZlt{}= (NB\PYZus{}CARTES \PYZhy{} 1) div 2}
+         \PY{c+cm}{ * \PYZbs{}param[out] m1 main du joueur 1.}
+         \PY{c+cm}{ * \PYZbs{}param[out] m2 main du joueur 2.}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{void} \PY{n+nf}{distribuer\PYZus{}mains}\PY{p}{(}\PY{n}{jeu} \PY{n}{le\PYZus{}jeu}\PY{p}{,} \PY{k+kt}{int} \PY{n}{N}\PY{p}{,} \PY{n}{t\PYZus{}main}\PY{o}{*} \PY{n}{m1}\PY{p}{,} \PY{n}{t\PYZus{}main}\PY{o}{*} \PY{n}{m2}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{N} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{p}{(}\PY{n}{NB\PYZus{}CARTES}\PY{l+m+mi}{\PYZhy{}1}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{//Initialiser les mains de N cartes}
+             \PY{k+kt}{bool} \PY{n}{errA} \PY{o}{=} \PY{n}{init\PYZus{}main}\PY{p}{(}\PY{n}{m1}\PY{p}{,} \PY{n}{N}\PY{p}{)}\PY{p}{;}
+             \PY{k+kt}{bool} \PY{n}{errB} \PY{o}{=} \PY{n}{init\PYZus{}main}\PY{p}{(}\PY{n}{m2}\PY{p}{,} \PY{n}{N}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{o}{!}\PY{n}{errA} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{o}{!}\PY{n}{errB}\PY{p}{)}\PY{p}{;}
+             
+             \PY{c+c1}{//Distribuer les cartes}
+             \PY{k}{for} \PY{p}{(}\PY{k+kt}{int} \PY{n}{i}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{;} \PY{n}{i}\PY{o}{\PYZlt{}}\PY{n}{N}\PY{p}{;} \PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{c+c1}{// ajout d\PYZsq{}une carte dans la main m1}
+                 \PY{n}{copier\PYZus{}carte}\PY{p}{(}\PY{o}{\PYZam{}}\PY{p}{(}\PY{n}{m1}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{main}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+                 \PY{c+c1}{// ajout d\PYZsq{}une carte dans la main m2}
+                 \PY{n}{copier\PYZus{}carte}\PY{p}{(}\PY{o}{\PYZam{}}\PY{p}{(}\PY{n}{m2}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{main}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{,} \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+                 \PY{c+c1}{//mise à jour de presente à false dans le\PYZus{}jeu}
+                 \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{i}\PY{p}{]}\PY{p}{.}\PY{n}{presente} \PY{o}{=} \PY{n+nb}{false}\PY{p}{;}
+                 \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{.}\PY{n}{presente} \PY{o}{=} \PY{n+nb}{false}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Vérifie si les cartes c1 et c2 on la même couleur et la même valeur.}
+         \PY{c+cm}{ * \PYZbs{}param[in] c1 carte}
+         \PY{c+cm}{ * \PYZbs{}param[in] c2 carte}
+         \PY{c+cm}{ * \PYZbs{}return bool Vrai si les deux cartes ont même valeur et couleur.}
+         \PY{c+cm}{*/}
+         \PY{k+kt}{bool} \PY{n+nf}{est\PYZus{}egale}\PY{p}{(}\PY{n}{carte} \PY{n}{c1}\PY{p}{,} \PY{n}{carte} \PY{n}{c2}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k}{return} \PY{p}{(}\PY{p}{(}\PY{n}{c1}\PY{p}{.}\PY{n}{couleur} \PY{o}{=}\PY{o}{=} \PY{n}{c2}\PY{p}{.}\PY{n}{couleur}\PY{p}{)} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{p}{(}\PY{n}{c1}\PY{p}{.}\PY{n}{valeur} \PY{o}{=}\PY{o}{=} \PY{n}{c2}\PY{p}{.}\PY{n}{valeur}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Vérifie si la carte c est présente dans la main.}
+         \PY{c+cm}{ * \PYZbs{}param[in] main main d\PYZsq{}un joueur}
+         \PY{c+cm}{ * \PYZbs{}param[in] c carte}
+         \PY{c+cm}{ * \PYZbs{}return bool Vrai si la carte est presente dans la main, faux sinon.}
+         \PY{c+cm}{*/}
+         \PY{k+kt}{bool} \PY{n+nf}{est\PYZus{}presente\PYZus{}main}\PY{p}{(}\PY{n}{t\PYZus{}main} \PY{n}{main}\PY{p}{,} \PY{n}{carte} \PY{n}{c}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{k+kt}{int} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}
+             \PY{k}{while} \PY{p}{(}\PY{n}{i} \PY{o}{\PYZlt{}} \PY{n}{main}\PY{p}{.}\PY{n}{nb} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{o}{!}\PY{n}{est\PYZus{}egale}\PY{p}{(}\PY{n}{main}\PY{p}{.}\PY{n}{main}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{c}\PY{p}{)}\PY{p}{)} \PY{p}{\PYZob{}}
+                 \PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             \PY{k}{return} \PY{o}{!}\PY{p}{(}\PY{n}{i} \PY{o}{=}\PY{o}{=} \PY{n}{main}\PY{p}{.}\PY{n}{nb}\PY{p}{)}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Piocher une carte dans le jeu et l\PYZsq{}inclure dans la main en paramètre.}
+         \PY{c+cm}{ * \PYZbs{}param[in out] le\PYZus{}jeu complet avec les 4 couleurs et 10 valeurs possibles.}
+         \PY{c+cm}{ *                Ce jeu est mélangé.}
+         \PY{c+cm}{ *                Si la carte est inclue dans une main ou est la derniere carte jouée,}
+         \PY{c+cm}{ *                Alors carte.presente vaut faux.}
+         \PY{c+cm}{ * \PYZbs{}param[in out] main main d\PYZsq{}un joueur}
+         \PY{c+cm}{ * \PYZbs{}return carte * un pointeur sur la carte piochee dans le\PYZus{}jeu en paramètre. }
+         \PY{c+cm}{ * Ce pointeur vaut NULL si aucune carte ne peut être piochée ou si l\PYZsq{}allocation de mémoire échoue.}
+         \PY{c+cm}{*/}
+         \PY{n}{carte} \PY{o}{*} \PY{n+nf}{piocher}\PY{p}{(}\PY{n}{jeu} \PY{n}{le\PYZus{}jeu}\PY{p}{,} \PY{n}{t\PYZus{}main}\PY{o}{*} \PY{n}{main}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{c+c1}{// Recherche une carte presente dans le jeu.}
+             \PY{n}{carte} \PY{o}{*}\PY{n}{carte\PYZus{}piochee} \PY{o}{=} \PY{n}{le\PYZus{}jeu}\PY{p}{;}
+             \PY{k+kt}{int} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}\PY{p}{;}
+             \PY{k}{while}\PY{p}{(}\PY{n}{i} \PY{o}{\PYZlt{}} \PY{n}{NB\PYZus{}CARTES} \PY{o}{\PYZam{}}\PY{o}{\PYZam{}} \PY{n}{carte\PYZus{}piochee}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{presente} \PY{o}{=}\PY{o}{=} \PY{n+nb}{false}\PY{p}{)}\PY{p}{\PYZob{}}
+                 \PY{n}{carte\PYZus{}piochee} \PY{o}{=} \PY{n}{carte\PYZus{}piochee} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{;}
+                 \PY{n}{i}\PY{o}{+}\PY{o}{+}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             \PY{k}{if} \PY{p}{(}\PY{n}{i} \PY{o}{=}\PY{o}{=} \PY{n}{NB\PYZus{}CARTES}\PY{p}{)} \PY{p}{\PYZob{}}
+                 \PY{n}{carte\PYZus{}piochee} \PY{o}{=} \PY{n+nb}{NULL}\PY{p}{;}
+             \PY{p}{\PYZcb{}} \PY{k}{else} \PY{p}{\PYZob{}}
+                 \PY{c+c1}{// Inserer la carte dans la main       }
+                 \PY{c+c1}{//*** TODO *** ;}
+                 
+                 \PY{c+c1}{// Reallouer la mémoire pour enregistrer une carte de plus dans la main.}
+                 \PY{n}{t\PYZus{}main}\PY{o}{*} \PY{n}{nouveau} \PY{o}{=} \PY{n}{realloc}\PY{p}{(}\PY{n}{main}\PY{p}{,}\PY{p}{(}\PY{p}{(}\PY{n}{main}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{nb}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{k}{sizeof}\PY{p}{(}\PY{n}{carte}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+                 \PY{c+c1}{// Penser à l\PYZsq{}echec de la reallocation}
+                 \PY{k}{if} \PY{p}{(}\PY{n}{nouveau}\PY{p}{)} \PY{p}{\PYZob{}}
+                         \PY{n}{main} \PY{o}{=} \PY{n}{nouveau}\PY{p}{;}
+                 \PY{p}{\PYZcb{}}
+                 \PY{c+c1}{// Copier la carte\PYZus{}piochee dans la main}
+                   \PY{n}{copier\PYZus{}carte}\PY{p}{(}\PY{n}{main}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{main}\PY{p}{[}\PY{n}{main}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{nb}\PY{p}{]}\PY{p}{,}\PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+                 \PY{c+c1}{// Indiquer que carte\PYZus{}piochee n\PYZsq{}est plus presente dans le\PYZus{}jeu}
+                   \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{.}\PY{n}{presente} \PY{o}{=} \PY{n+nb}{false}\PY{p}{;}
+             \PY{p}{\PYZcb{}}
+             \PY{k}{return} \PY{n}{carte\PYZus{}piochee}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{c+cm}{/**}
+         \PY{c+cm}{ * \PYZbs{}brief Initialise le jeu de carte, les mains des joueurs et la carte \PYZsq{}last\PYZsq{}.}
+         \PY{c+cm}{ * \PYZbs{}param[out] le\PYZus{}jeu complet avec les 4 couleurs et 10 valeurs possibles.}
+         \PY{c+cm}{ *                Ce jeu est mélangé.}
+         \PY{c+cm}{ *                Si la carte est inclue dans une main ou est la derniere carte jouée,}
+         \PY{c+cm}{ *                Alors carte.presente vaut faux.}
+         \PY{c+cm}{ * \PYZbs{}param[in] N nombre de cartes par main.  Precondition : N \PYZlt{}= (NB\PYZus{}CARTES\PYZhy{}1)/2);}
+         \PY{c+cm}{ * \PYZbs{}param[out] main\PYZus{}A main du joueur A.}
+         \PY{c+cm}{ * \PYZbs{}param[out] main\PYZus{}B main du joueur B.}
+         \PY{c+cm}{ * \PYZbs{}param[out] last la derniere carte jouée par un des joueurs.}
+         \PY{c+cm}{ */}
+         \PY{k+kt}{int} \PY{n+nf}{preparer\PYZus{}jeu\PYZus{}UNO}\PY{p}{(}\PY{n}{jeu} \PY{n}{le\PYZus{}jeu}\PY{p}{,} \PY{k+kt}{int} \PY{n}{N}\PY{p}{,} \PY{n}{t\PYZus{}main}\PY{o}{*} \PY{n}{main\PYZus{}A}\PY{p}{,} \PY{n}{t\PYZus{}main}\PY{o}{*} \PY{n}{main\PYZus{}B}\PY{p}{,} \PY{n}{carte}\PY{o}{*} \PY{n}{last}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{N} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{p}{(}\PY{n}{NB\PYZus{}CARTES}\PY{l+m+mi}{\PYZhy{}1}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{//Initialiser le générateur de nombres aléatoires}
+             \PY{k+kt}{time\PYZus{}t} \PY{n}{t}\PY{p}{;}
+             \PY{n}{srand}\PY{p}{(}\PY{p}{(}\PY{k+kt}{unsigned}\PY{p}{)} \PY{n}{time}\PY{p}{(}\PY{o}{\PYZam{}}\PY{n}{t}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+          
+             \PY{c+c1}{//Initialiser le jeu}
+             \PY{n}{init\PYZus{}jeu}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{)}\PY{p}{;}
+             
+             \PY{c+c1}{//Melanger le jeu}
+             \PY{n}{melanger\PYZus{}jeu}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{//Distribuer N cartes à chaque joueur}
+             \PY{n}{distribuer\PYZus{}mains}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{,} \PY{n}{N}\PY{p}{,} \PY{n}{main\PYZus{}A}\PY{p}{,} \PY{n}{main\PYZus{}B}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{//Initialiser last avec la (2N+1)\PYZhy{}ème carte du jeu.}
+             \PY{n}{copier\PYZus{}carte}\PY{p}{(}\PY{n}{last}\PY{p}{,} \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{N}\PY{p}{]}\PY{p}{)}\PY{p}{;}
+             \PY{n}{le\PYZus{}jeu}\PY{p}{[}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{N}\PY{p}{]}\PY{p}{.}\PY{n}{presente} \PY{o}{=} \PY{n+nb}{false}\PY{p}{;} \PY{c+c1}{//carte n\PYZsq{}est plus presente dans le\PYZus{}jeu}
+         
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{k+kt}{void} \PY{n+nf}{test\PYZus{}piocher}\PY{p}{(}\PY{p}{)}\PY{p}{\PYZob{}}
+             \PY{n}{jeu} \PY{n}{le\PYZus{}jeu}\PY{p}{;} \PY{c+c1}{// le jeu de cartes}
+             \PY{n}{t\PYZus{}main} \PY{n}{main\PYZus{}A}\PY{p}{,} \PY{n}{main\PYZus{}B}\PY{p}{;} \PY{c+c1}{// les deux mains}
+             \PY{n}{carte} \PY{n}{last}\PY{p}{;} \PY{c+c1}{// la derniere carte posee}
+            
+             \PY{c+c1}{//Préparer le jeu, les deux mains de 7 cartes et la carte last}
+             \PY{k+kt}{int} \PY{n}{retour} \PY{o}{=} \PY{n}{preparer\PYZus{}jeu\PYZus{}UNO}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{,} \PY{l+m+mi}{7}\PY{p}{,} \PY{o}{\PYZam{}}\PY{n}{main\PYZus{}A}\PY{p}{,} \PY{o}{\PYZam{}}\PY{n}{main\PYZus{}B}\PY{p}{,} \PY{o}{\PYZam{}}\PY{n}{last}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ Les deux mains : }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{n}{afficher\PYZus{}main}\PY{p}{(}\PY{n}{main\PYZus{}A}\PY{p}{)}\PY{p}{;}
+             \PY{n}{afficher\PYZus{}main}\PY{p}{(}\PY{n}{main\PYZus{}B}\PY{p}{)}\PY{p}{;}
+         
+             \PY{k+kt}{int} \PY{n}{mem\PYZus{}taille} \PY{o}{=} \PY{n}{main\PYZus{}A}\PY{p}{.}\PY{n}{nb}\PY{p}{;}
+             
+             \PY{c+c1}{//Le joueur A pioche une carte dans le\PYZus{}jeu}
+             \PY{n}{carte} \PY{o}{*}\PY{n}{c\PYZus{}piochee} \PY{o}{=} \PY{n}{piocher}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{,} \PY{o}{\PYZam{}}\PY{n}{main\PYZus{}A}\PY{p}{)}\PY{p}{;}
+             
+             \PY{c+c1}{// Une carte a\PYZhy{}t\PYZhy{}elle été piochée ?}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{c\PYZus{}piochee}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{c\PYZus{}piochee}\PY{o}{\PYZhy{}}\PY{o}{\PYZgt{}}\PY{n}{presente}\PY{o}{=}\PY{o}{=}\PY{n+nb}{false}\PY{p}{)}\PY{p}{;} \PY{c+c1}{// absence du jeu ?}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{est\PYZus{}presente\PYZus{}main}\PY{p}{(}\PY{n}{main\PYZus{}A}\PY{p}{,} \PY{o}{*}\PY{n}{c\PYZus{}piochee}\PY{p}{)}\PY{p}{)}\PY{p}{;}
+             \PY{n}{assert}\PY{p}{(}\PY{n}{main\PYZus{}A}\PY{p}{.}\PY{n}{nb} \PY{o}{=} \PY{n}{mem\PYZus{}taille} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{// Affichage}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ ***** APRES la pioche : }\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ La carte piochee : }\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{n}{afficher\PYZus{}carte}\PY{p}{(}\PY{o}{*}\PY{n}{c\PYZus{}piochee}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ La nouvelle main A après pioche : }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{n}{afficher\PYZus{}main}\PY{p}{(}\PY{n}{main\PYZus{}A}\PY{p}{)}\PY{p}{;}
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ Le nouveau jeu après pioche : }\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{n}{afficher\PYZus{}jeu}\PY{p}{(}\PY{n}{le\PYZus{}jeu}\PY{p}{)}\PY{p}{;}
+         
+             \PY{c+c1}{//Détruire la mémoire allouée dynamiquement}
+             \PY{n}{free}\PY{p}{(}\PY{n}{main\PYZus{}A}\PY{p}{.}\PY{n}{main}\PY{p}{)}\PY{p}{;}
+             \PY{n}{free}\PY{p}{(}\PY{n}{main\PYZus{}B}\PY{p}{.}\PY{n}{main}\PY{p}{)}\PY{p}{;}
+             \PY{n}{main\PYZus{}A}\PY{p}{.}\PY{n}{main} \PY{o}{=} \PY{n+nb}{NULL}\PY{p}{;}
+             \PY{n}{main\PYZus{}B}\PY{p}{.}\PY{n}{main} \PY{o}{=} \PY{n+nb}{NULL}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{k+kt}{int} \PY{n+nf}{main}\PY{p}{(}\PY{k+kt}{void}\PY{p}{)} \PY{p}{\PYZob{}}
+           
+             \PY{n}{test\PYZus{}piocher}\PY{p}{(}\PY{p}{)}\PY{p}{;}
+             
+             \PY{n}{printf}\PY{p}{(}\PY{l+s}{\PYZdq{}}\PY{l+s}{\PYZpc{}s}\PY{l+s}{\PYZdq{}}\PY{p}{,} \PY{l+s}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{ Bravo ! Tous les tests passent.}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}\PY{p}{)}\PY{p}{;}
+             \PY{k}{return} \PY{n}{EXIT\PYZus{}SUCCESS}\PY{p}{;}
+         \PY{p}{\PYZcb{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/tmp/tmp5\_daek6p.c: In function ‘piocher’:
+/tmp/tmp5\_daek6p.c:233:24: error: incompatible type for argument 1 of ‘copier\_carte’
+           copier\_carte(main->main[main->nb],le\_jeu[i]);
+                        \^{}\textasciitilde{}\textasciitilde{}\textasciitilde{}
+/tmp/tmp5\_daek6p.c:67:6: note: expected ‘carte * \{aka struct carte *\}’ but argument is of type ‘carte \{aka struct carte\}’
+ void copier\_carte(carte* dest, carte src)\{
+      \^{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}\textasciitilde{}
+[C kernel] GCC exited with code 1, the executable will not be executed
+    \end{Verbatim}
+
+    \subsection{\#\# BILAN sur l'allocation dynamique. (à
+rendre)}\label{bilan-sur-lallocation-dynamique.-uxe0-rendre}
+
+\begin{center}\rule{0.5\linewidth}{\linethickness}\end{center}
+
+    \subsubsection{String : Chaines de caractères à la Java /
+C++}\label{string-chaines-de-caractuxe8res-uxe0-la-java-c}
+
+L'objectif de ces exercices est de définir un vrai type « chaîne de
+caractères » appelé String par analogie avec le type correspondant des
+langages Java ou C++. Outre les opérations de haut niveau disponibles
+sur ce type, sa caractéristique essentielle est de décharger
+l'utilisateur de la gestion des problèmes de capacité de la chaîne. Si
+elle est trop petite pour faire une opération d'ajout, elle est agrandie
+de manière transparente pour l'utilisateur.
+
+Les opérations disponibles sur une String sont : - \textbf{create} :
+initialiser une variable de type String à partir d'une chaîne de
+caractères classique (tableau de caractères terminé par le caractère
+nul) ; - \textbf{destroy} : détruire un variable de type String. Elle ne
+pourra plus être utilisée (sauf à être de nouveau initialisée) ; -
+\textbf{length} : obtenir le nombre de caractères de la chaîne ; -
+\textbf{get} : obtenir le caractère à la position \texttt{i} de la
+chaîne. Le premier caractère a la position 0 ; - \textbf{replace} :
+remplacer le caractère à la position \texttt{i} de la chaîne par un
+nouveau caractère ; - \textbf{add} : ajouter un nouveau caractère à la
+fin de la chaîne. Sa longueur est donc augmentée de 1 ; -
+\textbf{append} : ajouter une chaîne de caractères à la fin de d'une
+chaîne ; - \textbf{insert} : ajouter un nouveau caractère en position
+\texttt{i} de la chaîne \texttt{str}. La longueur de la chaîne est donc
+augmentée de 1. La valeur de \texttt{i} doit être comprise entre 0 et
+\texttt{length(str)}. Si \texttt{i} vaut \texttt{length(str)}, alors
+\texttt{insert} se comporte comme \texttt{add} ; - \textbf{delete} :
+supprimer le caractère à la position \texttt{i}. - \textbf{substring} :
+retourne une nouvelle String initialisée avec la partie de la chaîne
+comprise entre les indices début et fin, début inclu et fin exclu.
+
+Une chaine de caractères sera définie dans ce travail comme un
+enregistrement d'un tableau de caractères dynamique et d'une taille.
+
+\textbf{Question}
+
+\begin{quote}
+Dans cet exercice bilan, il faut compléter l'implantation des
+sous-programmes \texttt{create}, \texttt{add}, \texttt{delete},
+\texttt{length} et \texttt{destroy} de façon à ce que les tests
+s'exécutent avec succès.
+\end{quote}
+
+\textbf{RENDU} Le rendu de cet exercice Bilan est attendu dans le
+fichier \textbf{\texttt{1SN\_LangageC\_C2\_Bilan.c}} via SVN.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}89}]:} \PY{o}{\PYZhy{}}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[C kernel] Executable exited with code -11
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}

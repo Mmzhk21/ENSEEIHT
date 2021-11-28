@@ -1,0 +1,11 @@
+=====[ Relecture du code ]======================================================
+
+Remarque : n points de pénalité ==> n points perdus sur la note.
+
+Fichier LISEZ-MOI.txt :
+    question 1 : réponse fausse ou absente (peu claire) : -1 pt
+
+
+Total pénalités : 1
+
+--------------------------------------------------------------------------------

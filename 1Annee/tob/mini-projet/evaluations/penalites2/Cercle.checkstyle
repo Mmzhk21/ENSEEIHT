@@ -1,0 +1,17 @@
+Début de la vérification...
+[ERROR] Cercle.java:1:1: Le commentaire Javadoc est placé au mauvais endroit. [InvalidJavadocPosition]
+[ERROR] Cercle.java:11:43: Il manque une espace avant '{'. [WhitespaceAround]
+[ERROR] Cercle.java:14:7: Commentaire Javadoc manquant. [JavadocVariable]
+[ERROR] Cercle.java:16:7: Commentaire Javadoc manquant. [JavadocVariable]
+[ERROR] Cercle.java:18:7: Commentaire Javadoc manquant. [JavadocVariable]
+[ERROR] Cercle.java:21:11: Commentaire Javadoc manquant. [JavadocVariable]
+[ERROR] Cercle.java:28:11: Il manque une espace après 'assert'. [WhitespaceAround]
+[ERROR] Cercle.java:41:9: Il manque une espace après 'assert'. [WhitespaceAround]
+[ERROR] Cercle.java:42:9: Il manque une espace après 'assert'. [WhitespaceAround]
+[ERROR] Cercle.java:70:15: Il manque une espace après 'assert'. [WhitespaceAround]
+[ERROR] Cercle.java:71:11: Il manque une espace après 'assert'. [WhitespaceAround]
+[ERROR] Cercle.java:104: La première ligne de la Javadoc doit se terminer avec un point. [JavadocStyle]
+[ERROR] Cercle.java:105:11: Balise Javadoc @param inutilisée pour 'NewCentre'. [JavadocMethod]
+[ERROR] Cercle.java:107:36: Balise Javadoc @param manquante pour 'nvCentre'. [JavadocMethod]
+[ERROR] Cercle.java:107:45: Il manque une espace avant '{'. [WhitespaceAround]
+Vérification terminée.

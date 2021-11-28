@@ -1,0 +1,81 @@
+V "GNAT Lib v2019"
+M P W=b
+A -gnatA
+A -gnatwa
+A -gnata
+A -g
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_ALLOCATORS
+RV NO_IO
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_LOCAL_ALLOCATORS
+RV NO_RECURSION
+RV NO_STANDARD_ALLOCATORS_AFTER_ELABORATION
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U illustrer_affectation_pile%b  illustrer_affectation_pile.adb  1256b3fa NE OO SU
+W ada%s			ada.ads			ada.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+Z ada.unchecked_deallocation%s
+W piles%s		piles.adb		piles.ali
+Z system.assertions%s	s-assert.adb		s-assert.ali
+
+D ada.ads		20190518041255 76789da1 ada%s
+D a-except.ads		20190518041255 291912d5 ada.exceptions%s
+D a-ioexce.ads		20190518041254 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20190518041255 119b8fb3 ada.streams%s
+D a-tags.ads		20190518041256 491b781d ada.tags%s
+D a-textio.ads		20190518041256 aef4d56d ada.text_io%s
+D a-unccon.ads		20190518041255 0e9b276f ada.unchecked_conversion%s
+D a-uncdea.ads		20190518041255 eff36322 ada.unchecked_deallocation%s
+D illustrer_affectation_pile.adb  20201104150845 19377a71 illustrer_affectation_pile%b
+D interfac.ads		20190518041254 5ab55268 interfaces%s
+D i-cstrea.ads		20190518041254 e53d8b8e interfaces.c_streams%s
+D piles.ads		20201104150845 a5951ce6 piles%s
+D piles.adb		20201104150845 43a1d5bc piles%b
+D system.ads		20190518041255 4635ec04 system%s
+D s-assert.ads		20190518041255 cd8d2c94 system.assertions%s
+D s-crtl.ads		20190518041254 0ebbdb71 system.crtl%s
+D s-exctab.ads		20190518041255 54135002 system.exception_table%s
+D s-ficobl.ads		20190518041256 078245e4 system.file_control_block%s
+D s-parame.ads		20190518041256 48ec542b system.parameters%s
+D s-secsta.ads		20190518041256 20bbe636 system.secondary_stack%s
+D s-soflin.ads		20190518041255 a7318a92 system.soft_links%s
+D s-stache.ads		20190518041256 a37c21ec system.stack_checking%s
+D s-stalib.ads		20190518041256 09bd3940 system.standard_library%s
+D s-stoele.ads		20190518041256 2dc34a04 system.storage_elements%s
+D s-traent.ads		20190518041254 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20190518041255 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20190518041255 1b7d22d2 system.wch_con%s
+G a e
+G c Z b b [illustrer_affectation_pile standard 6 11 none]
+G r i none [illustrer_affectation_pile standard 6 11 none] [piles standard 6 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 9|2r6 2r34
+X 6 a-textio.ads
+57K13*Text_IO 727e16 9|2w10 2r38
+264U14*New_Line 9|20s24 26s24 27s24
+392U14*Put 9|12r36
+X 9 illustrer_affectation_pile.adb
+6U11*Illustrer_Affectation_Pile 6b11 31l5 31t31
+7K17 Pile[12|6] 9r13 12r21
+11U19 Afficher[12|44] 20s9 26s9 27s9
+14p9 P1{12|8P14[7]} 17m22 17r22 18m18 18r18 19m18 19r18 20r19 22r15 23r24
+. 27r19 30m18 30r18
+14p13 P2{12|8P14[7]} 22m9 23r29 25m18 25r18 26r19
+X 12 piles.ads
+6k9*Piles 9|1w6 8r21 12|59e10
+8P14 T_Pile 9|14r18[7]
+12U19 Initialiser 9|17s9[7]
+27U19 Empiler 9|18s9[7] 19s9[7]
+32U19 Depiler 9|25s9[7] 30s9[7]
+44u19 Afficher 9|12r26[7]
+

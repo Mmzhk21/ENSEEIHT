@@ -1,0 +1,93 @@
+Nom       : OUKHNINI
+Prénom    : Hamid
+Groupe TP : L
+
+Les « ... » indiquent les endroits à compléter.
+
+=====[ Temps passé ]============================================================
+
+Ces informations de temps sont demandées à titre indicatif et ne sont pas
+prises en compte dans la notation du projet.
+
+Toutes les durées sont à saisir en heures.  Par exemple, si vous avez passé
+1h45, il faudra indiquer 1.75.  Si vous avez passé 2h30, il faudra indiquer
+2.5.
+
+* Temps passé sur la V1 (en h) : 16h30
+* Temps passé sur la V2 (en h) : ...
+
+
+=====[ Questions ]==============================================================
+
+--------------------------------------------------------------------------------
+Pourquoi l'exception OperationInterditeException ne peut pas être définie
+comme vérifiée par le compilateur ?
+--------------------------------------------------------------------------------
+
+Car la methode retirer de l'interface qui est réalisé par Procuration (Jeu) n'a pas précisé qu'elle lancerait
+cette exception. On a juste throws CoupInvalideException; et non throws CoupInvalideException, OperationInterditeException.
+ainsi, L'exception OperationInterditeException hérite de RunTimeException qui n'est pas
+une exception vérifiée , donc le compilateur ne va pas la vérifier.
+
+
+--------------------------------------------------------------------------------
+Expliquer ce qu'il faut faire pour ajouter un nouveau niveau de jeu, par
+exemple la stratégie lente (C13).  Pour plus de précision, on numérotera
+les étapes à faire.
+--------------------------------------------------------------------------------
+
+1- Créer une nouvelle classe qui réalise l'interface Strategie
+2- Dans la fonction getPrises, faire return 1;
+3- Dans la methode getStrategie de la classe Jouer, traiter le cas ou la strategie est lente.
+
+
+--------------------------------------------------------------------------------
+Expliquer ce qui permet, dans votre conception, de changer dynamiquement
+(en cours d'exécution du programme) la stratégie d'un joueur (C14).
+--------------------------------------------------------------------------------
+
+On pourra ajouter l'option de lancer le programme principal Jouer avec un 
+argument supplémentaire " -changeable ". Si c'est le cas, on le traitera
+dans les blocs de if/else de la méthode principal main(). On demandera
+dans chaque étape à l'utilisateur de confirmer s'il veut ou pas changer de stratégie
+après la saisie du nombre d'allumettes qu'il veut retier:
+" Voulez vous changer de stratégie ? (o/n) "
+Si la réponse est affirmative , on demandera à l'utilisateur de saisir le nom
+de sa nouvelle stratégie . Ensuite, on utilisera la méthode setStrategie(..)
+pour changer la stratégie du joueur .
+
+
+=====[ Explications ]===========================================================
+
+--------------------------------------------------------------------------------
+Donner ici les explications supplémentaires utiles à la compréhension du
+travail rendu.
+--------------------------------------------------------------------------------
+
+Classe Game : Elle modélise le jeu réel . Dans la méthode retier(..)
+on doit discuter 3 cas principaux : retirer un nombre d'allumettes < 1 , retirer
+un nombre d'allumettes > 3 alors qu'il reste effectivement plus que 3 allumettes
+et finalement retirer un nombre d'allumettes supérieur au nombre d'allumettes
+restantes.
+
+Interface Strategie : contient la méthode getPrises() et cette interface est réalisée par toutes les strategies et cela offre la possibilité d'ajouter d'autres strategies sans modifier beaucoup les autres classes.
+
+Classe Arbitre:  - Un arbitre a comme attributs les deux joueurs  
+                 
+                 - La méthode Arbitrer(..) représente l'arbitrage principal du jeu, verifier Si l'arbitre n'est pas confiant, la méthode getPrise(..) est appliquée sur la rocuration pour contrôler l'utilisation de la méthode retirer(..) dans la 
+stratégie choisie, sinon on appliquera la méthode getPrise(..) sur le jeu réel pour rien
+contrôler.
+
+Classe Procuration : C'est le proxy , la méthode retier lève directement l'exception
+OperationInterditeException pour interdire son utilisation.
+
+
+Classe Jouer : -La méthode getStrategie(..) transforme un String représentant
+une stratégie en une vraie stratégie.
+
+                -Si la ligne de commandes contient deux arguments alors l'utilisateur
+veut un arbitre non confiant, donc il faut récupérer directement les noms des joueurs
+et leurs stratégies avec la méthode split. Sinon, il faudra
+vérifier que le premier argument est "-confiant" .
+
+--------------------------------------------------------------------------------

@@ -1,0 +1,195 @@
+V "GNAT Lib v2019"
+A -gnatA
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U google_naive%b	google_naive.adb	21332da0 NE OO PK GE
+W ada%s			ada.ads			ada.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.io_exceptions%s	a-ioexce.ads		a-ioexce.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+Z ada.text_io.float_aux%s  a-tiflau.adb		a-tiflau.ali
+Z ada.text_io.float_io%s
+
+U google_naive%s	google_naive.ads	db02366e BN EE NE OO PK GE
+W ada%s			ada.ads			ada.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+
+D ada.ads		20190518041255 76789da1 ada%s
+D a-charac.ads		20190518041255 2d3ec45b ada.characters%s
+D a-chlat1.ads		20190518041255 66457d31 ada.characters.latin_1%s
+D a-comlin.ads		20190518041255 4aa66568 ada.command_line%s
+D a-except.ads		20190518041255 291912d5 ada.exceptions%s
+D a-finali.ads		20190518041255 bf4f806b ada.finalization%s
+D a-flteio.ads		20190518041255 e18a47a0 ada.float_text_io%s
+D a-inteio.ads		20190518041256 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20190518041254 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20190518041255 119b8fb3 ada.streams%s
+D a-string.ads		20190518041255 90ac6797 ada.strings%s
+D a-strmap.ads		20190518041255 e8bb714a ada.strings.maps%s
+D a-strunb.ads		20190518041255 1656705b ada.strings.unbounded%s
+D a-tags.ads		20190518041256 491b781d ada.tags%s
+D a-textio.ads		20190518041256 aef4d56d ada.text_io%s
+D a-tiflau.ads		20190518041255 c0393f21 ada.text_io.float_aux%s
+D a-tiflio.ads		20190518041254 bf196650 ada.text_io.float_io%s
+D a-tiflio.adb		20190518041255 fd9b1cfc ada.text_io.float_io%b
+D a-tiinio.ads		20190518041254 390edddb ada.text_io.integer_io%s
+D a-unccon.ads		20190518041255 0e9b276f ada.unchecked_conversion%s
+D google_naive.ads	20201219224655 63a09358 google_naive%s
+D google_naive.adb	20201219222317 55a0df9d google_naive%b
+D interfac.ads		20190518041254 5ab55268 interfaces%s
+D i-cstrea.ads		20190518041254 e53d8b8e interfaces.c_streams%s
+D system.ads		20190518041255 4635ec04 system%s
+D s-atocou.ads		20190518041256 b45c2d8d system.atomic_counters%s
+D s-crtl.ads		20190518041254 0ebbdb71 system.crtl%s
+D s-exctab.ads		20190518041255 54135002 system.exception_table%s
+D s-ficobl.ads		20190518041256 078245e4 system.file_control_block%s
+D s-finmas.ads		20190518041255 7811a767 system.finalization_masters%s
+D s-finroo.ads		20190518041256 4ff27390 system.finalization_root%s
+D s-parame.ads		20190518041256 48ec542b system.parameters%s
+D s-secsta.ads		20190518041256 20bbe636 system.secondary_stack%s
+D s-soflin.ads		20190518041255 a7318a92 system.soft_links%s
+D s-stache.ads		20190518041256 a37c21ec system.stack_checking%s
+D s-stalib.ads		20190518041256 09bd3940 system.standard_library%s
+D s-stoele.ads		20190518041256 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20190518041255 b16154c2 system.storage_pools%s
+D s-stposu.ads		20190518041254 97a6219c system.storage_pools.subpools%s
+D s-stratt.ads		20190518041254 aedef97e system.stream_attributes%s
+D s-traent.ads		20190518041254 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20190518041255 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20190518041255 1b7d22d2 system.wch_con%s
+G a e
+G c Z s b [google_naive standard 6 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 21|1r6 1r23 2r6 2r33 22|1r6 1r33 2r6 3r6 3r23 4r6 4r29 5r6
+. 5r31 6r6 6r28 7r6
+X 4 a-comlin.ads
+36K13*Command_Line 144e21 22|6w10 6r32
+X 7 a-flteio.ads
+20K13*Float_Text_IO[17|46] 22|4w10 4r33
+X 8 a-inteio.ads
+18K13*Integer_Text_IO[19|46] 22|5w10 5r35
+X 9 a-ioexce.ads
+18K13*IO_Exceptions 30e22 22|2w10
+X 11 a-string.ads
+16K13*Strings 35e16 21|2r10 2r37 22|1r10 1r37 7r10
+X 13 a-strunb.ads
+82K21*Unbounded 756e26 21|2w18 2r45 22|1w18 1r45 7w18
+X 15 a-textio.ads
+57K13*Text_IO 727e16 21|1w10 1r27 22|3w10 3r27
+64P9*File_Type 22|11r11
+66n23*In_File{66E9} 22|15r22 64r16
+66n32*Out_File{66E9} 22|134r20 152r20
+66n42*Append_File{66E9} 22|136r18 154r18
+86I12*Field{integer}
+99U14*Create 22|134s8 152s8
+114U14*Open 22|15s12 64s6 136s8 154s8
+129U14*Close 22|17s12 71s6 135s8 147s7 153s8 165s8
+258U14*New_Line 22|141s19 160s8 163s12
+270U14*Skip_Line 22|65s6
+312V13*End_Of_File{boolean} 22|66s16
+386U14*Put 22|156s8 158s8
+X 17 a-tiflio.ads
+46k21*Float_IO 112e25 22|9r24
+69U14 Put 22|157s8[9] 162s12[9]
+72i7 Fore{15|86I12} 22|157r23[9] 162r26[9]
+73i7 Aft{15|86I12} 22|157r33[9] 162r36[9]
+X 19 a-tiinio.ads
+51U14*Get 22|16s12[8|18] 67s16[8|18] 68s16[8|18]
+68U14*Put 22|140s19[8|18] 155s8[8|18] 159s8[8|18]
+X 21 google_naive.ads
+5F7 T_Element 9r53 10r70 19r100 19r118 25r71 22|9r33 12r10 31r3 86r58 87r5
+. 103r33 110r94 110r112 111r3 116r21 118r37 127r20 149r68
+6k9*Google_Naive 5z7 32l5 32e17 22|8b14 173l5 173t17
+9A13*T_Vecteur(5F7)<integer> 21r56 23r35 25r39 27r37 27r66 22|30r29 50r9
+. 122r50 131r34 131r63 149r36
+10A13*T_matrice(5F7)<integer><integer> 15r55 17r38 19r65 22|20r37 60r52 74r28
+. 86r27 96r35 97r12 110r59
+13V16*Obtenir_nb_pages{integer} 13>33 22|13b13 19l11 19t27
+13a33 Nom{string} 22|13b30 15r30
+15U17*Matrice_Initiale 15>34 15<49 22|60b14 72l5 72t21
+15a34 Nom{string} 22|60b31 64r24
+15a49 H{10A13} 22|60b46 63m20 69m16
+17U17*matrice_H 17=27 22|96b14 109l5 109t14
+17a27 M{10A13} 22|96b24 99r12 102r19 103m19
+19V17*Obtenir_Gij{5F7} 19>29 19>44 19>59 19>76 19>91 22|110b11 120l5 120t16
+19i29 i{integer} 22|110b23 114r12 115r24
+19i44 j{integer} 22|110b38 114r14
+19a59 H{10A13} 22|110b53 114r10 115r22
+19i76 M{integer} 22|110b70 116r31 118r47
+19*91 alpha{5F7} 22|110b85 118r17 118r30
+21U17*Initialiser_P 21>31 21=46 22|122b11 130l8 130t21
+21i31 N{integer} 22|122b25 126r18 127r30
+21a46 P{9A13} 22|122b40 127m8
+23U17*Trier_P 23=25 23>45 22|30b11 57l6 57t13
+23a25 P{9A13} 22|30b19 39r16 39r21 44r18 45m13 45r21 46m13 52r11 54m10
+23i45 N{integer} 22|30b39 35r16 38r24 50r22 53r18 54r18
+25U17*Creer_Fichier_P 25>33 25>49 25>62 25>81 22|149b14 166l7 166t22
+25a33 P{9A13} 22|149b30 162r21
+25i49 N{integer} 22|149b46 155r17 161r20
+25*62 alpha{5F7} 22|149b59 157r17
+25i81 Nb_it{integer} 22|149b78 159r17
+27U17*Calculer_Rank 27>31 27>47 27>60 22|131b14 148l8 148t21
+27a31 P{9A13} 22|131b28 139r24
+27i47 N{integer} 22|131b44 137r20 138r24
+27a60 V{9A13} 22|131b57 139r19
+X 22 google_naive.adb
+9K12 real[17|46] 9r49
+10i4 N{integer} 16m21 18r19 22r18 23r22 77r17 89r15 97r25 97r32 100r19 101r21
+11p4 File{15|64P9} 15m17 15r17 16r16 17m18 17r18 64m11 64r11 65r16 66r28
+. 67r21 68r20 71m12 71r12 134m15 134r15 135m14 135r14 136m13 136r13 140r23
+. 141r28 147m13 147r13 152m15 152r15 153m14 153r14 154m13 154r13 155r12 156r12
+. 157r12 158r12 159r12 160r17 162r16 163r21 165m14 165r14
+12*4 alpha{21|5F7}
+20U13 Initialiser_H 20b13 20=27 27l7 27t20 63s6
+20a27 M{21|10A13} 24m14
+22i10 i{integer} 24r16
+23i14 j{integer} 24r18
+31*1 x{21|5F7} 44m13 46r19
+32i1 j{integer} 37m8 39r23 40m16 43r13 45r23 46r15
+35i8 i{integer} 37r11 38r19 43r17 44r20 45r15
+38i14 k{integer} 39r18 40r19
+50a6 U{21|9A13} 52m6 54r16
+53i10 i{integer} 54r12 54r20
+61i7 i{integer} 67m27 69r18
+61i9 j{integer} 68m25 69r20
+74V10 ligne_nulle{boolean} 74b10 74>22 74>38 84l5 84t16 115s10
+74a22 M{21|10A13} 78r13
+74i38 i{integer} 78r15
+75b1 bool{boolean} 79m13 83r12
+77i9 j{integer} 78r17
+86V10 somme_ligne{21|5F7} 86b10 86>22 86>38 93l5 93t16 103s43
+86a22 M{21|10A13} 90r12
+86i38 i{integer} 90r14
+87*1 s{21|5F7} 90m5 90r10 92r10
+89i7 j{integer} 90r16
+97a8 R{21|10A13} 99m7 103r55
+100i11 i{integer} 102r21 103r21 103r57
+101i13 j{integer} 102r23 103r23
+111*1 p{21|5F7} 114m7 118r23
+126i10 i{integer} 127r10
+132a4 Nom_fichier{string} 134r29 136r30
+137i12 i{integer} 139r26
+138i16 j{integer} 139r21 140r28
+150a7 Nom_fichier{string} 152r29 154r30
+161i12 i{integer} 162r23
+

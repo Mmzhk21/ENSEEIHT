@@ -1,0 +1,10 @@
+Nombre d'allumettes restantes : 13
+Luc, combien d'allumettes ? Luc prend 2 allumettes.
+
+Nombre d'allumettes restantes : 11
+Exception in thread "main" java.util.NoSuchElementException: No line found
+	at java.base/java.util.Scanner.nextLine(Scanner.java:1651)
+	at allumettes.StrategieHumaine.getPrise(StrategieHumaine.java:17)
+	at allumettes.Joueur.getPrise(Joueur.java:18)
+	at allumettes.Arbitre.arbitrer(Arbitre.java:36)
+	at allumettes.Jouer.main(Jouer.java:54)

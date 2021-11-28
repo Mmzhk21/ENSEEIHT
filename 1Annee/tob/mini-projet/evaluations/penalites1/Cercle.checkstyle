@@ -1,0 +1,4 @@
+Début de la vérification...
+[ERROR] Cercle.java:139:11: Balise Javadoc @param inutilisée pour 'double'. [JavadocMethod]
+[ERROR] Cercle.java:141:39: Balise Javadoc @param manquante pour 'nouvelleDiametre'. [JavadocMethod]
+Vérification terminée.

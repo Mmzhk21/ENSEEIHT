@@ -1,0 +1,41 @@
+Dans ce fichier `reponses1.txt`, 
+
+
+[Question 1.1] Indiquer 
+- comment obtenir le ou les exécutables par compilation séparée.
+
+On lance les commandes :   
+      c99 -Wextra -pedantic -c  file.c 
+      c99 -Wextra -pedantic -c  test_file.c
+      c99 -Wextra -pedantic -c  exemple_file.c
+ 
+pour avoir les fichier file.o, test_file.o et Exemple_file.o
+et après on génère les executables par les commandes :
+
+    c99 file.o test_file.o -o test_file
+    c99 file.o Exemple_file.o -o Exemple_file
+
+- les dépendances entre les fichiers qui constituent l’application.
+       les dépendances Pour la cible:
+                 -  Exemple_file:  sont file.o et Exemple_file.o
+                 -  test_file:  sont file.o et test_file.o
+
+- le rôle de la règle `.PHONY` dans Makefile.
+
+pour indiquer à make qu'une règle ne génère pas un fichier 
+
+Question 1.3
+   Ce fichier contient une erreur dans sa structure. L’identifier et la corriger.​
+    l'absence de garde conditionnelle
+
+[Question 1.5] Indiquer
+- Quel est le sous-programme non-visible des autres modules et défini dans le module File.
+
+Le sous programme Cellule.
+
+- Que se passe-t-il si on enlève le mot-clé static à la compilation ?  
+ 
+Il ne passe rien à l'exécution
+
+- Quel est le risque de ne pas le mettre ?
+Le risque c'est que l'utilisateur de ce programme peut utiliser le sous programme cellule.

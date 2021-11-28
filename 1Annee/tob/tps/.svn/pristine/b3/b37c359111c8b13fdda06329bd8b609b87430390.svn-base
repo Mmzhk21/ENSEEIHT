@@ -1,0 +1,39 @@
+Nombre d'allumettes restantes : 13
+Luc, combien d'allumettes ? Luc prend 2 allumettes.
+
+Nombre d'allumettes restantes : 11
+Lea, combien d'allumettes ? Lea prend 1 allumette.
+
+Nombre d'allumettes restantes : 10
+Luc, combien d'allumettes ? Vous devez donner un entier.
+Luc, combien d'allumettes ? Luc prend 5 allumettes.
+Impossible ! Nombre d'allumettes invalide : 5 (> 3)
+
+Nombre d'allumettes restantes : 10
+Luc, combien d'allumettes ? Luc prend 0 allumette.
+Impossible ! Nombre d'allumettes invalide : 0 (< 1)
+
+Nombre d'allumettes restantes : 10
+Luc, combien d'allumettes ? Luc prend 3 allumettes.
+
+Nombre d'allumettes restantes : 7
+Lea, combien d'allumettes ? Lea prend 1 allumette.
+
+Nombre d'allumettes restantes : 6
+Luc, combien d'allumettes ? Luc prend 2 allumettes.
+
+Nombre d'allumettes restantes : 4
+Lea, combien d'allumettes ? Lea prend 2 allumettes.
+
+Nombre d'allumettes restantes : 2
+Luc, combien d'allumettes ? Luc prend 1 allumette.
+
+Nombre d'allumettes restantes : 1
+Lea, combien d'allumettes ? Lea prend 2 allumettes.
+Impossible ! Nombre d'allumettes invalide : 2 (> 1)
+
+Nombre d'allumettes restantes : 1
+Lea, combien d'allumettes ? Lea prend 1 allumette.
+
+Lea perd !
+Luc gagne !

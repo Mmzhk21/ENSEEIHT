@@ -1,0 +1,18 @@
+2c2
+< R1, combien d'allumettes ? R1 prend 3 allumettes.
+---
+> R1 prend 3 allumettes.
+8c8
+< R1, combien d'allumettes ? R1 prend 3 allumettes.
+---
+> R1 prend 3 allumettes.
+14c14
+< R1, combien d'allumettes ? R1 prend 1 allumettes.
+---
+> R1 prend 1 allumette.
+16,17c16,17
+< R1 a perdu !
+< R2 a gagné !
+---
+> R1 perd !
+> R2 gagne !

@@ -1,0 +1,3 @@
+function inv { if [ $# = 0 ] ; then echo Error \!; echo usage: inv
+\[expression\]; else i=0; a=''; while [ "$i" -lt "`expr "$chaine" : '.*'`" ]; do c=$
+{chaine:i:1}; a=$c$a; i=$(($i + 1)); done; echo $a; fi; }

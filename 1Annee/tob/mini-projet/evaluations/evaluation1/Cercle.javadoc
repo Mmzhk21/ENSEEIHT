@@ -1,0 +1,4 @@
+Début de la vérification...
+[ERROR] Cercle.java:105:11: Balise Javadoc @param inutilisée pour 'NewCentre'. [JavadocMethod]
+[ERROR] Cercle.java:107:36: Balise Javadoc @param manquante pour 'nvCentre'. [JavadocMethod]
+Vérification terminée.

@@ -1,0 +1,11 @@
+= Javadoc
+* C'est plus lisible si on garde un espace entre la balise /** et le commentaire qui suit.
+* Ajouter la doc pour les attributs dans le format javadoc /** ...  */
+
+
+= LISEZ-MOI.txt
+* q1 Non, si c’était une agrégation, une fois que le cercle est détruit le point qui représente son centre devrait encore exister: est-ce que c'est le cas ici?
+* q2 incomplète: comment on empêche de modifier le centre quand on fait getCentre() par exemple?
+
+= CercleTest
+ok

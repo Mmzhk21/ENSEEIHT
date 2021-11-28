@@ -1,0 +1,4 @@
+function arbre { if [ test $# = 2 ]; then find $2 -type d -exec
+echo " " {} \;; else if [ test $# = 1 ]; then if [ test $1 = " -d " ]; then find . -type
+d -exec echo " " {} \;; else find $1 -type f -exec echo " " {} \;; fi; else find .
+-type f -exec echo " " {} \;; fi; fi; }

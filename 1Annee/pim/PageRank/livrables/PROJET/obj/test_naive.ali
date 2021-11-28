@@ -1,0 +1,141 @@
+V "GNAT Lib v2019"
+M P W=b
+A -gnatA
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_DIRECT_BOOLEAN_OPERATORS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTIONS
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_ASPECT_SPECIFICATIONS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U test_naive%b		test_naive.adb		2be28bdd NE OO SU IL
+W ada%s			ada.ads			ada.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.io_exceptions%s	a-ioexce.ads		a-ioexce.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+Z ada.text_io.float_aux%s  a-tiflau.adb		a-tiflau.ali
+Z ada.text_io.float_io%s
+W google_naive%s	google_naive.adb	google_naive.ali
+Z system.fat_flt%s	s-fatflt.ads		s-fatflt.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+
+D ada.ads		20190518041255 76789da1 ada%s
+D a-charac.ads		20190518041255 2d3ec45b ada.characters%s
+D a-chlat1.ads		20190518041255 66457d31 ada.characters.latin_1%s
+D a-comlin.ads		20190518041255 4aa66568 ada.command_line%s
+D a-except.ads		20190518041255 291912d5 ada.exceptions%s
+D a-finali.ads		20190518041255 bf4f806b ada.finalization%s
+D a-flteio.ads		20190518041255 e18a47a0 ada.float_text_io%s
+D a-inteio.ads		20190518041256 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20190518041254 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20190518041255 119b8fb3 ada.streams%s
+D a-string.ads		20190518041255 90ac6797 ada.strings%s
+D a-strmap.ads		20190518041255 e8bb714a ada.strings.maps%s
+D a-strunb.ads		20190518041255 1656705b ada.strings.unbounded%s
+D a-tags.ads		20190518041256 491b781d ada.tags%s
+D a-textio.ads		20190518041256 aef4d56d ada.text_io%s
+D a-tiflau.ads		20190518041255 c0393f21 ada.text_io.float_aux%s
+D a-tiflio.ads		20190518041254 bf196650 ada.text_io.float_io%s
+D a-tiflio.adb		20190518041255 fd9b1cfc ada.text_io.float_io%b
+D a-tiinio.ads		20190518041254 390edddb ada.text_io.integer_io%s
+D a-unccon.ads		20190518041255 0e9b276f ada.unchecked_conversion%s
+D google_naive.ads	20201219224655 63a09358 google_naive%s
+D google_naive.adb	20201219222317 55a0df9d google_naive%b
+D interfac.ads		20190518041254 5ab55268 interfaces%s
+D i-cstrea.ads		20190518041254 e53d8b8e interfaces.c_streams%s
+D system.ads		20190518041255 4635ec04 system%s
+D s-atocou.ads		20190518041256 b45c2d8d system.atomic_counters%s
+D s-crtl.ads		20190518041254 0ebbdb71 system.crtl%s
+D s-exctab.ads		20190518041255 54135002 system.exception_table%s
+D s-fatflt.ads		20190518041255 11beb392 system.fat_flt%s
+D s-fatgen.ads		20190518041256 49cbaf86 system.fat_gen%s
+D s-ficobl.ads		20190518041256 078245e4 system.file_control_block%s
+D s-finmas.ads		20190518041255 7811a767 system.finalization_masters%s
+D s-finroo.ads		20190518041256 4ff27390 system.finalization_root%s
+D s-parame.ads		20190518041256 48ec542b system.parameters%s
+D s-secsta.ads		20190518041256 20bbe636 system.secondary_stack%s
+D s-soflin.ads		20190518041255 a7318a92 system.soft_links%s
+D s-stache.ads		20190518041256 a37c21ec system.stack_checking%s
+D s-stalib.ads		20190518041256 09bd3940 system.standard_library%s
+D s-stoele.ads		20190518041256 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20190518041255 b16154c2 system.storage_pools%s
+D s-stposu.ads		20190518041254 97a6219c system.storage_pools.subpools%s
+D s-stratt.ads		20190518041254 aedef97e system.stream_attributes%s
+D s-traent.ads		20190518041254 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20190518041255 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20190518041255 1b7d22d2 system.wch_con%s
+D test_naive.adb	20210118180911 492709bb test_naive%b
+G a e
+G c Z b b [test_naive standard 8 11 none]
+G r i none [test_naive standard 8 11 none] [google_naive standard 6 9 none]
+X 1 ada.ads
+16K9*Ada 20e8 46|1r6 2r6 2r23 3r6 3r29 4r6 4r31 5r6 5r28 6r6 6r33
+X 4 a-comlin.ads
+36K13*Command_Line 144e21 46|5w10 5r32
+39V13*Argument_Count{natural} 46|19s30
+52V13*Argument{string} 46|19s21 27s32 33s18 44s18 55s21 56s18 71s21
+X 7 a-flteio.ads
+20K13*Float_Text_IO[17|46] 46|3w10 3r33
+X 8 a-inteio.ads
+18K13*Integer_Text_IO[19|46] 46|4w10 4r35
+X 9 a-ioexce.ads
+18K13*IO_Exceptions 30e22 46|1w10
+X 11 a-string.ads
+16K13*Strings 35e16 46|6r10 6r37
+X 13 a-strunb.ads
+82K21*Unbounded 756e26 46|6w18 6r45
+X 15 a-textio.ads
+57K13*Text_IO 727e16 46|2w10 2r27
+64P9*File_Type 46|10r6
+264U14*New_Line 46|26s1 30s1 32s1 40s1 43s1 52s1 54s1 67s1 69s1 77s1 79s1
+. 89s1
+465U14*Put 46|25s1 28s1 31s1 39s1 42s1 51s1 53s1 66s1 68s1 76s1 78s1 88s1
+X 21 google_naive.ads
+6k9*Google_Naive 32e17 46|7w6 13r23
+9A13 T_Vecteur(float)<integer> 46|21r3[13] 22r3[13]
+10A13 T_matrice(float)<integer><integer> 46|23r3[13]
+13V16 Obtenir_nb_pages{integer} 46|19s4[13] 27s15[13] 55s4[13] 71s4[13]
+15U17 Matrice_Initiale 46|33s1[13] 44s1[13] 56s1[13]
+17U17 matrice_H 46|45s1[13] 57s1[13]
+19V17 Obtenir_Gij{float} 46|58s15[13] 59s15[13] 60s15[13] 61s15[13] 62s15[13]
+. 63s15[13] 64s15[13] 65s15[13]
+21U17 Initialiser_P 46|72s1[13]
+23U17 Trier_P 46|86s1[13]
+X 46 test_naive.adb
+8U11*test_naive 8b11 94l5 94t15
+9i1 N{integer} 19m1 21r16 22r16 23r16 23r23 55m1 58r33 58r60 59r33 59r60
+. 60r33 60r72 61r33 61r60 62r33 62r52 63r33 63r60 64r33 64r60 65r33 65r60
+. 71m1 72r15 73r13 74r34 86r11
+10p1 file{15|64P9}
+11i1 Nb_it{integer}
+13K9 Google[21|6] 13r48
+14f1 alpha{float} 58r35 58r47 59r35 59r47 60r35 60r42 60r59 61r35 61r47 62r35
+. 63r35 63r47 64r35 64r47 65r35 65r47
+15U11 tester_google_naive 15b11 91l5 91t24 93s1
+21a1 P{21|9A13[13]} 72m17 72r17 74r19 80m1 81m1 82m1 83m1 84m1 85m1 86m9
+. 86r9 87r15 87r28 87r41
+22a1 V{21|9A13[13]}
+23a1 H{21|10A13[13]} 33m30 34r15 34r30 34r45 34r60 34r75 35r15 35r30 35r45
+. 35r60 37r19 44m30 45m11 45r11 46r15 46r30 46r45 46r64 46r83 47r15 47r30
+. 47r45 47r60 49r19 56m30 57m11 57r11 58r31 59r31 60r31 61r31 62r31 63r31
+. 64r31 65r31
+36i5 i{integer} 37r23
+48i5 i{integer} 49r23
+73i5 i{integer} 74r21
+

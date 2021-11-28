@@ -1,0 +1,156 @@
+V "GNAT Lib v2019"
+M P W=b
+A -gnatA
+A -mtune=generic
+A -march=x86-64
+P ZX
+
+RN
+RV NO_ALLOCATORS
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_IMPLICIT_CONDITIONALS
+RV NO_LOCAL_ALLOCATORS
+RV NO_RECURSION
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_ALLOCATORS_AFTER_ELABORATION
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_PRAGMAS
+RV SPARK_05
+
+U ll%b			ll.adb			c2df9e30 NE OO SU IL
+W ada%s			ada.ads			ada.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.integer_text_io%s	a-inteio.ads		a-inteio.ali
+W ada.io_exceptions%s	a-ioexce.ads		a-ioexce.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+Z ada.tags%s		a-tags.adb		a-tags.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+Z ada.unchecked_deallocation%s
+W gnat%s		gnat.ads		gnat.ali
+W gnat.os_lib%s		g-os_lib.ads		g-os_lib.ali
+W google_creuse%s	google_creuse.adb	google_creuse.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+W vecteurs_creux%s	vecteurs_creux.adb	vecteurs_creux.ali
+
+D ada.ads		20190518041255 76789da1 ada%s
+D a-charac.ads		20190518041255 2d3ec45b ada.characters%s
+D a-chlat1.ads		20190518041255 66457d31 ada.characters.latin_1%s
+D a-comlin.ads		20190518041255 4aa66568 ada.command_line%s
+D a-except.ads		20190518041255 291912d5 ada.exceptions%s
+D a-finali.ads		20190518041255 bf4f806b ada.finalization%s
+D a-flteio.ads		20190518041255 e18a47a0 ada.float_text_io%s
+D a-inteio.ads		20190518041256 f64b89a4 ada.integer_text_io%s
+D a-ioexce.ads		20190518041254 e4a01f64 ada.io_exceptions%s
+D a-stream.ads		20190518041255 119b8fb3 ada.streams%s
+D a-string.ads		20190518041255 90ac6797 ada.strings%s
+D a-strmap.ads		20190518041255 e8bb714a ada.strings.maps%s
+D a-strunb.ads		20190518041255 1656705b ada.strings.unbounded%s
+D a-tags.ads		20190518041256 491b781d ada.tags%s
+D a-textio.ads		20190518041256 aef4d56d ada.text_io%s
+D a-tiflio.ads		20190518041254 bf196650 ada.text_io.float_io%s
+D a-tiinio.ads		20190518041254 390edddb ada.text_io.integer_io%s
+D a-unccon.ads		20190518041255 0e9b276f ada.unchecked_conversion%s
+D a-uncdea.ads		20190518041255 eff36322 ada.unchecked_deallocation%s
+D gnat.ads		20190518041256 b5988c27 gnat%s
+D g-os_lib.ads		20190518041254 0db74523 gnat.os_lib%s
+D google_creuse.ads	20210113224245 ceff5fa0 google_creuse%s
+D interfac.ads		20190518041254 5ab55268 interfaces%s
+D i-cstrea.ads		20190518041254 e53d8b8e interfaces.c_streams%s
+D ll.adb		20210113224510 e23168f6 ll%b
+D system.ads		20190518041255 4635ec04 system%s
+D s-atocou.ads		20190518041256 b45c2d8d system.atomic_counters%s
+D s-crtl.ads		20190518041254 0ebbdb71 system.crtl%s
+D s-exctab.ads		20190518041255 54135002 system.exception_table%s
+D s-ficobl.ads		20190518041256 078245e4 system.file_control_block%s
+D s-finmas.ads		20190518041255 7811a767 system.finalization_masters%s
+D s-finroo.ads		20190518041256 4ff27390 system.finalization_root%s
+D s-os_lib.ads		20190518041255 5703ce4c system.os_lib%s
+D s-parame.ads		20190518041256 48ec542b system.parameters%s
+D s-secsta.ads		20190518041256 20bbe636 system.secondary_stack%s
+D s-soflin.ads		20190518041255 a7318a92 system.soft_links%s
+D s-stache.ads		20190518041256 a37c21ec system.stack_checking%s
+D s-stalib.ads		20190518041256 09bd3940 system.standard_library%s
+D s-stoele.ads		20190518041256 2dc34a04 system.storage_elements%s
+D s-stopoo.ads		20190518041255 b16154c2 system.storage_pools%s
+D s-stposu.ads		20190518041254 97a6219c system.storage_pools.subpools%s
+D s-stratt.ads		20190518041254 aedef97e system.stream_attributes%s
+D s-string.ads		20190518041255 8fe54fb7 system.strings%s
+D s-traent.ads		20190518041254 005bf670 system.traceback_entries%s
+D s-unstyp.ads		20190518041255 34867c83 system.unsigned_types%s
+D s-wchcon.ads		20190518041255 1b7d22d2 system.wch_con%s
+D vecteurs_creux.ads	20201231130108 e2c3fd7b vecteurs_creux%s
+D vecteurs_creux.adb	20201231130108 ef9b13d2 vecteurs_creux%b
+G a e
+G c Z b b [ll standard 10 11 none]
+G r i none [ll standard 10 11 none] [vecteurs_creux standard 4 9 none]
+G r s t_matrice [ll standard 10 11 none] [t_matriceIP google_creuse 35 9 none]
+G r c none [ll standard 10 11 none] [obtenir_nb_pages google_creuse 12 16 none]
+G r c none [ll standard 10 11 none] [matrice_initiale google_creuse 14 17 none]
+G r c none [ll standard 10 11 none] [matrice_h google_creuse 16 14 none]
+G r c none [ll standard 10 11 none] [initialiser_p google_creuse 22 17 none]
+G r c none [ll standard 10 11 none] [obtenir_gij google_creuse 20 14 none]
+G r c none [ll standard 10 11 none] [trier_p google_creuse 24 17 none]
+G r c none [ll standard 10 11 none] [fichier_pagerank google_creuse 28 13 none]
+G r c none [ll standard 10 11 none] [creer_fichier_p google_creuse 26 17 none]
+G r c none [ll standard 10 11 none] [detruire google_creuse 29 13 none]
+X 1 ada.ads
+16K9*Ada 20e8 25|1r6 2r6 2r23 3r6 3r29 4r6 4r31 5r6 5r28 6r6 6r33
+X 4 a-comlin.ads
+36K13*Command_Line 144e21 25|5w10 5r32
+52V13*Argument{string} 25|21s21 27s18 28s15 36s35
+X 7 a-flteio.ads
+20K13*Float_Text_IO[16|46] 25|3w10 3r33
+X 8 a-inteio.ads
+18K13*Integer_Text_IO[17|46] 25|4w10 4r35
+X 9 a-ioexce.ads
+18K13*IO_Exceptions 30e22 25|1w10
+X 11 a-string.ads
+16K13*Strings 35e16 25|6r10 6r37
+X 13 a-strunb.ads
+82K21*Unbounded 756e26 25|6w18 6r45
+X 15 a-textio.ads
+57K13*Text_IO 727e16 25|2w10 2r27
+64P9*File_Type 25|14r6
+X 20 gnat.ads
+34K9*GNAT 57e9 25|9r6
+X 21 g-os_lib.ads
+51K14*OS_Lib=51:36 25|9w11
+X 22 google_creuse.ads
+5K9*Google_Creuse 42e18 25|7w6 7r25
+7A13*T_Vecteur(float)<integer> 25|24r3 25r3
+9R13*T_matrice 38e14 25|16r3
+12V16*Obtenir_nb_pages{integer} 25|21s4
+14U17*Matrice_Initiale 25|27s1
+16U14*matrice_H 25|28s1
+20V14*Obtenir_Gij{float} 25|36s23
+22U17*Initialiser_P 25|29s1
+24U17*Trier_P 25|44s1
+26U17*Creer_Fichier_P 25|46s1
+28U13*fichier_pagerank 25|45s1
+29U13*Detruire 25|47s1
+X 25 ll.adb
+10U11*ll 10b11 50l5 50t7
+11K9 vec[47|4] 11r47
+13i1 N{integer} 21m1 24r16 25r16 28r13 29r15 33r17 35r21 36r53 44r11 45r20
+. 46r19
+14p1 file{15|64P9}
+15i1 Nb_it{integer} 32r13 46r27
+16r1 H{22|9R13} 27m30 27r30 28m11 28r11 36r51 47m10 47r10
+17f1 alpha{float} 36r55 46r21
+18f1 T{float} 34m9 36m13 36r16 38r15
+19p1 V{47|6P14[11]}
+19p3 P{47|6P14[11]}
+24a1 P{22|7A13} 29m17 29r17 30r4 36r18 40m5 42r4 44m9 44r9 45r18 46r17
+25a1 V{22|7A13} 30m1 38m9 40r8 42m1 45r22
+32i5 k{integer}
+33i9 i{integer} 36r49 38r11
+35i13 j{integer} 36r20 36r47
+X 47 vecteurs_creux.ads
+4k9*Vecteurs_Creux 25|8w6 11r20 47|54e19
+6P14 T_Vecteur_Creux 25|19r5[11]
+

@@ -1,0 +1,29 @@
+% Retour personnalisé sur  mini-projet SDA : LCA
+% Auteur : Ismail Mendil
+% Etudiant :  OUKHNINI HAMID
+% Groupe de TP : L
+
+
+# Remarques générales:
+## Il faut lire le retour général pour savoir les erreurs à éviter dans la suite du mini-projet.
+
+# Remarques relatives au fichier lca_sujet.adb
+## Tu n'as pas besoin de SDA_Exceptions donc il faut la supprimer dans la section des dépendances (with *; use *;)
+## Réécris la procédure d'affichage rempace "=" par "=>" par exemple, pour un meilleure présentation.
+## Le programme souffre de fuites de mémoire (voir Valkyrie). La raison est l'implantation incorrecte de Vider. A revoir.
+
+# Remarques relatives au fichier test_lca.adb
+## Certains tests ne passent pas. Une stratégie pour isoler les tests posant problèmes et de commenter tous les tests sauf celui correspondant au sous-programme que tu veux tester.
+
+# Remarques relatives au fichier lca.adb
+## Il faut commenter ton code.
+## Dans Taille: Evite d'utiliser Est_Vide pour économiser un appel de fonction.
+## Dans Enregistrer: Evite d'utiliser Cle_Presente car elle est coûteuse puisque elle parcourt toute la liste.
+## Dans Cle_Presente: L'algorithme se simplifie si tu considères le curseur courant et non pas le suivant.
+## Dans La_Donnee: même remarque que pour  Cle_Presente.
+## Dans Pour_Chaque: Très mauvaise gestion des exceptions. Il faut indiquer que le programme a rencontré un problème.
+
+# LISEZ-MOI
+## Les idées sont là. Par contre, il faut retravailler tes réponses.
+## Liste et développe chaque avantage et inconvénient. Compare en termes de performance, utilisation mémiore, d'un point de vue programmation, etc.
+## "Pour accéder à un élément if faut parcourir la liste" équivaut à "complexité linéaire ". Alors avantage ou inconvénient?

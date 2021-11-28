@@ -1,0 +1,54 @@
+3,5c3
+< 
+< erreur !
+< Recommencez
+---
+> Impossible ! Nombre d'allumette invalide : 4 (> 3)
+8a7
+> Impossible ! Nombre d'allumette invalide : 5 (> 3)
+10,11c9,11
+< erreur !
+< Recommencez
+---
+> Nombre d'allumette restantes : 13
+> Xavier, combien d'allumette ? Xavier prend 0 allumette.
+> Impossible ! Nombre d'allumette invalide : 0 (< 1)
+15,17c15
+< 
+< erreur !
+< Recommencez
+---
+> Impossible ! Nombre d'allumette invalide : -1 (< 1)
+39,41c37
+< 
+< erreur !
+< Recommencez
+---
+> Impossible ! Nombre d'allumette invalide : 4 (> 1)
+45,47c41
+< 
+< erreur !
+< Recommencez
+---
+> Impossible ! Nombre d'allumette invalide : 3 (> 1)
+50a45
+> Impossible ! Nombre d'allumette invalide : 2 (> 1)
+52,53c47,49
+< erreur !
+< Recommencez
+---
+> Nombre d'allumette restantes : 1
+> Xavier, combien d'allumette ? Xavier prend 0 allumette.
+> Impossible ! Nombre d'allumette invalide : 0 (< 1)
+57,59c53
+< 
+< erreur !
+< Recommencez
+---
+> Impossible ! Nombre d'allumette invalide : -1 (< 1)
+64,65c58,59
+< Xavier a perdu !
+< Ordinateur a gagné !
+---
+> Xavier perd !
+> Ordinateur gagne !

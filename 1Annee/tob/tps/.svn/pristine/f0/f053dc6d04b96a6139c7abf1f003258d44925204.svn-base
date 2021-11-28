@@ -1,0 +1,4 @@
+./allumettes/StrategieExpertTest.java:38: error: unreported exception CoupInvalideException; must be caught or declared to be thrown
+		assertEquals("La prise quand le jeu ne contient que 3 allumette", 2, strategieExpert.getPrise(jeu));
+		                                                                                             ^
+1 error

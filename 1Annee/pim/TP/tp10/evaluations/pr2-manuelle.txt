@@ -1,0 +1,96 @@
+% Evaluation faite par l'enseignant de TP (faire svn log <ce fichier>)
+%
+%
+
+Voir aussi le fichier evaluations/automatique.txt
+
+
+Les chiffres entre crochets correspondent à un malus [-0.5] ou un bonus [+0.5]
+avec une explication qui suit.
+
+En début de ligne apparaît le nombre de points obtenu sur l'item et en fin de
+ligne, entre parenthèses, le barème.
+
+
+# 7.0 Exercice 1 : LCA (7.5 pt)
+
+* 0.5 Définition du type lca.ads (.5 pt)
+* 3.0 Implantation lca.adb (3.0 pt)
+	- 2.5 Erreurs/maladresse (2.5 pt)
+		- [-0.0] Pas besoin de Si (une expression booléenne suffit) : Est_Vide
+		- [-0.25] Si Répéter -> Tantque : Taille
+		- [-0.5] while inutile dans Vider (appel récursif)
+		- [-0.5] Répéter au lieu de TantQue : Taille, Vider
+		- [-0.5] Coûteux : Cle_Presente utilisée dans Enregistrer
+		- [-0.5] Pourquoi un Pour dans Pour_Chaque ?
+		- [-0.5] Supprimer : inutile de traiter le cas suivant !
+		- [-0.0] Pour_Chaque : Factoriser l'appel à Pour_Chaque
+		- [-0.5] Pour_Chaque : L'exception levées par Traiter ne sont pas récupérées
+		- [-0.5] Il ne faut pas ajouter des SP dans l'interface
+		- [-0.5] Enregistrer, La_Donnee, Supprimer : Beaucoup plus compliquées que nécessaire !
+		- [+0.5] Utilisation de SP local pertinent, par exemple trouver la Cellule associée à une clé
+		- ...
+	- 0.5 Lisibilité (.5 pt)
+		- Pas d'espace autour des opérateurs
+		- Mauvaise indentation
+		- ...
+* 1.0 Exemple sujet lca_sujet.adb (1 pt)
+* 1.0 Inconvénients LISEZ-MOI.txt (1 pt)
+* 1.5 Exécution (2 pt)
+	- 0.5 lca_sujet fonction, sans et avec valdrind (1 pt)
+	- 1.0 test_lca fonction, sans et avec valdrind (1 pt)
+
+
+
+# 5.5 Exercice 2 : TH (7.5 pt)
+
+* 2.5 Interface th.ads (2.5 pts)
+	- 1.0 Paramètres de généricité (1 pt)
+		- [-0.5] Par paramètre manquant / incorrect (T_Cle, T_Donnee, Taille, Fonction_Hachage)
+	- 0.5 Opérations (.5 pt)
+	- 1.0 Définition du type (1 pt)
+		- [-0.5] On doit réutiliser le module LCA, pas redéfinir le type LCA
+
+* 1.5 Implantation th.adb (2.0 pt)
+	- [-0.0] Supprimer : Inutile de lever Cle_Absente_Exception car LCA.Supprimer le fait
+	- -0.5 Mauvaise utilisation de la fonction de hachage (pas de modulo)
+	- [-1.0] Réutiliser la LCA au lieu de redéfinir ses opérations
+
+* 0.0 Exemple sujet th_sujet.adb (.5 pt)
+
+* 0.5 Test test_th.adb (.5 pt)
+
+* 1.0 Exécution (2 pt)
+	- 0.5 th_sujet fonctionne, sans et avec valdrind (1 pt)
+	- 0.5 test_th fonctionne, sans et avec valdrind (1 pt)
+
+
+
+# 2.5 Exercice 3 : Comparaison (5pt)
+
+* 2.0 Programmes demandés evaluer_alea_lca.adb et evaluer_alea_th.adb (3 pt)
+	- 1.0 Qualité algorithmique (1.5 pt)
+		- [-1.0] Pas compris : Il ne s'agit pas de mettre les nombres aléatoires dans la Sda !
+		- [-0.5] Taille codée en dur dans le programme !
+		- [-0.5] fréquence et min/max mélangés
+		- [-0.5] pas/peu de commentaires
+		- -0.5 erreurs avec valgrind
+		- [-0.0] Il serait plus efficace d'utiliser Pour_Chaque
+	- 0.5 Robustesse/clarté des messages (1 pt)
+		- 0.0 Robuste (.5 pt)
+			- -0.5 Erreur sur le Min quand il est nul.
+			- [-0.5] Le programme se termine sur une exception non récupérée.
+		- 0.5 Clarté des messages (.5 pt)
+	- 0.5 Les deux programmes sont identiques à la SDA près (.5 pt)
+
+* 0.5 LISEZ-MOI.txt (2 pt)
+	- 0.5 Qualité du générateur (.5 pt)
+	- 0.0 Comparaison LCA / TH (.5 pt)
+	- 0.0 Conclusions argumentées (.5 pt)
+	- 0.0 Qualité de la présentation (.5 pt)
+
+
+15.0 Note finale (20 pt)
+
+
+<!-- vim: set ts=4 sw=4: -->

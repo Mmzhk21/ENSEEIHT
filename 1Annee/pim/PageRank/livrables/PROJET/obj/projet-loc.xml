@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<Locations >
+  <Project>
+    <vfs_file>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/projet.gpr</vfs_file>
+    <file_marker column=" 22" line=" 11" >
+      <vfs_project />
+      <vfs_file>/home/houkhnin/MATLAB/projects/dd/src/creuse.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 35" >
+      <vfs_project />
+      <vfs_file>/home/houkhnin/MATLAB/projects/dd/src/creuse.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 16" line=" 44" >
+      <vfs_project />
+      <vfs_file>/home/houkhnin/MATLAB/projects/dd/src/pagerank.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 18" >
+      <vfs_project />
+      <vfs_file>/home/houkhnin/MATLAB/projects/dd/src/vecteur_c.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 59" line=" 32" >
+      <vfs_project />
+      <vfs_file>/home/houkhnin/MATLAB/projects/dd/src/vecteur_c.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/projet.gpr</vfs_project>
+      <vfs_file>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/src/google_naive.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 33" >
+      <vfs_project>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/projet.gpr</vfs_project>
+      <vfs_file>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/src/google_naive.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/projet.gpr</vfs_project>
+      <vfs_file>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/src/google_naive.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/projet.gpr</vfs_project>
+      <vfs_file>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/src/pagerank.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/projet.gpr</vfs_project>
+      <vfs_file>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/src/google_creuse.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/projet.gpr</vfs_project>
+      <vfs_file>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/src/google_creuse.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/projet.gpr</vfs_project>
+      <vfs_file>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/src/vecteurs_creux.ads</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/projet.gpr</vfs_project>
+      <vfs_file>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/src/vecteurs_creux.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/projet.gpr</vfs_project>
+      <vfs_file>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/src/test_vecteurs_creux.adb</vfs_file>
+    </file_marker>
+    <file_marker column=" 1" line=" 1" >
+      <vfs_project>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/projet.gpr</vfs_project>
+      <vfs_file>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/src/vecteurs_creux.adb</vfs_file>
+    </file_marker>
+    <file_marker current="true" column=" 1" line=" 1" >
+      <vfs_project>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/projet.gpr</vfs_project>
+      <vfs_file>/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/src/test_naive.adb</vfs_file>
+    </file_marker>
+  </Project>
+</Locations>

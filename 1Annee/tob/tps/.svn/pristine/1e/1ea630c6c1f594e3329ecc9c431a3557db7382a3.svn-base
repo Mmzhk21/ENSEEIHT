@@ -1,0 +1,7 @@
+./allumettes/StrategieLenteTest.java:23: error: unreported exception CoupInvalideException; must be caught or declared to be thrown
+		assertEquals("la première prise de la stratégie", 1, strategieLente.getPrise(jeu));
+		                                                                            ^
+./allumettes/StrategieLenteTest.java:37: error: unreported exception CoupInvalideException; must be caught or declared to be thrown
+		assertEquals("La prise quand le jeu ne contient que 2 allumette", 1, strategieLente.getPrise(jeu));
+		                                                                                            ^
+2 errors

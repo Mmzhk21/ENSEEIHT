@@ -1,0 +1,6 @@
+allumettes/Jouer.java:63: error: cannot find symbol
+		}catch (StrategieNotFoundException e) {
+		        ^
+  symbol:   class StrategieNotFoundException
+  location: class Jouer
+1 error

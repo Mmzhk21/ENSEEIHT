@@ -1,0 +1,22 @@
+[GENERATED OBJECT FILE]
+b__pagerank.o
+[PROJECT FILES]
+/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/projet.gpr
+20210120135609
+[BOUND OBJECT FILES]
+/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/obj/google_naive.o
+/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/obj/vecteurs_creux.o
+/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/obj/google_creuse.o
+/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/obj/pagerank.o
+[GENERATED SOURCE FILES]
+b__pagerank.ads
+b__pagerank.adb
+b__pagerank.ali
+[RESULTING OPTIONS]
+-L/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/obj/
+-L/home/houkhnin/1Annee/pim/KL-14/livrables/PROJET/obj/
+-L/applications/gnat/lib/gcc/x86_64-pc-linux-gnu/8.3.1/adalib/
+-static
+-static-libgcc
+/applications/gnat/lib/gcc/x86_64-pc-linux-gnu/8.3.1/adalib/libgnat.a
+-ldl
